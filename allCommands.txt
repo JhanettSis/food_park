@@ -1,0 +1,34 @@
+
+---------------------- First part - Create and set up the laravel new project ------------------
+composer global require laravel/installer
+laravel new food_park
+cd food_park
+code .
+//open terminal on visual code app and write the next command line
+composer require laravel/breeze --dev
+
+DB_CONNECTION=pgsql
+DB_HOST=localhost
+DB_PORT=5434
+DB_DATABASE=db_food_park
+DB_USERNAME=postgres
+DB_PASSWORD=AdminJna**
+
+composer require laravel/breeze --dev
+php artisan breeze:install blade
+php artisan migrate
+
+composer require --dev barryvdh/laravel-ide-helper
+php artisan ide-helper:generate
+
+--------------------------   end first part    -------------------------------------
+
+
+
+
+
+
+
+
+
+
