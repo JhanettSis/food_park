@@ -11,6 +11,6 @@ class AdminDashboardController extends Controller
     function index() : View{
         //this view is coming from resources/view/dashboard/index.blade.php
         // I created a different index for admin
-        return view('admin_dashboard.index');
+        return view('admin.dashboard.index');
     }
 }

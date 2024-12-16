@@ -1,12 +1,31 @@
-
+<?php
+echo '
+Setting Up a New Laravel Project for Food Park
 ---------------------- First part - Create and set up the laravel new project ------------------
-composer global require laravel/installer
-laravel new food_park
-cd food_park
-code .
-//open terminal on visual code app and write the next command line
-composer require laravel/breeze --dev
 
+1. Install Laravel and Set Up a New Project
++++++ Here  Command: composer global require laravel/installer
+This globally installs the Laravel installer on your system.
++++++ Here  Command: laravel new food_park
+Creates a new Laravel project named food_park.
+Navigate to the project folder:
++++++ Here  Command: cd food_park
+Open the project in Visual Studio Code:
++++++ Here  Command: code .
+---------------------------------------------------------------------------------------------------------------------
+
+2. Install Laravel Breeze (For Authentication Scaffolding)
+Breeze simplifies adding authentication functionality using Blade templates.
++++++ Here  Command: composer require laravel/breeze --dev
++++++ Here  Command: php artisan breeze:install blade
+This sets up basic authentication views using Blade.
+---------------------------------------------------------------------------------------------------------------------
+
+3. Configure Database
+Update the .env file with the following database configuration:
+makefile
+
+=====
 DB_CONNECTION=pgsql
 DB_HOST=localhost
 DB_PORT=5434
@@ -14,21 +33,80 @@ DB_DATABASE=db_food_park
 DB_USERNAME=postgres
 DB_PASSWORD=AdminJna**
 
-composer require laravel/breeze --dev
-php artisan breeze:install blade
-php artisan migrate
+Details:
+Uses PostgreSQL as the database.
+Ensure that the db_food_park database is created in your PostgreSQL instance.
+Update the port, username, and password as per your setup.
+Run the migrations:
 
-composer require --dev barryvdh/laravel-ide-helper
-php artisan ide-helper:generate
++++++ Here  Command: php artisan migrate
 
---------------------------   end first part    -------------------------------------
+This applies the default migrations (users, password resets, etc.) to set up your database tables.
+---------------------------------------------------------------------------------------------------------------------
 
+4. Install Laravel IDE Helper
+To improve code completion and hints in IDEs:
 
++++++ Here  Command: composer require --dev barryvdh/laravel-ide-helper
 
+Generate helper files:
 
++++++ Here  Command: php artisan ide-helper:generate
+---------------------------------------------------------------------------------------------------------------------
 
+Adding Features to Food Park
+1. Seeders and Controllers
+Create a seeder for the users table to populate initial data:
 
+    +++++ Here  Command: php artisan make:seeder UserSeeder
+Create an admin dashboard controller:
 
++++++ Here  Command: php artisan make:controller Admin/AdminDashboardController
+---------------------------------------------------------------------------------------------------------------------
 
+2. Middleware Alias Setup
+Laravel 11 allows middleware aliases directly in bootstrap/app.php instead of modifying Kernel.php.
+In bootstrap/app.php, add:
+php
 
+%%%%%%  Here  Code:
 
+$middleware->alias([
+    'role' => \App\Http\Middleware\RoleMiddleware::class,
+]);
+
+Purpose: This alias allows you to use the role middleware across your routes conveniently.
+---------------------------------------------------------------------------------------------------------------------
+
+3. Route Setup
+Add an admin dashboard route in routes/web.php:
+php
+%%%%%%  Here  Code:
+Route::get('admin_dashboard', [AdminDashboardController::class, 'index'])
+    ->middleware(['auth', 'role:admin'])  // Protect the route with authentication and admin role checks
+    ->name('admin_dashboard');
+
+Details:
+Protects the route so only authenticated users with the admin role can access it.
+---------------------------------------------------------------------------------------------------------------------
+
+4. Register admin.php Route File
+Create a new file routes/admin.php to separate admin-specific routes.
+Purpose: Organizing routes into separate files for better maintainability.
+Register the admin.php file in bootstrap/app.php:
+php
+%%%%%%  Here  Code:
+Route::middleware('web', 'auth', 'role:admin')
+    ->prefix('admin')
+    ->group(base_path('routes/admin.php'));
+
+Details:
+Uses middleware for auth and role:admin to protect admin routes.
+Adds a prefix (/admin) to all routes defined in admin.php.
+---------------------------------------------------------------------------------------------------------------------
+
+Assets for Styles and JavaScript
+Copy the assets folder into the public directory.
+Purpose: To centralize all CSS and JavaScript files in one folder for easier access.
+';
+?>

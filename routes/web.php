@@ -21,8 +21,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-Route::get('admin_dashboard', [AdminDashboardController::class, 'index'])
-    ->middleware(['auth', 'role:admin'])  // Ensure you use 'role' middleware with the 'admin' role
-    ->name('admin_dashboard');
+// here just the role admin can insert of this view, but I commend this code,
+// because I copy this code on a new file called routes/admin.php
+// Route::get('admin_dashboard', [AdminDashboardController::class, 'index'])
+//     ->middleware(['auth', 'role:admin'])  // Ensure you use 'role' middleware with the 'admin' role
+//     ->name('admin_dashboard');
 
