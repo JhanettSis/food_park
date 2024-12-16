@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +20,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('admin_dashboard', [AdminDashboardController::class, 'index'])
+    ->middleware(['auth', 'role:admin'])  // Ensure you use 'role' middleware with the 'admin' role
+    ->name('admin_dashboard');
+
