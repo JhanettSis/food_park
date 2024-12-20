@@ -94,7 +94,8 @@
                                         I used the reference the last code  -->
                                         <div class="fp__login_imput">
                                             <label>email</label>
-                                            <input type="email" id="email" name="email" placeholder="Email" required autofocus autocomplete="off" >
+                                            <input type="email" id="email" name="email" placeholder="Email" required autofocus
+                                            value="{{ old('email') }}" >
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                     </div>
