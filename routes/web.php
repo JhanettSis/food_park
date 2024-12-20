@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// I cretate a new route for url for index or home
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
