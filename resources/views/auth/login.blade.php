@@ -58,7 +58,7 @@
                 <div class="fp__breadcrumb_text">
                     <h1>sign in</h1>
                     <ul>
-                        <li><a href="index.html">home</a></li>
+                        <li><a href="{{ route('home') }}">home</a></li>
                         <li><a href="#">sign in</a></li>
                     </ul>
                 </div>
@@ -90,8 +90,7 @@
                             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div> --}}
-                        <!-- Email Address
-                                        I used the reference the last code  -->
+                        <!-- Email Address I used the reference the last code  -->
                                         <div class="fp__login_imput">
                                             <label>email</label>
                                             <input type="email" id="email" name="email" placeholder="Email" required autofocus
@@ -101,12 +100,12 @@
                                     </div>
                                     <div class="col-xl-12">
                                         <!-- Password -->
-                        {{-- <div class="mt-4">
-                            <x-input-label for="password" :value="__('Password')" />
-                            <x-text-input id="password" class="block mt-1 w-full"
-                                            type="password" name="password" required autocomplete="current-password" />
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                        </div> --}}
+                                    {{-- <div class="mt-4">
+                                        <x-input-label for="password" :value="__('Password')" />
+                                        <x-text-input id="password" class="block mt-1 w-full"
+                                                        type="password" name="password" required autocomplete="current-password" />
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div> --}}
                                         <div class="fp__login_imput">
                                             <label>password</label>
                                             <input type="password" id="password"  name="password"
@@ -117,12 +116,12 @@
                                         <div class="fp__login_imput fp__login_check_area">
                                             <div class="form-check">
                                                 <!-- Remember Me -->
-                            {{-- <div class="block mt-4">
-                                <label for="remember_me" class="inline-flex items-center">
-                                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                                </label>
-                            </div> --}}
+                                                {{-- <div class="block mt-4">
+                                                    <label for="remember_me" class="inline-flex items-center">
+                                                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                                                        <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                                    </label>
+                                                </div> --}}
                                                 <input class="form-check-input" type="checkbox" value=""
                                                 id="remember_me" name="remember">
                                                 <label class="form-check-label" for="flexCheckDefault">
