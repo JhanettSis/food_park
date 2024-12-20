@@ -70,12 +70,19 @@
     <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script>
     {{-- toastr js --}}
     <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
-    <!--main/custom js-->
+    <!--show dynamic validation on frontend pages main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
         <script>
             @if ($errors->any())
-                @foreach ($errors->all() as $error )
-                    toastr.error("{{ $error }}")
+                toastr.options = {
+                    "timeOut": "12000", // 16 seconds
+                    "extendedTimeOut": "5000", // 5 seconds on hover
+                    "closeButton": true,
+                    "progressBar": true,
+                };
+
+                @foreach ($errors->all() as $error)
+                    toastr.error("{{ $error }}");
                 @endforeach
             @endif
         </script>
