@@ -26,7 +26,7 @@ require __DIR__.'/auth.php';
 
 // here just the role admin can insert of this view, but I commend this code,
 // because I copy this code on a new file called routes/admin.php
-// Route::get('admin_dashboard', [AdminDashboardController::class, 'index'])
+// Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])
 //     ->middleware(['auth', 'role:admin'])  // Ensure you use 'role' middleware with the 'admin' role
-//     ->name('admin_dashboard');
+//     ->name('admin/dashboard');
 

@@ -82,9 +82,9 @@ Purpose: This alias allows you to use the role middleware across your routes con
 Add an admin dashboard route in routes/web.php:
 php
 %%%%%%  Here  Code:
-Route::get('admin_dashboard', [AdminDashboardController::class, 'index'])
+Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])
     ->middleware(['auth', 'role:admin'])  // Protect the route with authentication and admin role checks
-    ->name('admin_dashboard');
+    ->name('admin/dashboard');
 
 Details:
 Protects the route so only authenticated users with the admin role can access it.
