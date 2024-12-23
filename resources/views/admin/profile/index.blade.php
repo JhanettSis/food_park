@@ -15,13 +15,25 @@
                     @csrf
                     @method('put')
                     <div class="card-body">
+                        <div class="col-md-3 profile-widget-header">
+                            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture">
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
+                            <div class="col-sm-12 col-md-7">
+                                <div id="image-preview" class="image-preview">
+                                    <label for="image-upload" id="image-label">Choose File</label>
+                                    <input type="file" name="image" id="image-upload" />
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control"  value="{{ auth()->user()->email }}">
+                            <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}">
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-primary mr-1" type="submit">Submit</button>
@@ -34,20 +46,22 @@
                 <div class="card-header">
                     <h4>Update user password</h4>
                 </div>
-                <form action="">
+                <form action="{{ route('admin.profile.password.update') }}" method="post">
+                    @csrf
+                    @method('put')
                     <div class="card-body">
 
                         <div class="form-group">
                             <label>Current Password:</label>
-                            <input type="password" class="form-control">
+                            <input type="password" name="current_password" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Password:</label>
-                            <input type="password" class="form-control">
+                            <input type="password" name="password" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" class="form-control">
+                            <input type="password" name="password_confirmation" class="form-control">
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-primary mr-1" type="submit">Submit</button>

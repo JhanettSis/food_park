@@ -6,11 +6,30 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
+/**
+ * Class AdminDashboardController
+ *
+ * Manages the admin dashboard view and related actions.
+ */
 class AdminDashboardController extends Controller
 {
-    function index() : View{
-        //this view is coming from resources/view/dashboard/index.blade.php
-        // I created a different index for admin
+    /**
+     * Display the admin dashboard page.
+     *
+     * URL: /admin/dashboard
+     * Method: GET
+     *
+     * @return View
+     *
+     * This method returns the admin dashboard view.
+     * The view file is located at 'resources/views/admin/dashboard/index.blade.php'.
+     *
+     * This dashboard is separate from the regular user dashboard,
+     * allowing for different layouts and data tailored for admin users.
+     */
+    public function index() : View {
+        // Render the admin dashboard page.
+        // This view is specific to the admin section.
         return view('admin.dashboard.index');
     }
 }
