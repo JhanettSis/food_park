@@ -101,6 +101,8 @@
         });
         //$(".inputtags").tagsinput('items');
     </script>
+    @stack('scripts')
+    
 </body>
 
 </html>

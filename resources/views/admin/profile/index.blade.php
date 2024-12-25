@@ -11,19 +11,16 @@
                 <div class="card-header">
                     <h4>Update user section</h4>
                 </div>
-                <form action="{{ route('admin.profile.update') }}" method="post">
+                <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="card-body">
-                        <div class="col-md-3 profile-widget-header">
-                            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture">
-                        </div>
                         <div class="form-group row mb-4">
                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                             <div class="col-sm-12 col-md-7">
                                 <div id="image-preview" class="image-preview">
                                     <label for="image-upload" id="image-label">Choose File</label>
-                                    <input type="file" name="image" id="image-upload" />
+                                    <input type="file" name="avatar" id="image-upload" />
                                 </div>
                             </div>
                         </div>
@@ -72,3 +69,15 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.image-preview').css({
+                'background-image': 'url({{ asset(auth()->user()->avatar) }})',
+                'background-size' : 'cover',
+                'background-pisition': 'center center'
+            })
+        })
+    </script>
+@endpush
