@@ -64,8 +64,14 @@
                                     aria-controls="v-pills-settings" aria-selected="false"><span><i
                                             class="fas fa-user-lock"></i></span> Change Password </button>
 
-                                <button class="nav-link" type="button"><span> <i class="fas fa-sign-out-alt"></i>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="nav-link" type="button" onclick="event.preventDefault();
+                                        this.closest('form').submit();"><span> <i class="fas fa-sign-out-alt"></i>
                                     </span> Logout</button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -109,4 +109,27 @@ Assets for Styles and JavaScript
 Copy the assets folder into the public directory.
 Purpose: To centralize all CSS and JavaScript files in one folder for easier access.
 ';
+---------------------------------------------------------------------------------------------------------------------
+For test the option forget password, I used a https://mailtrap.io/home
+
+and the configuration on .env is
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=33322390610922
+MAIL_PASSWORD=9d4ba8be382c3c
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="foo_park@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+ and I create a controller for that and put the next code
+    // Check the response and show appropriate message
+        toastr('Reset link sent in to your email', 'success');
+        return $status == Password::RESET_LINK_SENT
+                    ? back()->with('status', __($status))
+                    : back()->withInput($request->only('email'))
+                        ->withErrors(['email' => __($status)]);
+
+
+
+
 ?>

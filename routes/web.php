@@ -36,7 +36,11 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
  * - It maps 'admin/login' to the 'index' method of AdminAuthController.
  * - The route is named 'admin.login'.
  */
-Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
+    Route::get('admin/forget_password', [AdminAuthController::class, 'forgetPassword'])->name('admin.forget_password');
+    Route::post('admin/forget_password', [AdminAuthController::class, 'sendResetLink'])->name('admin.send_reset_link');
+});
 
 
 // ===========================================
@@ -90,7 +94,6 @@ Route::group(['middleware' => 'auth'], function() {
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
-
 
 // ===========================================
 // INCLUDE AUTHENTICATION ROUTES
