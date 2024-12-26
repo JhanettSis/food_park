@@ -2,11 +2,23 @@
 <html lang="en">
 
 <head>
+    <!-- Character encoding for the document -->
     <meta charset="UTF-8">
+
+    <!-- Responsive meta tag for mobile-friendly design -->
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
-    <title>FoodPark || Restaurant Template</title>
+
+    <!-- CSRF token for securing AJAX requests in Laravel -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <!-- Page title displayed in the browser tab -->
+    <title>FoodPark || Restaurant</title>
+
+    <!-- Favicon icon for the browser tab -->
     <link rel="icon" type="image/png" href="frontend/images/favicon.png">
+
+    <!-- Linking external CSS files for styling -->
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/spacing.css') }}">
@@ -16,76 +28,123 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.exzoom.css') }}">
 
+    <!-- Toastr CSS for notifications -->
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
 
+    <!-- Main and responsive stylesheet -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+
+    <!-- RTL (Right to Left) stylesheet for languages like Arabic (Optional) -->
     <!-- <link rel="stylesheet" href="frontend/css/rtl.css"> -->
 </head>
 
 <body>
 
     <!--=============================
-        TOPBAR START and MENU START
+        TOPBAR AND MENU SECTION
     ==============================-->
-        @include('frontend.layouts.menu')
-    <!--=============================
-        TOPBAR END and MENU END
-    ==============================-->
+    <!-- Includes the navigation menu from frontend.layouts.menu -->
+    @include('frontend.layouts.menu')
 
+    <!--=============================
+        CONTENT SECTION
+    ==============================-->
+    <!-- This section dynamically displays the main content from different views -->
     @yield('content')
 
     <!--=============================
-        FOOTER START and SCROLL BUTTON START
+        FOOTER AND SCROLL BUTTON SECTION
     ==============================-->
-        @include('frontend.layouts.footer')
+    <!-- Includes the footer from frontend.layouts.footer -->
+    @include('frontend.layouts.footer')
+
     <!--=============================
-        FOOTER END and SCROLL BUTTON END
+        JAVASCRIPT FILES
     ==============================-->
 
-    <!--jquery library js-->
+    <!-- jQuery library (core JS functionality) -->
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
-    <!--bootstrap js-->
+
+    <!-- Bootstrap JS for responsive design and components -->
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-    <!--font-awesome js-->
+
+    <!-- FontAwesome icons -->
     <script src="{{ asset('frontend/js/Font-Awesome.js') }}"></script>
-    <!-- slick slider -->
+
+    <!-- Slick slider for carousel/slider functionality -->
     <script src="{{ asset('frontend/js/slick.min.js') }}"></script>
-    <!-- isotop js -->
+
+    <!-- Isotope for filtering and layout masonry -->
     <script src="{{ asset('frontend/js/isotope.pkgd.min.js') }}"></script>
-    <!-- simplyCountdownjs -->
+
+    <!-- Countdown timer functionality -->
     <script src="{{ asset('frontend/js/simplyCountdown.js') }}"></script>
-    <!-- counter up js -->
+
+    <!-- Counter Up for animating statistics -->
     <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.countup.min.js') }}"></script>
-    <!-- nice select js -->
-    <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
-    <!-- venobox js -->
-    <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
-    <!-- sticky sidebar js -->
-    <script src="{{ asset('frontend/js/sticky_sidebar.js') }}"></script>
-    <!-- wow js -->
-    <script src="{{ asset('frontend/js/wow.min.js') }}"></script>
-    <!-- ex zoom js -->
-    <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script>
-    {{-- toastr js --}}
-    <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
-    <!--show dynamic validation on frontend pages main/custom js-->
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
-        <script>
-            @if ($errors->any())
-                toastr.options = {
-                    "timeOut": "12000", // 16 seconds
-                    "extendedTimeOut": "5000", // 5 seconds on hover
-                    "closeButton": true,
-                    "progressBar": true,
-                };
 
-                @foreach ($errors->all() as $error)
-                    toastr.error("{{ $error }}");
-                @endforeach
-            @endif
-        </script>
+    <!-- Nice select for styled dropdowns -->
+    <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
+
+    <!-- Venobox for lightbox gallery popups -->
+    <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
+
+    <!-- Sticky sidebar for keeping content in view while scrolling -->
+    <script src="{{ asset('frontend/js/sticky_sidebar.js') }}"></script>
+
+    <!-- WOW.js for scrolling animations -->
+    <script src="{{ asset('frontend/js/wow.min.js') }}"></script>
+
+    <!-- ExZoom for image zooming functionality -->
+    <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script>
+
+    <!-- Toastr JS for displaying notifications -->
+    <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
+
+    <!-- Main custom JS for frontend interactions -->
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+    <!--=============================
+        ERROR HANDLING AND AJAX CONFIGURATION
+    ==============================-->
+    <script>
+        // Display Toastr error notifications if there are validation errors
+        @if ($errors->any())
+            toastr.options = {
+                "timeOut": "12000", // Duration of notification (12 seconds)
+                "extendedTimeOut": "5000", // Additional time on hover (5 seconds)
+                "closeButton": true, // Show close button
+                "progressBar": true, // Show progress bar
+            };
+
+            // Loop through each error and display as toastr notification
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}");
+            @endforeach
+        @endif
+
+        // AJAX setup to include CSRF token in requests for security
+        // meta tags – Handles character encoding and viewport settings
+        // for mobile responsiveness. CSRF tokens are essential
+        // for securing AJAX requests in Laravel.
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+    <!--=============================
+        STACK SCRIPTS
+    ==============================-->
+    <!-- Additional scripts pushed by specific views will be inserted here
+    @ stack('scripts') – This allows you to push scripts
+    from different views to load at the end of the body.-->
+
+    @stack('scripts')
+
 </body>
 
 </html>
