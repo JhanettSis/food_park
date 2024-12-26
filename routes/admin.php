@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 // Route Grouping:
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 // Admin Routes Group - Organizes all admin-related routes under the 'admin' prefix and name
 
 // Group routes with a prefix of 'admin' and named as 'admin' (e.g., admin.dashboard, admin.profile)
-Route::group(['prefix' => 'admin', 'as' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
     /**
      * Admin Dashboard Route
@@ -36,7 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function(){
      *
      * This route displays the admin dashboard.
      */
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('.dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     /**
      * Admin Profile View Route
@@ -47,7 +48,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function(){
      *
      * Displays the admin's profile page where profile details can be viewed or edited.
      */
-    Route::get('/profile', [AdminProfileController::class, 'index'])->name('.profile');
+    Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
 
     /**
      * Admin Profile Update Route
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function(){
      *
      * Handles profile update requests (e.g., name, email).
      */
-    Route::put('/profile', [AdminProfileController::class, 'updateProfile'])->name('.profile.update');
+    Route::put('/profile', [AdminProfileController::class, 'updateProfile'])->name('profile.update');
 
     /**
      * Admin Password Update Route
@@ -69,7 +70,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function(){
      *
      * Handles requests to update the admin's password.
      */
-    Route::put('/profile/password', [AdminProfileController::class, 'updatePassword'])->name('.profile.password.update');
+    Route::put('/profile/password', [AdminProfileController::class, 'updatePassword'])->name('profile.password.update');
+
+    /** Silder route */
+    Route::resource('/slider', SliderController::class);
 
 });
 
