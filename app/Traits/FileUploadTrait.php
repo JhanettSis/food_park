@@ -34,23 +34,27 @@ trait FileUploadTrait
             $imageName = 'media_' . uniqid() . '.' . $ext;
 
             // Move the file to the specified path within the public directory
-            $image->move(public_path($path.$filePath), $imageName);
+            $image->move(public_path($path . $filePath), $imageName);
 
-            // delete file or image from uploads folder if exist
-            // if($oldPath && File::exists(public_path($oldPath))){
-            //     File::delete($oldPath);
-            // }
-
-            // Delete the old image if it exists
+            // delete file or old image  from uploads folder if exist
             if ($oldPath && File::exists(public_path($oldPath))) {
                 File::delete(public_path($oldPath));
             }
             // Return the path to the uploaded file
-            return $path.$filePath . '/' . $imageName;
+            return $path . $filePath . '/' . $imageName;
         }
 
         // Return null if no file was uploaded
         return null;
     }
-
+    /**
+     * Remove file
+     *  */
+    function removeImage(string $path): void
+    {
+        // delete file or old image  from uploads folder if exist
+        if (File::exists(public_path($path))) {
+            File::delete(public_path($path));
+        }
+    }
 }
