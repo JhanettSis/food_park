@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
 
 // Route Grouping:
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 // Admin Routes Group - Organizes all admin-related routes under the 'admin' prefix and name
 
 // Group routes with a prefix of 'admin' and named as 'admin' (e.g., admin.dashboard, admin.profile)
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /**
      * Admin Dashboard Route
@@ -75,13 +76,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     /** Silder route */
     Route::resource('/slider', SliderController::class);
 
+    /** WhyChooseUs section route */
+    Route::resource('/why_choose_us', WhyChooseUsController::class);
 });
-
-
-
-
-
-
-
-
-

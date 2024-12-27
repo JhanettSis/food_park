@@ -15,13 +15,24 @@ namespace App\Models{
 /**
  * 
  *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SectionTitle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SectionTitle newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|SectionTitle query()
+ */
+	class SectionTitle extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $image
- * @property string $offer
+ * @property string|null $offer
  * @property string $title
  * @property string $subtitle
  * @property string $short_description
- * @property string $button_link
+ * @property string|null $button_link
  * @property bool $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -75,5 +86,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WhyChooseUs newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WhyChooseUs newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WhyChooseUs query()
+ */
+	class WhyChooseUs extends \Eloquent {}
 }
 
