@@ -3,6 +3,8 @@
 namespace App\Traits;  // Corrected namespace to follow Laravel conventions
 
 use Illuminate\Http\Request;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 trait FileUploadTrait
 {
@@ -17,7 +19,7 @@ trait FileUploadTrait
      * @param string $path The destination path for storing the file (default: /uploads).
      * @return string|null The path to the uploaded file or null if no file was uploaded.
      */
-    public function uploadImage(Request $request, string $inputName, string $filePath, string $path = "/uploads"): ?string
+    public function uploadImage(Request $request, string $inputName, string $filePath, string $oldPath = NULL, string $path = "/uploads")
     {
         // Check if the request contains a file with the specified input name
         if ($request->hasFile($inputName)) {
@@ -34,6 +36,15 @@ trait FileUploadTrait
             // Move the file to the specified path within the public directory
             $image->move(public_path($path.$filePath), $imageName);
 
+            // delete file or image from uploads folder if exist
+            // if($oldPath && File::exists(public_path($oldPath))){
+            //     File::delete($oldPath);
+            // }
+
+            // Delete the old image if it exists
+            if ($oldPath && File::exists(public_path($oldPath))) {
+                File::delete(public_path($oldPath));
+            }
             // Return the path to the uploaded file
             return $path.$filePath . '/' . $imageName;
         }
@@ -41,4 +52,5 @@ trait FileUploadTrait
         // Return null if no file was uploaded
         return null;
     }
+
 }

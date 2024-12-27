@@ -48,7 +48,7 @@ class AdminProfileController extends Controller
         $user = Auth::user();
 
         // Upload the avatar image if present in the request
-        $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages');
+        $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages', $user->avatar);
 
         // Update user information with validated request data
         $user->name = $request->name;

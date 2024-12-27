@@ -67,14 +67,19 @@
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
-
+    <!-- A beautiful, responsive, customizable,
+        accessible (WAI-ARIA) replacement for JavaScript's popup boxes
+        Zero dependencies-->
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
     {{-- toastr js --}}
     <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
+
     <script>
         @if ($errors->any())
             toastr.options = {
@@ -102,6 +107,30 @@
             success_callback: null // Default: null
         });
         //$(".inputtags").tagsinput('items');
+
+        $(document).ready(function() {
+            $('body').on('click', '.delete-item', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            })
+
+        })
     </script>
     @stack('scripts')
 
