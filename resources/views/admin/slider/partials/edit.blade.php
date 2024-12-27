@@ -33,10 +33,10 @@
                                 <label>Status</label>
                                 <select name="status" class="form-control">
                                     <!-- There are two ways to display the option form the database value -->
-                                    <!-- First way { { $slider->status === 1 ? 'selected' : '' }} -->
-                                    <option {{ $slider->status === 1 ? 'selected' : '' }} value="1">Active</option>
+                                    <!-- First way { { $slider->status === true ? 'selected' : '' }} -->
+                                    <option {{ $slider->status === true ? 'selected' : '' }} value="1">Active</option>
                                     <!-- Second way @ selected($slider->status === 0)  -->
-                                    <option @selected($slider->status === 0) value="0">Inactive</option>
+                                    <option @selected($slider->status === false) value="0">Inactive</option>
                                 </select>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="short_description" rows="4" class="form-control">
+                                <textarea name="short_description" rows="9" class="form-control">
                                     {{ $slider->short_description }}
                                 </textarea>
                             </div>

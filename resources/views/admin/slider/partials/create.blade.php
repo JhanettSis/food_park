@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="short_description" rows="4" class="form-control"></textarea>
+                                <textarea name="short_description" rows="9" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Button link</label>

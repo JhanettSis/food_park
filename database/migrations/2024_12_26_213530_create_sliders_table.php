@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
+            $table->text('image')->default('/uploads/imageDefault.jpg');
             $table->string('offer')->nullable();
             $table->string('title');
             $table->string('subtitle');

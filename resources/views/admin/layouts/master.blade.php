@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <!-- CSRF token for securing AJAX requests in Laravel -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <title>General Dashboard &mdash; Stisla</title>
 
     <!-- General CSS Files -->
@@ -66,13 +69,13 @@
     <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
     <!-- A beautiful, responsive, customizable,
         accessible (WAI-ARIA) replacement for JavaScript's popup boxes
         Zero dependencies-->
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
@@ -83,7 +86,7 @@
     <script>
         @if ($errors->any())
             toastr.options = {
-                "timeOut": "12000", // 16 seconds
+                "timeOut": "12000", // 12 seconds
                 "extendedTimeOut": "5000", // 5 seconds on hover
                 "closeButton": true,
                 "progressBar": true,
@@ -96,7 +99,6 @@
     </script>
 
     <script>
-        //$("select").selectric();
         $.uploadPreview({
             input_field: "#image-upload", // Default: .image-upload
             preview_box: "#image-preview", // Default: .image-preview
@@ -107,10 +109,29 @@
             success_callback: null // Default: null
         });
         //$(".inputtags").tagsinput('items');
+        //$("select").selectric();
+        // AJAX setup to include CSRF token in requests for security
+        // meta tags – Handles character encoding and viewport settings
+        // for mobile responsiveness. CSRF tokens are essential
+        // for securing AJAX requests in Laravel.
+        /**
+         * This $.ajaxSetup({... under this comment was not working properly
+         * instead of that I create a tocken inside the code
+         *  $('body').on('click', '.delete-item', function(e) {
+         * in its option ajax data:...
+         * like
+         *          data: {_token: {{ csrf_token() }}},
+         */
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
 
         $(document).ready(function() {
             $('body').on('click', '.delete-item', function(e) {
-                e.preventDefault();
+                e.preventDefault()
+                let urlHref = $(this).attr('href');
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -121,11 +142,37 @@
                     confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
+                        $.ajax({
+                            method: 'DELETE',
+                            //this variable urlHref I declare and put the value before at the top of the script
+                            url: urlHref,
+                            data: {_token: "{{ csrf_token() }}"},
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    toastr.success(response.message);
+                                    //$('#slider-table').DataTable().draw();
+                                    //instead the line above this
+                                    // it's remplasing by the next code
+                                    window.location.reload();
+                                } else {
+                                    toastr.erro(response.message);
+                                }
+                            },
+                            error: function(error) {
+                                console.error(error);
+                            },
+                        })
+                        /**
+                         * Instead of this piece if code from the sweetAlert
+                         * I use toastr inside the condition
+                         * if(response.status === 'success'){
+                         * and I commented the next code -> Swal.fire({
+                         */
+                        // Swal.fire({
+                        //     title: "Deleted!",
+                        //     text: "Your file has been deleted.",
+                        //     icon: "success"
+                        // });
                     }
                 });
             })

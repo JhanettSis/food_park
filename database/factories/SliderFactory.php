@@ -21,7 +21,7 @@ class SliderFactory extends Factory
     public function definition(): array
     {
         return [
-            'image' => '/uploads/test',
+            'image' => '/uploads/imageDefault.jpg',
             'offer' => '50%',
             'title' => fake()->sentence(),
             'subtitle' => fake()->sentence(10),
