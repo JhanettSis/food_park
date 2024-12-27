@@ -17,7 +17,7 @@ trait FileUploadTrait
      * @param string $path The destination path for storing the file (default: /uploads).
      * @return string|null The path to the uploaded file or null if no file was uploaded.
      */
-    public function uploadImage(Request $request, string $inputName, string $path = "/uploads"): ?string
+    public function uploadImage(Request $request, string $inputName, string $filePath, string $path = "/uploads"): ?string
     {
         // Check if the request contains a file with the specified input name
         if ($request->hasFile($inputName)) {
@@ -32,10 +32,10 @@ trait FileUploadTrait
             $imageName = 'media_' . uniqid() . '.' . $ext;
 
             // Move the file to the specified path within the public directory
-            $image->move(public_path($path), $imageName);
+            $image->move(public_path($path.$filePath), $imageName);
 
             // Return the path to the uploaded file
-            return $path . '/' . $imageName;
+            return $path.$filePath . '/' . $imageName;
         }
 
         // Return null if no file was uploaded

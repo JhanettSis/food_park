@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\SliderDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SliderCreateRequest;
+use App\Models\Slider;
+use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+    use FileUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -30,9 +34,21 @@ class SliderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SliderCreateRequest $request)
     {
-        //
+        /** Handle image upload */
+        $imagePath = $this->uploadImage($request, 'image', '/sliderImages');
+        $slider = new Slider();
+        $slider->offer = $request->offer;
+        $slider->title = $request->title;
+        $slider->subtitle = $request->subtitle;
+        $slider->short_description = $request->short_description;
+        $slider->button_link = $request->button_link;
+        $slider->status = $request->status;
+        $slider->image = $imagePath;
+        $slider->save();
+        toastr()->success('Created successfully!');
+        return to_route('admin.slider.index');
     }
 
     /**
