@@ -10,11 +10,13 @@
                 <div id="accordion">
                     <div class="accordion">
                         <div class="accordion-header bg-primary text-light p-3" role="button" data-toggle="collapse" data-target="#panel-body-1"
-                            aria-expanded="false">
+                            aria-expanded="true">
                             <h4>Why Choose Us Section titles</h4>
                         </div>
-                        <div class="accordion-body collapse show" id="panel-body-1" data-parent="#accordion" style="">
-                            <form action="">
+                        <div class="accordion-body collapse" id="panel-body-1" data-parent="#accordion" style="">
+                            <form action="{{ route('admin.why_choose_title.update') }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="">Top Title</label>
                                     <input type="text" name="why_choose_us_top_title" class="form-control"
@@ -45,7 +47,7 @@
             <div class="card-header">
                 <h4>All Items</h4>
                 <div class="card-header-action">
-                    <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.why_choose_us.create') }}" class="btn btn-primary">
                         Create
                     </a>
                 </div>
