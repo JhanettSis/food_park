@@ -101,6 +101,23 @@ class WhyChooseUsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $whyChooseUs = WhyChooseUs::findOrFail($id);
+            $whyChooseUs->delete();
+            return response(['status'=> 'success', 'message' => 'Deleted Successfully!']);
+        }
+        catch(\Exception $e){
+            /**
+             *This other kind of sending a message error $e->getMessage()
+             * is for development trying to find the real erro and for best practice
+             * The developers can not display any information about the application
+             * 
+             * return response(['status'=> 'error', 'message' => $e->getMessage()]);
+             */
+
+            return response(['status'=> 'error', 'message' => 'Something went wrong!']);
+        }
+
+
     }
 }

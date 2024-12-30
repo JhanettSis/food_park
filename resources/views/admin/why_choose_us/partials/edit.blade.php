@@ -36,8 +36,8 @@
                             <div class="form-group">
                                 <label>Status</label>
                                 <select name="status" class="form-control">
-                                    <option @selected($whyChooseUs->status === 1) value="1">Yes</option>
-                                    <option @selected($whyChooseUs->status === 0) value="0">No</option>
+                                    <option @selected($whyChooseUs->status === true) value="1">Active</option>
+                                    <option @selected($whyChooseUs->status === false) value="0">Inactive</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>

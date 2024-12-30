@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-6">
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
                                 <div class="col-sm-12 col-md-7">
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">Choose File</label>
@@ -31,8 +31,8 @@
                             <div class="form-group">
                                 <label>Status</label>
                                 <select name="status" class="form-control">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
                                 </select>
                             </div>
                         </div>

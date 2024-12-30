@@ -16,6 +16,31 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property bool $status
+ * @property bool $show_at_home
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereShowAtHome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereUpdatedAt($value)
+ */
+	class Category extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string|null $key
  * @property string|null $value
  * @property \Illuminate\Support\Carbon|null $created_at

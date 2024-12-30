@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
@@ -79,4 +80,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** WhyChooseUs section route */
     Route::put('/why_choose_title_update', [WhyChooseUsController::class, 'updateTitle'])->name('why_choose_title.update');
     Route::resource('/why_choose_us', WhyChooseUsController::class);
+
+    /** Route Product Category */
+    Route::resource('/categories', CategoryController::class);
 });
