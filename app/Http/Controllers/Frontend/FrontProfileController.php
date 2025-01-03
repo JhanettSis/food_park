@@ -83,7 +83,7 @@ class FrontProfileController extends Controller
     {
         // Upload the image using the uploadImage method (likely part of a trait or helper).
         // 'avatar' is the name of the input field in the form.
-        $imagePath = $this->uploadImage($request, 'avatar');
+        $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages');
 
         // Retrieve the currently authenticated user using the Auth facade.
         $user = Auth::user();

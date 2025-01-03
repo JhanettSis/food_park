@@ -66,6 +66,7 @@
                     <span>Manage Restaurant</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.categories.index') }}">Product Categories</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.products.index') }}">Products</a></li>
 
                 </ul>
             </li>

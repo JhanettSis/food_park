@@ -33,19 +33,25 @@ trait FileUploadTrait
             // Generate a unique file name to avoid conflicts
             $imageName = 'media_' . uniqid() . '.' . $ext;
 
-            // Move the file to the specified path within the public directory
-            $image->move(public_path($path . $filePath), $imageName);
+            // Check if the image is valid and has been uploaded correctly
+            if ($image->isValid()) {
+                // Move the file to the specified path within the public directory
+                $image->move(public_path($path . $filePath), $imageName);
 
-            // delete file or old image  from uploads folder if exist
-            if ($oldPath && File::exists(public_path($oldPath))) {
-                File::delete(public_path($oldPath));
+                // If there’s an old image, delete it
+                if ($oldPath && File::exists(public_path($oldPath))) {
+                    File::delete(public_path($oldPath));
+                }
+
+                // Return the path to the uploaded file
+                return $path . $filePath . '/' . $imageName;
+            } else {
+                // Handle invalid file case
+                return null;  // Return null or handle error appropriately
             }
-            // Return the path to the uploaded file
-            return $path . $filePath . '/' . $imageName;
         }
 
-        // Return null if no file was uploaded
-        return null;
+        return null;  // If no file is uploaded, return null
     }
     /**
      * Remove file
