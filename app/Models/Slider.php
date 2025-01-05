@@ -17,6 +17,6 @@ class Slider extends Model
         'subtitle',
         'short_description',
         'button_link',
-        'status',
+        'status'
     ];
 }

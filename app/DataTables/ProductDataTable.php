@@ -23,10 +23,15 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function ($query) {
-            $divOpen = "<div class='buttons'>";
+            $divOpen = '<div class="btn-group dropleft">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropleft
+                </button>
+                <div class="dropdown-menu dropleft" x-placement="left-start" style="position: absolute; transform: translate3d(-2px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">';
             $edit = "<a href='" . route('admin.products.edit', $query->id) . "' class='btn btn-primary'><i class='fas fa-edit'></i></a>";
             $delete = "<a href='" . route('admin.products.destroy', $query->id) . "' class='btn btn-danger delete-item'><i class='fas fa-trash'></i></a>";
-            $divClose = "</div>";
+            $divClose = "</div>
+            </div>";
             return $divOpen . $edit . $delete . $divClose;
         })->addColumn('product_image', function($query){
             return '<img class="img-fluid" alt="Image Slider"  src="'.asset($query->product_image).'">';

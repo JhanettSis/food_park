@@ -28,5 +28,4 @@ class Product extends Model
             'status'
     ];
 
-    protected $guarted = [];
 }
