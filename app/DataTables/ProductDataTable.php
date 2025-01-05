@@ -28,11 +28,12 @@ class ProductDataTable extends DataTable
                 Dropleft
                 </button>
                 <div class="dropdown-menu dropleft" x-placement="left-start" style="position: absolute; transform: translate3d(-2px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">';
-            $edit = "<a href='" . route('admin.products.edit', $query->id) . "' class='btn btn-primary'><i class='fas fa-edit'></i></a>";
-            $delete = "<a href='" . route('admin.products.destroy', $query->id) . "' class='btn btn-danger delete-item'><i class='fas fa-trash'></i></a>";
+            $btn_edit = "<a href='" . route('admin.products.edit', $query->id) . "' class=' dropdown-item border border-info'><i class='fas fa-edit'></i> Edit</a>";
+            $btn_delete = "<a href='" . route('admin.products.destroy', $query->id) . "' class=' dropdown-item border border-danger delete-item'><i class='fas fa-trash'></i> Delete</a>";
+            $btn_gallery = "<a href='" . route('admin.product-gallery.show-index', $query->id) . "' class=' dropdown-item border border-info'><i class='far fa-images'></i> Product Gallery</a>";
             $divClose = "</div>
             </div>";
-            return $divOpen . $edit . $delete . $divClose;
+            return $divOpen . $btn_edit . $btn_delete . $btn_gallery . $divClose;
         })->addColumn('product_image', function($query){
             return '<img class="img-fluid" alt="Image Slider"  src="'.asset($query->product_image).'">';
         })->addColumn('show_at_home', function ($query) {
