@@ -41,6 +41,29 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $option_name
+ * @property float $price
+ * @property int $product_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct whereOptionName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct whereUpdatedAt($value)
+ */
+	class OptionProduct extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $product_name
  * @property string $slug
  * @property string $product_image
@@ -78,6 +101,50 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereUpdatedAt($value)
  */
 	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $product_id
+ * @property string $gallery_image
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery whereGalleryImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery whereUpdatedAt($value)
+ */
+	class ProductGallery extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $size_name
+ * @property float $price
+ * @property int $product_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize whereSizeName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize whereUpdatedAt($value)
+ */
+	class ProductSize extends \Eloquent {}
 }
 
 namespace App\Models{

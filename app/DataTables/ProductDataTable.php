@@ -31,9 +31,10 @@ class ProductDataTable extends DataTable
             $btn_edit = "<a href='" . route('admin.products.edit', $query->id) . "' class=' dropdown-item border border-info'><i class='fas fa-edit'></i> Edit</a>";
             $btn_delete = "<a href='" . route('admin.products.destroy', $query->id) . "' class=' dropdown-item border border-danger delete-item'><i class='fas fa-trash'></i> Delete</a>";
             $btn_gallery = "<a href='" . route('admin.product-gallery.show-index', $query->id) . "' class=' dropdown-item border border-info'><i class='far fa-images'></i> Product Gallery</a>";
+            $btn_size = "<a href='" . route('admin.product-size.show-index', $query->id) . "' class=' dropdown-item border border-info'><i class='fas fa-plus-circle'></i> Product Variants</a>";
             $divClose = "</div>
             </div>";
-            return $divOpen . $btn_edit . $btn_delete . $btn_gallery . $divClose;
+            return $divOpen . $btn_edit . $btn_delete . $btn_gallery . $btn_size . $divClose;
         })->addColumn('product_image', function($query){
             return '<img class="img-fluid" alt="Image Slider"  src="'.asset($query->product_image).'">';
         })->addColumn('show_at_home', function ($query) {
