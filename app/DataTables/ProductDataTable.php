@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -22,6 +23,10 @@ class ProductDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+        ->addColumn('category', function($query){
+            $category = Category::where('id', $query->category_id)->first();
+            return $category->name;
+        })
         ->addColumn('action', function ($query) {
             $divOpen = '<div class="btn-group dropleft">
                 <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +56,7 @@ class ProductDataTable extends DataTable
                 return '<span class="badge badge-danger">Inactive</span>';
             }
         })
-        ->rawColumns(['product_image', 'show_at_home', 'status', 'action'])
+        ->rawColumns(['category', 'product_image', 'show_at_home', 'status', 'action'])
         ->setRowId('id');
     }
 
@@ -93,16 +98,16 @@ class ProductDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('product_image'),
+            Column::make('category'),
             Column::make('product_name'),
             Column::make('price'),
             Column::make('offer_price'),
-            Column::make('slug'),
             Column::make('show_at_home'),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(140)
+                ->width(120)
                 ->addClass('text-center'),
             // Column::make('created_at'),
             // Column::make('updated_at'),

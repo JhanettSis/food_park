@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use PhpParser\Node\Stmt\Return_;
 
 class Product extends Model
 {
@@ -27,5 +30,21 @@ class Product extends Model
             'show_at_home',
             'status'
     ];
+
+    function category() : BelongsTo {
+        return $this->belongsTo(Category::class);
+    }
+
+    function galleryProduct() : HasMany {
+        return $this->hasMany(ProductGallery::class);
+    }
+
+    function sizeProduct() : HasMany {
+        return $this->hasMany(ProductSize::class);
+    }
+
+    function optionProduct() : HasMany {
+        return $this->hasMany(OptionProduct::class);
+    }
 
 }

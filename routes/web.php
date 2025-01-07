@@ -27,7 +27,10 @@ use Illuminate\Support\Facades\Route;
  * - The route is named 'home' for easy referencing throughout the application.
  */
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-
+/**
+ * THis route is for detail product page
+ */
+Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 
 /**
  * Admin Login Route

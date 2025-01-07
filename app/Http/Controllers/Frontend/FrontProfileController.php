@@ -81,16 +81,23 @@ class FrontProfileController extends Controller
      */
     function updateAvatar(Request $request)
     {
-        // Upload the image using the uploadImage method (likely part of a trait or helper).
-        // 'avatar' is the name of the input field in the form.
-        $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages');
-
         // Retrieve the currently authenticated user using the Auth facade.
         $user = Auth::user();
 
-        // Set the user's avatar field to the newly uploaded image path.
-        $user->avatar = $imagePath;
+        // Upload the image using the uploadImage method (likely part of a trait or helper).
+        // 'avatar' is the name of the input field in the form.
 
+        /** Handle Image Upload */
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar != '/uploads/user_default.png') {
+
+                $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages', $user->avatar);
+            } else {
+                $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages');
+            }
+                // Set the user's avatar field to the newly uploaded image path.
+            $user->avatar = $imagePath;
+        }
         // Save the updated user record in the database.
         $user->save();
 

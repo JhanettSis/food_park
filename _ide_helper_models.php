@@ -46,6 +46,7 @@ namespace App\Models{
  * @property int $product_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\OptionProductFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OptionProduct query()
@@ -79,6 +80,13 @@ namespace App\Models{
  * @property bool $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductGallery> $galleryProduct
+ * @property-read int|null $gallery_product_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OptionProduct> $optionProduct
+ * @property-read int|null $option_product_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductSize> $sizeProduct
+ * @property-read int|null $size_product_count
  * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newQuery()
@@ -112,6 +120,7 @@ namespace App\Models{
  * @property string $gallery_image
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\ProductGalleryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery query()
@@ -134,6 +143,7 @@ namespace App\Models{
  * @property int $product_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\SizeProductFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductSize query()

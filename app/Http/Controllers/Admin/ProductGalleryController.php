@@ -49,7 +49,9 @@ class ProductGalleryController extends Controller
     {
         try {
             $galleryImage = ProductGallery::FindOrFail($id);
-            $this->removeImage($galleryImage->gallery_image);
+            if ($galleryImage->gallery_image != '/uploads/imageDefault.jpg') {
+                $this->removeImage($galleryImage->gallery_image);
+            }
             $galleryImage->delete();
             return response(['status' => 'success', 'message' => 'Delete successfully!']);
         } catch (\Exception $e) {
