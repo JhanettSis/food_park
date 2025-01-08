@@ -33,7 +33,7 @@
                                         <label>Price</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">$</div>
+                                                <div class="input-group-text">{{ currencyIconInput() }}</div>
                                             </div>
                                             <input type="text" name="price" class="form-control currency"
                                                 value="{{ old('price') }}">
@@ -65,7 +65,7 @@
                                 @foreach ($product_sizes as $product_size)
                                     <tr>
                                         <td>{{ $product_size->size_name }}</td>
-                                        <td>{{ $product_size->price }}</td>
+                                        <td>{{ currencyPosition($product_size->price) }}</td>
                                         <td><a href="{{ route('admin.product-size.destroy', $product_size->id) }}"
                                                 class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a></td>
                                     </tr>
@@ -108,7 +108,7 @@
                                         <label>Price</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">$</div>
+                                                <div class="input-group-text">{{ currencyIconInput() }}</div>
                                             </div>
                                             <input type="text" name="price" class="form-control currency"
                                                 value="{{ old('price') }}">
@@ -140,7 +140,7 @@
                                 @foreach ($product_options as $product_option)
                                     <tr>
                                         <td>{{ $product_option->option_name }}</td>
-                                        <td>{{ $product_option->price }}</td>
+                                        <td>{{ currencyPosition($product_option->price) }}</td>
                                         <td><a href="{{ route('admin.product-option.destroy', $product_option->id) }}"
                                                 class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a></td>
                                     </tr>

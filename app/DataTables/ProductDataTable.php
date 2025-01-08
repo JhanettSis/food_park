@@ -56,6 +56,12 @@ class ProductDataTable extends DataTable
                 return '<span class="badge badge-danger">Inactive</span>';
             }
         })
+        ->addColumn('price', function($query){
+            return currencyPosition($query->price);
+        })
+        ->addColumn('offer_price', function($query){
+            return currencyPosition($query->offer_price);
+        })
         ->rawColumns(['category', 'product_image', 'show_at_home', 'status', 'action'])
         ->setRowId('id');
     }

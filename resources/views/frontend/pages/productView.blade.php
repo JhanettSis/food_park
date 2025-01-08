@@ -63,9 +63,10 @@
                         </p>
                         <h3 class="price">
                             @if ($product->offer_price > 0)
-                                ${{ $product->offer_price }} <del>${{ $product->price }}</del>
+                                {{ currencyPosition($product->offer_price) }}
+                                <del>{{ currencyPosition($product->price) }}</del>
                             @else
-                                ${{ $product->price }}
+                                {{ currencyPosition($product->price) }}
                             @endif
                         </h3>
                         <p class="short_description">{{ $product->short_description }}</p>
@@ -77,7 +78,7 @@
                                         <input class="form-check-input" type="radio" name="flexRadioDefault"
                                             id="size-{{ $size->id }}">
                                         <label class="form-check-label" for="size-{{ $size->id }}">
-                                            {{ $size->size_name }}<span> + ${{ $size->price }}</span>
+                                            {{ $size->size_name }}<span> + {{ currencyPosition($size->price) }}</span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -92,7 +93,7 @@
                                         <input class="form-check-input" type="checkbox" value=""
                                             id="option-{{ $option->id }}">
                                         <label class="form-check-label" for="option-{{ $option->id }}">
-                                            {{ $option->option_name }} <span>+ ${{ $option->proce }}</span>
+                                            {{ $option->option_name }} <span>+ {{ currencyPosition($option->price) }}</span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -279,10 +280,10 @@
                                             href="{{ route('product.show', $relatedProduct->slug) }}">{{ $relatedProduct->product_name }}</a>
                                         <h5 class="price">
                                             @if ($relatedProduct->offer_price > 0)
-                                                $ {{ $relatedProduct->offer_price }}
-                                                <del>${{ $relatedProduct->price }}</del>
+                                                {{ currencyPosition($relatedProduct->offer_price) }}
+                                                <del>{{ currencyPosition($relatedProduct->price) }}</del>
                                             @else
-                                                ${{ $relatedProduct->price }}
+                                                {{ currencyPosition($relatedProduct->price) }}
                                             @endif
                                         </h5>
                                         <ul class="d-flex flex-wrap justify-content-center">

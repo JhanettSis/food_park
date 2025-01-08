@@ -47,7 +47,7 @@
                                 <label>Price</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text">$</div>
+                                        <div class="input-group-text">{{ currencyIconInput() }}</div>
                                     </div>
                                     <input type="text" name="price" class="form-control currency"
                                     value="{{ old('price') }}">
@@ -57,7 +57,7 @@
                                 <label>Offer price</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text">$</div>
+                                        <div class="input-group-text">{{ currencyIconInput() }}</div>
                                     </div>
                                     <input type="text" name="offer_price" class="form-control currency"
                                     value="{{ old('offer_price') }}">
