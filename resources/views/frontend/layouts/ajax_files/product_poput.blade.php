@@ -1,6 +1,7 @@
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
     <i class="fal fa-times"></i></button>
-<form action="">
+<form action="" id="modal_add_to_cart_form">
+    <input type="hidden" name="product_id" value="{{ $product->id }}">
     <div class="fp__cart_popup_img">
         <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_image }}" class="img-fluid w-100">
     </div>
@@ -59,7 +60,7 @@
             <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
                 <div class="quentity_btn">
                     <button class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
-                    <input type="text" class="quantity" placeholder="1" readonly>
+                    <input type="text" class="quantity" value="1" name="quantity" placeholder="1" readonly>
                     <button class="btn btn-success increment"><i class="fal fa-plus"></i></button>
                 </div>
                 @if ($product->offer_price > 0)
@@ -71,7 +72,8 @@
             </div>
         </div>
         <ul class="details_button_area d-flex flex-wrap">
-            <li><a class="common_btn" href="#">add to cart</a></li>
+            {{-- <li><a class="common_btn" href="#">add to cart</a></li> --}}
+            <li><button type="submit" class="common_btn">Add to cart</button></li>
         </ul>
     </div>
 </form>
@@ -134,6 +136,23 @@
             $('#total_price').text("{{ config('settings.site_currency_icon') }}" + totalPrice)
 
         }
+
+        //Add to cart function
+        $('#modal_add_to_cart_form').on('submit', function(e){
+            e.preventDefault();
+            let formData = $(this).serialize();
+            $.ajax({
+                method: 'POST',
+                url: '{{ route("add-to-cart") }}',
+                data: formData,
+                success: function(response){
+
+                },
+                error: function(xhr, status, error){
+                    console.log(error);
+                }
+            })
+        })
 
     })
 </script>

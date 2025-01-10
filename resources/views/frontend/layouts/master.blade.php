@@ -34,6 +34,7 @@
     <!-- Main and responsive stylesheet -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 
     <!-- RTL (Right to Left) stylesheet for languages like Arabic (Optional) -->
     <!-- <link rel="stylesheet" href="frontend/css/rtl.css"> -->
@@ -41,6 +42,11 @@
 
 <body>
 
+    {{-- <div class="overlay-container">
+        <div class="overlay">
+            <span class="loader"></span>
+        </div>
+    </div> --}}
     <!--=============================
         TOPBAR AND MENU SECTION
     ==============================-->
