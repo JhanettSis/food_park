@@ -3748,7 +3748,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 25%;
+    max-width: 55%;
 }
 
 .quentity_btn {

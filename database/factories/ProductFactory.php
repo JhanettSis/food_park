@@ -25,13 +25,13 @@ class ProductFactory extends Factory
             'category_id' => function(){
                 return Category::inRandomOrder()->first()->id;
             },
-            'short_description' => fake()->paragraph(15),
-            'long_description' => fake()->paragraph(30),
+            'short_description' => fake()->paragraph(3),
+            'long_description' => fake()->paragraph(5),
             'price' => fake()->randomFloat(2, 10, 100),
             'offer_price' => fake()->randomFloat(2, 10, 100),
             'sku' => fake()->unique()->ean13(),
-            'seo_title' => fake()->sentence(5),
-            'seo_description' => fake()->paragraph(18),
+            'seo_title' => fake()->sentence(2),
+            'seo_description' => fake()->paragraph(3),
             'show_at_home' => fake()->boolean(),
             'status' => fake()->boolean()
         ];

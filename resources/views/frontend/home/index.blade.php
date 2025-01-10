@@ -1,6 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+    <!--======================   CART POPUT START  ======================-->
+    @include('frontend.home.components.card_popput')
+    <!--======================   CART POPUT END   ======================-->
     <!--======================   BANNER START   ======================-->
     @include('frontend.home.components.slider')
     <!--======================   BANNER END   ======================-->
@@ -10,12 +13,16 @@
     <!--======================   WHY CHOOSE END   ======================-->
 
     <!--======================   OFFER ITEM START   ======================-->
-    @include('frontend.home.components.offer_item')
+    {{-- @include('frontend.home.components.offer_item') --}}
     <!--======================   OFFER ITEM END   ======================-->
 
     <!--======================   MENU ITEM START   ======================-->
     @include('frontend.home.components.menu_item')
     <!--======================   MENU ITEM END   ======================-->
+
+    {{-- <!--======================   BLOG 2 START   ======================-->
+    @include('frontend.home.components.blog')
+    <!--======================   BLOG 2 END   ======================-->
 
     <!--======================   ADD SLIDER START   ======================-->
     @include('frontend.home.components.add_slider')
@@ -35,10 +42,5 @@
 
     <!--======================   COUNTER START   ======================-->
     @include('frontend.home.components.counter')
-    <!--======================   COUNTER END   ======================-->
-
-    <!--======================   BLOG 2 START   ======================-->
-    @include('frontend.home.components.blog')
-    <!--======================   BLOG 2 END   ======================-->
-
+    <!--======================   COUNTER END   ======================--> --}}
 @endsection

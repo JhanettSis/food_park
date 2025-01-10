@@ -45,4 +45,13 @@ class FrontendController extends Controller
         return view('frontend.pages.productView', compact('product', 'relatedProducts'));
     }
 
+    public function loadProductModal($productId)
+    {
+        $product = Product::with(['sizeProduct', 'optionProduct'])->findOrFail($productId);
+
+        return view('frontend.layouts.ajax_files.product_poput', compact('product'))->render();
+    }
+
+
+
 }

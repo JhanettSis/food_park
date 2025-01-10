@@ -32,6 +32,8 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
  */
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 
+/** Product Modal route */
+Route::get('/loadProductModal/{productId}', [FrontendController::class, 'loadProductModal'])->name('loadProductModal');
 /**
  * Admin Login Route
  *

@@ -23,5 +23,21 @@ class ProductGalleryFactory extends Factory
             'product_id' => Product::all()->random()->id,
             'gallery_image' => '/uploads/imageDefault.jpg',
         ];
+
+
+        return [
+            'product_id' => Product::all()->random()->id,
+            'gallery_image' => collect([
+                '/uploads/imageDefault.jpg',
+                '/uploads/productImages/media_1.jpg',
+                '/uploads/productImages/media_2.jpg',
+                '/uploads/productImages/media_3.jpg',
+                '/uploads/productImages/media_4.jpg',
+                '/uploads/productImages/media_5.jpg',
+                '/uploads/productImages/media_6.jpg',
+                '/uploads/productImages/media_7.jpg',
+                '/uploads/productImages/media_8.jpg',
+            ])->random(), // Randomly pick an image from the list
+        ];
     }
 }
