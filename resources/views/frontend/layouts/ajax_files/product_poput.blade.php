@@ -1,6 +1,7 @@
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
     <i class="fal fa-times"></i></button>
 <form action="" id="modal_add_to_cart_form">
+    @csrf
     <input type="hidden" name="product_id" value="{{ $product->id }}">
     <div class="fp__cart_popup_img">
         <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_image }}" class="img-fluid w-100">
@@ -72,8 +73,9 @@
             </div>
         </div>
         <ul class="details_button_area d-flex flex-wrap">
-            {{-- <li><a class="common_btn" href="#">add to cart</a></li> --}}
-            <li><button type="submit" class="common_btn">Add to cart</button></li>
+            <li>
+                <button type="submit" class="common_btn modalCartButton">Add to cart</button>
+            </li>
         </ul>
     </div>
 </form>
@@ -138,21 +140,43 @@
         }
 
         //Add to cart function
-        $('#modal_add_to_cart_form').on('submit', function(e){
-            e.preventDefault();
-            let formData = $(this).serialize();
-            $.ajax({
-                method: 'POST',
-                url: '{{ route("add-to-cart") }}',
-                data: formData,
-                success: function(response){
-
-                },
-                error: function(xhr, status, error){
-                    console.log(error);
+        $('#modal_add_to_cart_form').on('submit', function(e) {
+            e.preventDefault(); // Prevents the default form submission
+            let selectedSize = $("input[name='size_product']");
+            // Check if size is selected, show toastr error if not
+            if (selectedSize.length > 0) {
+                if ($("input[name='size_product']:checked").val() === undefined) {
+                    toastr.error('Please select a size');
+                    console.error('Please select a size');
+                    return; // Exit function if no size is selected
                 }
+            }
+
+            let formData = $(this).serialize(); // Serializes the form data
+            $.ajax({
+                method: 'POST', // The HTTP method is POST
+                url: '{{ route('add-to-cart') }}', // The URL being hit (this will resolve to the route you defined)
+                data: formData, // Sends the serialized form data
+                beforeSend: function(){
+                    $('.modalCartButton').attr('disable', true);
+                    $('.modalCartButton').html('<span class="spinner-border spinner-border-sm text-warning" role="status" aria-hidden="true"></span>Loading...')
+                },
+                success: function(response) {
+                    toastr.success(response
+                    .message); // Logs the response if the request is successful
+                },
+                error: function(xhr, status, error) {
+                    let errorMessage = xhr.responseJSON.message;
+                    toastr.success(errorMessage); // Logs the error if the request fails
+                },
+                complete: function(){
+                    $('.modalCartButton').html('Add to Cart');
+                    $('.modalCartButton').attr('disable', false);
+                },
+
             })
         })
+
 
     })
 </script>

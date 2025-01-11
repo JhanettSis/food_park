@@ -203,6 +203,13 @@ This workflow streamlines development, especially when building admin panels or 
 
 ---------------------------------------------------------------------------------------------------------------------
 
+for cart-shopping-cart I used the command from the next url
+
+https://github.com/anayarojo/laravel-shopping-cart
+		composer require anayarojo/shoppingcart
+		
+---------------------------------------------------------------------------------------------------------------------	
+  
 
 
 

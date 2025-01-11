@@ -4,9 +4,10 @@
         $.ajax({
             method: 'GET',
             url: '{{ route("loadProductModal", ":productId") }}'.replace(':productId', productId),
-            // beforeSend: function(){
-            //     $('.overlay').addClass('active');
-            // },
+            beforeSend: function(){
+                $('.overlay-container').removeClass('d-none');
+                $('.overlay').addClass('active');
+            },
             success: function(response) {
                 $('.productModalBody').html(response); // Load the response into the modal body
                 $('#cartModal').modal('show'); // Show the modal
@@ -15,9 +16,10 @@
                 console.error('Error:', error);
                 alert('Failed to load product details. Please try again.');
             },
-            // complete: function(){
-            //     $('.overlay').removeClass('active');
-            // }
+            complete: function(){
+                $('.overlay').removeClass('active');
+                $('.overlay-container').addClass('d-none');
+            }
         });
     }
 </script>
