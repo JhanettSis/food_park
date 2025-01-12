@@ -1,6 +1,8 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+
+
     <!--======================   CART POPUT START  ======================-->
     @include('frontend.home.components.card_popput')
     <!--======================   CART POPUT END   ======================-->

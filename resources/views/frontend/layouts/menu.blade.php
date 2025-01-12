@@ -109,24 +109,30 @@
     <div class="fp__menu_cart_area">
         <div class="fp__menu_cart_boody">
             <div class="fp__menu_cart_header">
-                <h5>total item (05)</h5>
+                <h5>total item (03455)</h5>
                 <span class="close_cart"><i class="fal fa-times"></i></span>
             </div>
-            <ul>
+            <ul class="cartContent">
+                @foreach (Cart::content() as $cartContent)
                 <li>
+
                     <div class="menu_cart_img">
-                        <img src="frontend/images/menu8.png" alt="menu" class="img-fluid w-100">
+                        <img src="{{ asset($cartContent->options->product_info['image']) }}" alt="menu" class="img-fluid w-100">
                     </div>
                     <div class="menu_cart_text">
-                        <a class="title" href="#">Hyderabadi Biryani </a>
-                        <p class="size">small</p>
-                        <span class="extra">coca-cola</span>
-                        <span class="extra">7up</span>
-                        <p class="price">$99.00 <del>$110.00</del></p>
+                        <a class="title" href="{{ route('product.show', $cartContent->options->product_info['slug']) }}">{!! $cartContent->name !!}</a>
+                        <p class="size">Qty: {{ $cartContent->qty }}</p>
+                        <p class="size">{{ @$cartContent->options->sizeProduct['name'] }}</p>
+
+                        @foreach ($cartContent->options->optionsProduct as $cartOptionProduct)
+                            <span class="extra">{{ $cartOptionProduct['name'] }}</span>
+                        @endforeach
+                        <p class="price">{{ currencyPosition($cartContent->price) }}</p>
                     </div>
                     <span class="del_icon"><i class="fal fa-times"></i></span>
                 </li>
-                <li>
+                @endforeach
+                {{-- <li>
                     <div class="menu_cart_img">
                         <img src="frontend/images/menu4.png" alt="menu" class="img-fluid w-100">
                     </div>
@@ -137,45 +143,7 @@
                         <p class="price">$70.00</p>
                     </div>
                     <span class="del_icon"><i class="fal fa-times"></i></span>
-                </li>
-                <li>
-                    <div class="menu_cart_img">
-                        <img src="frontend/images/menu5.png" alt="menu" class="img-fluid w-100">
-                    </div>
-                    <div class="menu_cart_text">
-                        <a class="title" href="#">Competently Supply Customized Initiatives</a>
-                        <p class="size">large</p>
-                        <span class="extra">coca-cola</span>
-                        <span class="extra">7up</span>
-                        <p class="price">$120.00 <del>$150.00</del></p>
-                    </div>
-                    <span class="del_icon"><i class="fal fa-times"></i></span>
-                </li>
-                <li>
-                    <div class="menu_cart_img">
-                        <img src="frontend/images/menu6.png" alt="menu" class="img-fluid w-100">
-                    </div>
-                    <div class="menu_cart_text">
-                        <a class="title" href="#">Hyderabadi Biryani</a>
-                        <p class="size">small</p>
-                        <span class="extra">7up</span>
-                        <p class="price">$59.00</p>
-                    </div>
-                    <span class="del_icon"><i class="fal fa-times"></i></span>
-                </li>
-                <li>
-                    <div class="menu_cart_img">
-                        <img src="frontend/images/menu1.png" alt="menu" class="img-fluid w-100">
-                    </div>
-                    <div class="menu_cart_text">
-                        <a class="title" href="#">Competently Supply</a>
-                        <p class="size">medium</p>
-                        <span class="extra">coca-cola</span>
-                        <span class="extra">7up</span>
-                        <p class="price">$99.00 <del>$110.00</del></p>
-                    </div>
-                    <span class="del_icon"><i class="fal fa-times"></i></span>
-                </li>
+                </li> --}}
             </ul>
             <p class="subtotal">sub total <span>$1220.00</span></p>
             <a class="cart_view" href="cart_view.html"> view cart</a>

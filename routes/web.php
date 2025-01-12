@@ -39,6 +39,7 @@ Route::get('/loadProductModal/{productId}', [FrontendController::class, 'loadPro
 /** Add to cart Product Modal route */
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
+Route::get('/getCartProducts', [CartController::class, 'getCartProduct'])->name('get-cart-products');
 /**
  * Admin Login Route
  *

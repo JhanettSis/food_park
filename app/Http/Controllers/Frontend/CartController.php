@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+
 use Cart;
 
 class CartController extends Controller
@@ -36,7 +38,7 @@ class CartController extends Controller
             ];
 
             if($arraysizeProduct != null){
-                $arrayoptions['sizeProduct'][] = [
+                $arrayoptions['sizeProduct'] = [
                     'id' => $arraysizeProduct?->id,           // The size id of the selected size.
                     'name' => $arraysizeProduct?->size_name,  // The size name of the selected size.
                     'price' => $arraysizeProduct?->price,     // The price of the selected size.
@@ -70,4 +72,8 @@ class CartController extends Controller
         }
     }
 
+    function getCartProduct() {
+
+        return view('frontend.layouts.ajax_files.sidebarCartItem')->render();
+    }
 }

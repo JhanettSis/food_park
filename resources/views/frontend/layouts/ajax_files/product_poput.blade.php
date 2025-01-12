@@ -162,6 +162,7 @@
                     $('.modalCartButton').html('<span class="spinner-border spinner-border-sm text-warning" role="status" aria-hidden="true"></span>Loading...')
                 },
                 success: function(response) {
+                    updateSidebarCart();
                     toastr.success(response
                     .message); // Logs the response if the request is successful
                 },
