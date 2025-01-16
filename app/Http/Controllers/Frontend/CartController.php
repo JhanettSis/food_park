@@ -73,7 +73,42 @@ class CartController extends Controller
     }
 
     function getCartProduct() {
+        // Using Cart::content() to get the current cart content
+        $cartItems = Cart::content();
+        $cartHtml = view('frontend.layouts.ajax_files.sidebarCartItem', compact('cartItems'))->render(); // Return HTML for the cart items
 
-        return view('frontend.layouts.ajax_files.sidebarCartItem')->render();
+        // Calculate new subtotal
+        $newSubtotal = cartTotal();
+
+        $cartCount = count(Cart::content());
+        // Return the response
+        return response()->json([
+            'cartHtml' => $cartHtml,
+            'cartCount' => $cartCount,
+            'newSubtotal' => currencyPosition($newSubtotal), // currencyPosition formats the amount correctly
+        ]);
+    }
+
+    function cart_product_remove($rowId){
+
+        try{
+            Cart::remove($rowId);
+             // Using Cart::content() to get the current cart content
+            $cartItems = Cart::content();
+            $cartHtml = view('frontend.layouts.ajax_files.sidebarCartItem', compact('cartItems'))->render(); // Return HTML for the cart items
+
+            // Calculate new subtotal
+            $newSubtotal = cartTotal();
+
+            $cartCount = count(Cart::content());
+            // Return the response
+            return response()->json([
+                'cartHtml' => $cartHtml,
+                'cartCount' => $cartCount,
+                'newSubtotal' => currencyPosition($newSubtotal), // currencyPosition formats the amount correctly
+            ]);
+        }catch(\Exception $e){
+            return response(['status' => 'error', 'message' => 'Sorry something went wrong!']);
+        }
     }
 }

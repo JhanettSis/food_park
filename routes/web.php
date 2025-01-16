@@ -40,6 +40,8 @@ Route::get('/loadProductModal/{productId}', [FrontendController::class, 'loadPro
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
 Route::get('/getCartProducts', [CartController::class, 'getCartProduct'])->name('get-cart-products');
+Route::get('/cart-product-remove/{rowId}', [CartController::class, 'cart_product_remove'])->name('cartProductRemove');
+
 /**
  * Admin Login Route
  *

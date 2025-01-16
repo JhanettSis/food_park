@@ -48,3 +48,26 @@ if(!function_exists('currencyIconInput')){
         return config('settings.site_currency_icon');
     }
 }
+
+/** Calculate cart total */
+if(!function_exists('cartTotal')) {
+    function cartTotal(){
+        $total = 0;
+
+
+        foreach(Cart::content() as $item) {
+            $priceProduct = $item->price;
+            $priceSize = $item->options?->sizeProduct['price'] ?? 0;
+            $optionsPrice = 0;
+            foreach($item->options->optionsProduct as $option) {
+                    $optionsPrice += $option['price'] ?? 0;
+            }
+
+            $total += $item->qty * ($priceProduct + $priceSize + $optionsPrice);
+        }
+
+        return $total;
+    }
+}
+
+

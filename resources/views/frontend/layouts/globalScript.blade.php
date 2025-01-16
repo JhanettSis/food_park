@@ -3,8 +3,8 @@
     function loadProductModal(productId) {
         $.ajax({
             method: 'GET',
-            url: '{{ route("loadProductModal", ":productId") }}'.replace(':productId', productId),
-            beforeSend: function(){
+            url: '{{ route('loadProductModal', ':productId') }}'.replace(':productId', productId),
+            beforeSend: function() {
                 $('.overlay-container').removeClass('d-none');
                 $('.overlay').addClass('active');
             },
@@ -16,7 +16,7 @@
                 console.error('Error:', error);
                 alert('Failed to load product details. Please try again.');
             },
-            complete: function(){
+            complete: function() {
                 $('.overlay').removeClass('active');
                 $('.overlay-container').addClass('d-none');
             }
@@ -24,23 +24,58 @@
     }
 
     /** Update sidebar Cart */
-    function updateSidebarCart(){
+    function updateSidebarCart() {
         $.ajax({
             method: 'GET',
-            url: '{{ route("get-cart-products") }}',
-            beforeSend: function(){
+            url: '{{ route('get-cart-products') }}',
+            beforeSend: function() {
 
             },
-            success: function(response){
-                $('.cartContent').html(response);
+            success: function(response) {
+                // Update the cart content in the sidebar
+                $('.cartContent').html(response.cartHtml);
+                // Update the cart count products
+                $('.cart_count').html(response.cartCount);
+                // Update the subtotal value
+                $('#cartSubtotal').text(response.newSubtotal); // Update the subtotal
+
             },
-            error: function(xhr, status, error){
+            error: function(xhr, status, error) {
                 console.log(error);
             },
-            complete: function(){
+            complete: function() {
 
             }
 
+        })
+    }
+
+    /** Remove cart product from sidebar */
+    function removeProductFromSidebar($rowId) {
+        $.ajax({
+            method: 'GET',
+            url: '{{ route('cartProductRemove', ':rowId') }}'.replace(":rowId", $rowId),
+            beforeSend: function() {
+                $('.overlay-container').removeClass('d-none');
+                $('.overlay').addClass('active');
+            },
+            success: function(response) {
+                // Update the cart content in the sidebar
+                $('.cartContent').html(response.cartHtml);
+                // Update the cart count products
+                $('.cart_count').html(response.cartCount);
+                // Update the subtotal value
+                $('#cartSubtotal').text(response.newSubtotal); // Update the subtotal
+                toastr.success('Product was removed from the cart!!');
+
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            },
+            complete: function() {
+                $('.overlay').removeClass('active');
+                $('.overlay-container').addClass('d-none');
+            }
         })
     }
 </script>
