@@ -2,8 +2,8 @@
 
 @section('content')
     <!--=============================
-                BREADCRUMB START
-            ==============================-->
+        BREADCRUMB START
+    ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
@@ -18,11 +18,11 @@
         </div>
     </section>
     <!--=============================
-                BREADCRUMB END
-            ==============================-->
+                            BREADCRUMB END
+                        ==============================-->
     <!--=============================
-                MENU DETAILS START
-            ==============================-->
+                            MENU DETAILS START
+                        ==============================-->
     <section class="fp__menu_details mt_115 xs_mt_85 mb_95 xs_mb_65">
         <div class="container">
             <div class="row">
@@ -33,8 +33,8 @@
                                 <li><img class="zoom ing-fluid w-100" src="{{ asset($product->product_image) }}"
                                         alt="product"></li>
                                 <!-- It is used for debugging
-                                            purposes to inspect the values of variables
-                                            @ dd($product->galleryProduct) -->
+                                                        purposes to inspect the values of variables
+                                                        @ dd($product->galleryProduct) -->
                                 @foreach ($product->galleryProduct as $image)
                                     <li><img class="zoom ing-fluid w-100" src="{{ asset($image->gallery_image) }}"
                                             alt="product"></li>
@@ -51,79 +51,99 @@
                     </div>
                 </div>
                 <div class="col-lg-7 wow fadeInUp" data-wow-duration="1s">
-                    <div class="fp__menu_details_text">
-                        <h2>{!! $product->product_name !!}</h2>
-                        <p class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                            <span>(201)</span>
-                        </p>
-                        <h3 class="price">
-                            @if ($product->offer_price > 0)
-                                {{ currencyPosition($product->offer_price) }}
-                                <del>{{ currencyPosition($product->price) }}</del>
-                            @else
-                                {{ currencyPosition($product->price) }}
-                            @endif
-                        </h3>
-                        <p class="short_description">{{ $product->short_description }}</p>
-                        @if ($product->sizeProduct()->exists())
-                            <div class="details_size">
-                                <h5>select size</h5>
-                                @foreach ($product->sizeProduct as $size)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="size-{{ $size->id }}">
-                                        <label class="form-check-label" for="size-{{ $size->id }}">
-                                            {{ $size->size_name }}<span> + {{ currencyPosition($size->price) }}</span>
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
+                    <form action="" id="modal_add_to_cart_form">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                        @if ($product->optionProduct()->exists())
-                            <div class="details_extra_item">
-                                <h5>select option <span>(optional)</span></h5>
-                                @foreach ($product->optionProduct as $option)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="option-{{ $option->id }}">
-                                        <label class="form-check-label" for="option-{{ $option->id }}">
-                                            {{ $option->option_name }} <span>+ {{ currencyPosition($option->price) }}</span>
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
+                        <div class="fp__menu_details_text">
+                            <h2>{!! $product->product_name !!}</h2>
+                            <p class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <span>(201)</span>
+                            </p>
+                            <h3 class="price">
+                                @if ($product->offer_price > 0)
+                                    {{ currencyPosition($product->offer_price) }}
+                                    <input type="hidden" name="base_price" value="{{ $product->offer_price }}">
+                                    <del> {{ currencyPosition($product->price) }}</del>
+                                @else
+                                    {{ currencyPosition($product->price) }}
+                                    <input type="hidden" name="base_price" value="{{ $product->price }}">
+                                @endif
+                            </h3>
 
-                        <div class="details_quentity">
-                            <h5>select quentity</h5>
-                            <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
-                                <div class="quentity_btn">
-                                    <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
-                                    <input type="text" placeholder="1">
-                                    <button class="btn btn-success"><i class="fal fa-plus"></i></button>
+                            <p class="short_description">{{ $product->short_description }}</p>
+
+                            @if ($product->sizeProduct()->exists())
+                                <div class="details_size">
+                                    <h5>select size</h5>
+                                    @foreach ($product->sizeProduct as $size)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="{{ $size->id }}"
+                                                name="size_product" id="size-{{ $size->id }}"
+                                                data-price="{{ $size->price }}">
+                                            <label class="form-check-label" for="size-{{ $size->id }}">
+                                                {{ $size->size_name }}<span> + {{ currencyPosition($size->price) }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <h3>$320.00</h3>
+                            @endif
+
+                            @if ($product->optionProduct()->exists())
+                                <div class="details_extra_item">
+                                    <h5>select option <span>(optional)</span></h5>
+                                    @foreach ($product->optionProduct as $option)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ $option->id }}"
+                                                id="option-{{ $option->id }}" data-price="{{ $option->price }}"
+                                                name="option_product[]">
+                                            <label class="form-check-label" for="option-{{ $option->id }}">
+                                                {{ $option->option_name }} <span>+
+                                                    {{ currencyPosition($option->price) }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <div class="details_quentity">
+                                <h5>select quentity</h5>
+                                <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                                    <div class="quentity_btn">
+                                        <button class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
+                                        <input type="text" class="quantity" value="1" name="quantity" placeholder="1" readonly>
+                                        <button class="btn btn-success increment"><i class="fal fa-plus"></i></button>
+                                    </div>
+                                    @if ($product->offer_price > 0)
+                                        <h3 id="total_price"> {{ currencyPosition($product->offer_price) }}</h3>
+                                    @else
+                                        <h3 id="total_price"> {{ currencyPosition($product->price) }}</h3>
+                                    @endif
+
+                                </div>
                             </div>
+                            <ul class="details_button_area d-flex flex-wrap">
+                                <li>
+                                    <button type="submit" class="common_btn modalCartButton">Add to cart</button>
+                                </li>
+                                <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
+                            </ul>
                         </div>
-                        <ul class="details_button_area d-flex flex-wrap">
-                            <li><a class="common_btn" href="#">add to cart</a></li>
-                            <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
-                        </ul>
-                    </div>
+
+                    </form>
                 </div>
                 <div class="col-12 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__menu_description_area mt_100 xs_mt_70">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                    aria-selected="true">Description</button>
+                                    data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">Description</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
@@ -287,8 +307,11 @@
                                             @endif
                                         </h5>
                                         <ul class="d-flex flex-wrap justify-content-center">
-                                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#cartModal"><i
-                                                        class="fas fa-shopping-basket"></i></a></li>
+                                            <li>
+                                                <a href="javascript:;" onclick="loadProductModal({{ $relatedProduct->id }})">
+                                                    <i class="fas fa-shopping-basket"></i>
+                                                </a>
+                                            </li>
                                             <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                             <li><a href="#"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -302,7 +325,16 @@
         </div>
     </section>
     <!--=============================
-                MENU DETAILS END
-            ==============================-->
+                            MENU DETAILS END
+                        ==============================-->
 
 @endsection
+
+@push('scripts')
+<!-- --------------------------------------------------------
+    This script take all values from the input and class and adding
+    at the cart controller -->
+    {{-- @include('frontend.layouts.scripForAddProductToCart') --}}
+                <!-- ------------------------------------------------------ -->
+    @include('frontend.layouts.scripForAddProductToCart')
+@endpush

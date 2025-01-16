@@ -55,7 +55,9 @@
     ==============================-->
     <!-- Includes the navigation menu from frontend.layouts.menu -->
     @include('frontend.layouts.menu')
-
+    <!--======================   CART POPUT START  ======================-->
+    @include('frontend.home.components.card_popput')
+    <!--======================   CART POPUT END   ======================-->
     <!--=============================
         CONTENT SECTION
     ==============================-->

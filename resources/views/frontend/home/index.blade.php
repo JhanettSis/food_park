@@ -1,11 +1,6 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-
-
-    <!--======================   CART POPUT START  ======================-->
-    @include('frontend.home.components.card_popput')
-    <!--======================   CART POPUT END   ======================-->
     <!--======================   BANNER START   ======================-->
     @include('frontend.home.components.slider')
     <!--======================   BANNER END   ======================-->
