@@ -806,6 +806,12 @@ button {
     background: #f6eee7fa;
 }
 
+.fp_tableCart {
+    text-align: center !important;
+    width: 100% !important;
+    display: inline !important;
+    text-transform: capitalize;
+}
 .fp__reservation .modal-title {
     text-align: center;
     width: 100%;

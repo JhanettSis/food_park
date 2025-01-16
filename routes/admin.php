@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * For register the new file called admin.php
+ * this is for admin route's and separate the routes for normal user and admin
+ * I add this file admin.php(routes for admin) on botstrap/app.php file this is new in laravel 11
+ */
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;

@@ -18,6 +18,9 @@
         </p>
         <h4 class="price">
             @if ($product->offer_price > 0)
+            {{-- /**
+            * THis function is on the App/Hepers/global_helper.php
+            */ --}}
                 {{ currencyPosition($product->offer_price) }}
                 <input type="hidden" name="base_price" value="{{ $product->offer_price }}">
                 <del> {{ currencyPosition($product->price) }}</del>
@@ -35,6 +38,9 @@
                         <input class="form-check-input" type="radio" value="{{ $size->id }}" name="size_product"
                             id="size-{{ $size->id }}" data-price="{{ $size->price }}">
                         <label class="form-check-label" for="size-{{ $size->id }}">
+                            {{-- /**
+                            * THis function is on the App/Hepers/global_helper.php
+                            */ --}}
                             {{ $size->size_name }}<span> + {{ currencyPosition($size->price) }}</span>
                         </label>
                     </div>

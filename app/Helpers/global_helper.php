@@ -50,23 +50,40 @@ if(!function_exists('currencyIconInput')){
 }
 
 /** Calculate cart total */
-if(!function_exists('cartTotal')) {
-    function cartTotal(){
-        $total = 0;
+    if(!function_exists('cartTotal')) {
+        function cartTotal(){
+            $total = 0;
 
 
-        foreach(Cart::content() as $item) {
-            $priceProduct = $item->price;
-            $priceSize = $item->options?->sizeProduct['price'] ?? 0;
-            $optionsPrice = 0;
-            foreach($item->options->optionsProduct as $option) {
-                    $optionsPrice += $option['price'] ?? 0;
+            foreach(Cart::content() as $item) {
+                $priceProduct = $item->price;
+                $priceSize = $item->options?->sizeProduct['price'] ?? 0;
+                $optionsPrice = 0;
+                foreach($item->options->optionsProduct as $option) {
+                        $optionsPrice += $option['price'] ?? 0;
+                }
+
+                $total += $item->qty * ($priceProduct + $priceSize + $optionsPrice);
             }
 
-            $total += $item->qty * ($priceProduct + $priceSize + $optionsPrice);
+            return currencyPosition($total);
         }
-
-        return $total;
+    }
+/**
+ * Calculate product total
+ */
+if(!function_exists('productCartViewTotal')) {
+    function productCartViewTotal($rowId){
+        $total = 0;
+        $product = Cart::get($rowId);
+        $priceProduct = $product->price;
+        $priceSize = $product->options?->sizeProduct['price'] ?? 0;
+        $optionsPrice = 0;
+        foreach($product->options->optionsProduct as $option) {
+                $optionsPrice += $option['price'] ?? 0;
+        }
+        $total += $product->qty * ($priceProduct + $priceSize + $optionsPrice);
+        return currencyPosition($total);
     }
 }
 

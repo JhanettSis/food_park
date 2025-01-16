@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Providers;
-
+/**
+ * I add this file class SettingsServiceProvider on
+ * botstrap/providers.php file
+ */
 use App\Services\SettingsService;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +26,10 @@ class SettingsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $settingsService = $this->app->make(SettingsService::class);
+        /**
+         * The function setGlobalSettings(); is on the
+         *  App\Services\SettingsService file
+         */
         $settingsService->setGlobalSettings();
     }
 }

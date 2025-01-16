@@ -1,7 +1,7 @@
 
-    <!--=============================
+    {{--=============================
         TOPBAR START
-    ==============================-->
+    ==============================--}}
     <section class="fp__topbar">
         <div class="container">
             <div class="row">
@@ -23,14 +23,14 @@
             </div>
         </div>
     </section>
-    <!--=============================
+    {{--=============================
         TOPBAR END
-    ==============================-->
+    ==============================--}}
 
 
-    <!--=============================
+    {{--=============================
         MENU START
-    ==============================-->
+    ==============================--}}
     <nav class="navbar navbar-expand-lg main_menu">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -137,8 +137,8 @@
                 @endforeach --}}
                 @include('frontend.layouts.ajax_files.sidebarCartItem')
             </ul>
-            <p class="subtotal">sub total <span class="cart_subtotal" id="cartSubtotal">{{ currencyPosition(cartTotal()) }}</span></p>
-            <a class="cart_view" href="cart_view.html"> view cart</a>
+            <p class="subtotal">sub total <span class="cart_subtotal" id="cartSubtotal">{{ cartTotal() }}</span></p>
+            <a class="cart_view" href="{{ route('cart.index') }}"> view cart</a>
             <a class="checkout" href="check_out.html">checkout</a>
         </div>
     </div>
@@ -181,6 +181,6 @@
             </div>
         </div>
     </div>
-    <!--=============================
+    {{--=============================
         MENU END
-    ==============================-->
+    ==============================--}}

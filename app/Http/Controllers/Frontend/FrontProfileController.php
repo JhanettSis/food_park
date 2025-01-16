@@ -88,6 +88,10 @@ class FrontProfileController extends Controller
         // 'avatar' is the name of the input field in the form.
 
         /** Handle Image Upload */
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
         if ($request->hasFile('avatar')) {
             if ($user->avatar != '/uploads/user_default.png') {
 

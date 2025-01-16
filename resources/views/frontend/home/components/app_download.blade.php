@@ -1,6 +1,6 @@
-<!--=============================
+{{--=============================
         DOWNLOAD APP START
-    ==============================-->
+    ==============================--}}
     <section class="fp__download mt_100 xs_mt_70">
         <div class="fp__download_bg" style="background: url(frontend/images/download_bg.jpg);">
             <div class="fp__download_overlay">
@@ -43,6 +43,6 @@
             </div>
         </div>
     </section>
-    <!--=============================
+    {{--=============================
         DOWNLOAD APP END
-    ==============================-->
+    ==============================--}}

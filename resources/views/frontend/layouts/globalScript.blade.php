@@ -1,24 +1,34 @@
 <script>
+    /** Show loader*/
+    function showLoader() {
+        $('.overlay-container').removeClass('d-none');
+        $('.overlay').addClass('active');
+    }
+
+    /** Hidde loader */
+    function hiddeLoader() {
+        $('.overlay').removeClass('active');
+        $('.overlay-container').addClass('d-none');
+    }
+
     /** Load Product modal */
     function loadProductModal(productId) {
         $.ajax({
             method: 'GET',
             url: '{{ route('loadProductModal', ':productId') }}'.replace(':productId', productId),
             beforeSend: function() {
-                $('.overlay-container').removeClass('d-none');
-                $('.overlay').addClass('active');
+                showLoader();
             },
             success: function(response) {
                 $('.productModalBody').html(response); // Load the response into the modal body
                 $('#cartModal').modal('show'); // Show the modal
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
-                alert('Failed to load product details. Please try again.');
+                let errorMessage = xhr.responseJSON.Message;
+                toastr.error(errorMessage);
             },
             complete: function() {
-                $('.overlay').removeClass('active');
-                $('.overlay-container').addClass('d-none');
+                hiddeLoader();
             }
         });
     }
@@ -56,12 +66,13 @@
             method: 'GET',
             url: '{{ route('cartProductRemove', ':rowId') }}'.replace(":rowId", $rowId),
             beforeSend: function() {
-                $('.overlay-container').removeClass('d-none');
-                $('.overlay').addClass('active');
+                showLoader();
             },
             success: function(response) {
                 // Update the cart content in the sidebar
                 $('.cartContent').html(response.cartHtml);
+                // Update the cart content in the cartViewDetails is on page/cart_view.blade.php
+                $('.table-product').html(response.cartViewDetailsHtml);
                 // Update the cart count products
                 $('.cart_count').html(response.cartCount);
                 // Update the subtotal value
@@ -73,8 +84,7 @@
                 console.log(error);
             },
             complete: function() {
-                $('.overlay').removeClass('active');
-                $('.overlay-container').addClass('d-none');
+                hiddeLoader();
             }
         })
     }

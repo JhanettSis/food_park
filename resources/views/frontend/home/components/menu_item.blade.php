@@ -1,6 +1,6 @@
-<!--=============================
+{{--=============================
         MENU ITEM START
-    ==============================-->
+    ==============================--}}
 <section class="fp__menu mt_95 xs_mt_65">
     <div class="container">
         <div class="row wow fadeInUp" data-wow-duration="1s">
@@ -61,6 +61,9 @@
                                     href="{{ route('product.show', $product->slug) }}">{{ $product->product_name }}</a>
                                 <h5 class="price">
                                     @if ($product->offer_price > 0)
+                                    {{-- /**
+                                    * THis function is on the App/Hepers/global_helper.php
+                                    */ --}}
                                         {{ currencyPosition($product->offer_price) }}
                                         <del> {{ currencyPosition($product->price) }}</del>
                                     @else
@@ -85,6 +88,6 @@
         </div>
     </div>
 </section>
-<!--=============================
+{{--=============================
         MENU ITEM END
-    ==============================-->
+    ==============================--}}

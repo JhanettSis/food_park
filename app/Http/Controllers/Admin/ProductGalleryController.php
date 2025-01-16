@@ -33,7 +33,10 @@ class ProductGalleryController extends Controller
             'gallery_image' => ['required', 'image', 'max:3000'],
             'product_id' => ['required']
         ]);
-
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
         $imagePath = $this->uploadImage($request, 'gallery_image', '/productImages' );
         $gallery = new ProductGallery();
         $gallery->product_id = $request->product_id;
@@ -50,6 +53,10 @@ class ProductGalleryController extends Controller
         try {
             $galleryImage = ProductGallery::FindOrFail($id);
             if ($galleryImage->gallery_image != '/uploads/imageDefault.jpg') {
+                /**
+                 * the function uploadImage(); is on file
+                 * App/Trails/FileUploadTrait.php
+                */
                 $this->removeImage($galleryImage->gallery_image);
             }
             $galleryImage->delete();

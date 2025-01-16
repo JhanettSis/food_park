@@ -6,11 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
+use  Illuminate\Http\Response;
 
 use Cart;
 
 class CartController extends Controller
 {
+    function index() : View {
+        return view('frontend.pages.cart_view');
+    }
+
     // Add product in to cart
     function addToCart(Request $request){
         try{
@@ -85,18 +91,24 @@ class CartController extends Controller
         return response()->json([
             'cartHtml' => $cartHtml,
             'cartCount' => $cartCount,
-            'newSubtotal' => currencyPosition($newSubtotal), // currencyPosition formats the amount correctly
+            /**
+             * THis function is on the App/Hepers/global_helper.php
+             */
+            'newSubtotal' => $newSubtotal, // currencyPosition formats the amount correctly
         ]);
     }
 
     function cart_product_remove($rowId){
-
         try{
             Cart::remove($rowId);
              // Using Cart::content() to get the current cart content
             $cartItems = Cart::content();
-            $cartHtml = view('frontend.layouts.ajax_files.sidebarCartItem', compact('cartItems'))->render(); // Return HTML for the cart items
-
+            // this variable $cartHtml is for the view sidebarCartItem
+            $cartHtml = view('frontend.layouts.ajax_files.sidebarCartItem',
+            compact('cartItems'))->render(); // Return HTML for the cart items
+            // this variable $cartViewDetailsHtml is for the view cart_view
+            $cartViewDetailsHtml = view('frontend.layouts.ajax_files.cartViewDetailsTable',
+            compact('cartItems'))->render(); // Return HTML for the cart items
             // Calculate new subtotal
             $newSubtotal = cartTotal();
 
@@ -105,10 +117,30 @@ class CartController extends Controller
             return response()->json([
                 'cartHtml' => $cartHtml,
                 'cartCount' => $cartCount,
-                'newSubtotal' => currencyPosition($newSubtotal), // currencyPosition formats the amount correctly
+                'cartViewDetailsHtml' => $cartViewDetailsHtml,
+                /**
+                 * THis function is on the App/Hepers/global_helper.php
+                */
+                'newSubtotal' => $newSubtotal, // currencyPosition formats the amount correctly
             ]);
         }catch(\Exception $e){
             return response(['status' => 'error', 'message' => 'Sorry something went wrong!']);
         }
+    }
+
+    function cart_qty_update(Request $request) : Response {
+        try{
+            Cart::update($request->rowId, $request->qty);
+            return response(['product_total' => productCartViewTotal($request->rowId)], 200);
+        }catch(\Exception $e){
+            logger($e);
+            // return response(['status' => 'error', 'message' => $e->getMessage()], 500);
+            return response(['status' => 'error', 'message' => 'Something went wrong! Please reload the page'], 500);
+        }
+    }
+
+    function cart_destroye(){
+        Cart::destroy();
+        return redirect()->back();
     }
 }

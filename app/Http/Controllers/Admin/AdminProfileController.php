@@ -48,6 +48,11 @@ class AdminProfileController extends Controller
         $user = Auth::user();
 
         // Upload the avatar image if present in the request
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
+
         $imagePath = $this->uploadImage($request, 'avatar', '/avatarImages', $user->avatar);
 
         // Update user information with validated request data

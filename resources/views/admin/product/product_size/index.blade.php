@@ -65,6 +65,9 @@
                                 @foreach ($product_sizes as $product_size)
                                     <tr>
                                         <td>{{ $product_size->size_name }}</td>
+                                        {{-- /**
+                                        * THis function is on the App/Hepers/global_helper.php
+                                        */ --}}
                                         <td>{{ currencyPosition($product_size->price) }}</td>
                                         <td><a href="{{ route('admin.product-size.destroy', $product_size->id) }}"
                                                 class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a></td>
@@ -140,6 +143,9 @@
                                 @foreach ($product_options as $product_option)
                                     <tr>
                                         <td>{{ $product_option->option_name }}</td>
+                                        {{--  /**
+                                        * THis function is on the App/Hepers/global_helper.php
+                                        */ --}}
                                         <td>{{ currencyPosition($product_option->price) }}</td>
                                         <td><a href="{{ route('admin.product-option.destroy', $product_option->id) }}"
                                                 class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a></td>

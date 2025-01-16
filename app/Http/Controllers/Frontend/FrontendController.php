@@ -18,6 +18,9 @@ class FrontendController extends Controller
 {
 
     function index() : View {
+        /**
+         * The function getSectionTitle() is create in the same file
+        */
         $sectionTitles = $this->getSectionTitle();
         $sliders = Slider::where('status', 1)->get();
         $whyChooseUs = WhyChooseUs::where('status', 1)->get();

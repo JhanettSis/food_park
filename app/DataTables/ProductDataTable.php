@@ -57,6 +57,9 @@ class ProductDataTable extends DataTable
             }
         })
         ->addColumn('price', function($query){
+            /**
+             * THis function is on the App/Hepers/global_helper.php
+             */
             return currencyPosition($query->price);
         })
         ->addColumn('offer_price', function($query){

@@ -40,10 +40,17 @@ class ProductController extends Controller
     public function store(ProductCreateRequest $request) : RedirectResponse
     {
         /** Handle product Image  */
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
         $imagePath = $this->uploadImage($request, 'product_image', '/productImages');
 
         $product = new Product();
         // Save product data
+        /** The function generateUniqueSlug(); is on the file
+         * App/Helpers/global_helper.php
+          */
         $product->product_name = $request->product_name;
         $product->slug = generateUniqueSlug('Product', $request->product_name);
         $product->category_id = $request->category_id;
@@ -90,6 +97,10 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         /** Handle Image Upload */
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
         if ($request->hasFile('product_image')) {
             if ($product->product_image != '/uploads/imageDefault.jpg') {
                 $imagePath = $this->uploadImage($request, 'product_image', '/productImages', $product->product_image);
@@ -101,6 +112,9 @@ class ProductController extends Controller
         }
 
         // Update other fields
+        /** The function generateUniqueSlug(); is on the file
+         * App/Helpers/global_helper.php
+          */
         $product->product_name = $request->product_name;
         $product->slug = generateUniqueSlug('Product', $request->product_name);
         $product->category_id = $request->category_id;
@@ -126,6 +140,10 @@ class ProductController extends Controller
         try{
             $product = Product::findOrFail($id);
             if($product->product_image != '/uploads/imageDefault.jpg'){
+                /**
+                 * the function uploadImage(); is on file
+                 * App/Trails/FileUploadTrait.php
+                */
                 $this->removeImage($product->product_image);
             }
             $product->delete();

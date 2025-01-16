@@ -39,6 +39,10 @@ class SliderController extends Controller
     public function store(SliderCreateRequest $request)
     {
         /** Handle image upload */
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
         $imagePath = $this->uploadImage($request, 'image', '/sliderImages');
         $slider = new Slider();
         $slider->offer = $request->offer;
@@ -79,6 +83,10 @@ class SliderController extends Controller
         $slider = Slider::findOrFail($id);
 
         /** Handle Image Upload */
+        /**
+         * the function uploadImage(); is on file
+         * App/Trails/FileUploadTrait.php
+         *  */
         if ($request->hasFile('image')) {
             if ($slider->image != '/uploads/imageDefault.jpg') {
                 $imagePath = $this->uploadImage($request, 'image', '/sliderImages', $slider->image);
@@ -110,6 +118,10 @@ class SliderController extends Controller
         try {
             $slider = Slider::FindOrFail($id);
             if ($slider->image != '/uploads/imageDefault.jpg') {
+                /**
+                 * the function uploadImage(); is on file
+                 * App/Trails/FileUploadTrait.php
+                */
                 $this->removeImage($slider->image);
             }
             $slider->delete();

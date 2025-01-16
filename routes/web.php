@@ -42,6 +42,11 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-
 Route::get('/getCartProducts', [CartController::class, 'getCartProduct'])->name('get-cart-products');
 Route::get('/cart-product-remove/{rowId}', [CartController::class, 'cart_product_remove'])->name('cartProductRemove');
 
+/** Cart Page Routes */
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/car-update-qty', [CartController::class, 'cart_qty_update'])->name('carUpdate.qty');
+Route::get('/cart-destroy', [CartController::class, 'cart_destroye'])->name('cart.destroye');
+
 /**
  * Admin Login Route
  *

@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <!--=============================
+    {{--=============================
         BREADCRUMB START
-    ==============================-->
+    ==============================--}}
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
@@ -17,12 +17,12 @@
             </div>
         </div>
     </section>
-    <!--=============================
+    {{--=============================
                             BREADCRUMB END
-                        ==============================-->
-    <!--=============================
+                        ==============================--}}
+    {{--=============================
                             MENU DETAILS START
-                        ==============================-->
+                        ==============================--}}
     <section class="fp__menu_details mt_115 xs_mt_85 mb_95 xs_mb_65">
         <div class="container">
             <div class="row">
@@ -32,9 +32,9 @@
                             <ul class='exzoom_img_ul'>
                                 <li><img class="zoom ing-fluid w-100" src="{{ asset($product->product_image) }}"
                                         alt="product"></li>
-                                <!-- It is used for debugging
+                                {{-- It is used for debugging
                                                         purposes to inspect the values of variables
-                                                        @ dd($product->galleryProduct) -->
+                                                        @ dd($product->galleryProduct) --}}
                                 @foreach ($product->galleryProduct as $image)
                                     <li><img class="zoom ing-fluid w-100" src="{{ asset($image->gallery_image) }}"
                                             alt="product"></li>
@@ -324,17 +324,17 @@
             @endif
         </div>
     </section>
-    <!--=============================
+    {{--=============================
                             MENU DETAILS END
-                        ==============================-->
+                        ==============================--}}
 
 @endsection
 
 @push('scripts')
-<!-- --------------------------------------------------------
+{{-- --------------------------------------------------------
     This script take all values from the input and class and adding
-    at the cart controller -->
+    at the cart controller --}}
     {{-- @include('frontend.layouts.scripForAddProductToCart') --}}
-                <!-- ------------------------------------------------------ -->
+                {{-- ------------------------------------------------------ --}}
     @include('frontend.layouts.scripForAddProductToCart')
 @endpush
