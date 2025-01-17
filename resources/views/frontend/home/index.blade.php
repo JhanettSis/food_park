@@ -17,27 +17,27 @@
     @include('frontend.home.components.menu_item')
     {{--======================   MENU ITEM END   ======================--}}
 
-    {{-- {{--======================   BLOG 2 START   ======================--}}
-    @include('frontend.home.components.blog')
+    {{--======================   BLOG 2 START   ======================--}}
+    {{-- @include('frontend.home.components.blog') --}}
     {{--======================   BLOG 2 END   ======================--}}
 
     {{--======================   ADD SLIDER START   ======================--}}
-    @include('frontend.home.components.add_slider')
+    {{-- @include('frontend.home.components.add_slider') --}}
     {{--======================   ADD SLIDER END   ======================--}}
 
     {{--======================   TEAM START   ======================--}}
-    @include('frontend.home.components.team')
+    {{-- @include('frontend.home.components.team') --}}
     {{--======================   TEAM END   ======================--}}
 
     {{--======================   DOWNLOAD APP START   ======================--}}
-    @include('frontend.home.components.app_download')
+    {{-- @include('frontend.home.components.app_download') --}}
     {{--======================   DOWNLOAD APP END   ======================--}}
 
     {{--======================   TESTIMONIAL  START   ======================--}}
-    @include('frontend.home.components.testimonial')
+    {{-- @include('frontend.home.components.testimonial') --}}
     {{--======================   TESTIMONIAL END   ======================--}}
 
     {{--======================   COUNTER START   ======================--}}
-    @include('frontend.home.components.counter')
-    {{--======================   COUNTER END   ======================--}} --}}
+    {{-- @include('frontend.home.components.counter') --}}
+    {{--======================   COUNTER END   ======================--}}
 @endsection

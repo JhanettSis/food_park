@@ -7,7 +7,9 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use  Illuminate\Http\Response;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 use Cart;
 
@@ -19,11 +21,13 @@ class CartController extends Controller
 
     // Add product in to cart
     function addToCart(Request $request){
-        try{
-            // Find the product based on the provided product_id from the request.
+        // Find the product based on the provided product_id from the request.
             // The product includes its associated size and option details.
             $product = Product::with(['sizeProduct', 'optionProduct'])->findOrFail($request->product_id);
-
+            if($product->quantity < $request->quantity){
+                throw ValidationException::withMessages(['Quantity is not available!']);
+            }
+        try{
             // The $request->size_product comes from the view input element with name="size_product"
             // Here, we fetch the specific size of the product based on the size id provided in the request.
             $arraysizeProduct = $product->sizeProduct->where('id', $request->size_product)->first();
@@ -128,14 +132,45 @@ class CartController extends Controller
         }
     }
 
-    function cart_qty_update(Request $request) : Response {
-        try{
+    function cart_qty_update(Request $request): JsonResponse
+    {
+        try {
+            // Get the cart item and the product
+            $cartItem = Cart::get($request->rowId);
+            $product = Product::findOrFail($cartItem->id);
+
+            // Check if the requested quantity is available
+            if ($product->quantity < $request->qty) {
+                // If not, throw a validation exception with a custom message
+                throw ValidationException::withMessages(['quantity' => 'Quantity is not available!']);
+            }
+            // Update the cart
             Cart::update($request->rowId, $request->qty);
-            return response(['product_total' => productCartViewTotal($request->rowId)], 200);
-        }catch(\Exception $e){
+            // Get the updated product total
+            $productTotal = productCartViewTotal($request->rowId); // Assuming this calculates the total
+
+            // Respond with success if everything goes well
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Product quantity update in the cart!',
+                'qty' => $request->qty,
+                'product_total' => $productTotal,
+            ], 200);
+        } catch (ValidationException $e) {
+            // Handle validation exception and return the error message in JSON format
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errors(),  // This will include the 'quantity' validation error
+            ], 200);  // 422 Unprocessable Entity is typically used for validation errors
+        } catch (\Exception $e) {
+            // Log the exception for debugging
             logger($e);
-            // return response(['status' => 'error', 'message' => $e->getMessage()], 500);
-            return response(['status' => 'error', 'message' => 'Something went wrong! Please reload the page'], 500);
+
+            // Respond with an error if something goes wrong
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Something went wrong! Please reload the page.',
+            ], 500);
         }
     }
 

@@ -29,6 +29,7 @@ class ProductFactory extends Factory
             'long_description' => fake()->paragraph(5),
             'price' => fake()->randomFloat(2, 10, 100),
             'offer_price' => fake()->randomFloat(2, 10, 100),
+            'quantity' => fake()->randomInt(1, 30),
             'sku' => fake()->unique()->ean13(),
             'seo_title' => fake()->sentence(2),
             'seo_description' => fake()->paragraph(3),

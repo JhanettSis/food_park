@@ -1,5 +1,3 @@
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-    <i class="fal fa-times"></i></button>
 <form action="" id="modal_add_to_cart_form">
     @csrf
     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -14,7 +12,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
             <i class="far fa-star"></i>
-            <span>(201)</span>
+            <span>(20122222)</span>
         </p>
         <h4 class="price">
             @if ($product->offer_price > 0)
@@ -79,9 +77,16 @@
             </div>
         </div>
         <ul class="details_button_area d-flex flex-wrap">
-            <li>
-                <button type="submit" class="common_btn modalCartButton">Add to cart</button>
-            </li>
+            @if ($product->quantity <= 0)
+                <li>
+                    <button type="button" class="common_btn bg-warning">Stock Out</button>
+                </li>
+            @else
+                <li>
+                    <button type="submit" class="common_btn modalCartButton">Add to cart</button>
+                </li>
+            @endif
+
         </ul>
     </div>
 </form>

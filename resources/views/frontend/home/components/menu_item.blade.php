@@ -72,6 +72,8 @@
                                 </h5>
                                 <ul class="d-flex flex-wrap justify-content-center">
                                     <li>
+                                        {{-- Here this button open a modal view, this modal is on the
+                                        layouts/ajax_files/product_poput.blade.php--}}
                                         <a href="javascript:;" onclick="loadProductModal({{ $product->id }})">
                                             <i class="fas fa-shopping-basket"></i>
                                         </a>

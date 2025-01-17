@@ -24,6 +24,7 @@ class Product extends Model
             'long_description',
             'price',
             'offer_price',
+            'quantity',
             'sku',
             'seo_title',
             'seo_description',

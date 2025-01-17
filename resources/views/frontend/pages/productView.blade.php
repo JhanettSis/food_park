@@ -128,9 +128,15 @@
                                 </div>
                             </div>
                             <ul class="details_button_area d-flex flex-wrap">
-                                <li>
-                                    <button type="submit" class="common_btn modalCartButton">Add to cart</button>
-                                </li>
+                                @if ($product->quantity <= 0)
+                                    <li>
+                                        <button type="button" class="common_btn bg-warning">Stock Out</button>
+                                    </li>
+                                @else
+                                    <li>
+                                        <button type="submit" class="common_btn modalCartButton">Add to cart</button>
+                                    </li>
+                                @endif
                                 <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
                             </ul>
                         </div>
