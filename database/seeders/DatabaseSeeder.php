@@ -10,6 +10,7 @@ use App\Models\ProductSize;
 use App\Models\Slider;
 use App\Models\User;
 use App\Models\WhyChooseUs;
+use App\Models\Coupon;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -39,6 +40,8 @@ class DatabaseSeeder extends Seeder
             ProductSize::factory(4)->create(['product_id' => $product->id]);
             OptionProduct::factory(6)->create(['product_id' => $product->id]);
         });
+
+        Coupon::factory(8)->create();
 
     }
 }

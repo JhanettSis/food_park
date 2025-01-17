@@ -3,6 +3,11 @@
     <section class="section">
         <div class="section-header">
             <h1>Title for 'Why Choose Us' section</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item fs4"><a href="{{ route('admin.why_choose_us.index') }}">All Items</a></div>
+                <div class="breadcrumb-item fs4"> Create Item </div>
+            </div>
         </div>
 
         <div class="card card-primary">

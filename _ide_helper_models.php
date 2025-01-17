@@ -41,6 +41,40 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $name
+ * @property string $code
+ * @property int $quantity
+ * @property int $min_purchase_amount
+ * @property string $expire_date
+ * @property string $discount_type
+ * @property float $discount
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\CouponFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereDiscountType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereExpireDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereMinPurchaseAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereUpdatedAt($value)
+ */
+	class Coupon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $option_name
  * @property float $price
  * @property int $product_id
@@ -80,6 +114,7 @@ namespace App\Models{
  * @property bool $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property float|null $quantity
  * @property-read \App\Models\Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductGallery> $galleryProduct
  * @property-read int|null $gallery_product_count
@@ -99,6 +134,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSeoDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSeoTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereShortDescription($value)

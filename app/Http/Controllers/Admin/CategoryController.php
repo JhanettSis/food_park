@@ -99,5 +99,5 @@ class CategoryController extends Controller
 
             return response(['status'=> 'error', 'message' => 'Something went wrong!']);
         }
-}
+    }
 }
