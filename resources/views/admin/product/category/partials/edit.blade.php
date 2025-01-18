@@ -3,6 +3,11 @@
     <section class="section">
         <div class="section-header">
             <h1>Product Caregory</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">All Products</a></div>
+                <div class="breadcrumb-item fs4"> Update Category</div>
+            </div>
         </div>
 
         <div class="card card-primary">

@@ -9,6 +9,7 @@ use App\Models\ProductGallery;
 use App\Models\ProductSize;
 use App\Models\Slider;
 use App\Models\User;
+use App\Models\DeliveryArea;
 use App\Models\WhyChooseUs;
 use App\Models\Coupon;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
         });
 
         Coupon::factory(8)->create();
+        DeliveryArea::factory(8)->create();
 
     }
 }

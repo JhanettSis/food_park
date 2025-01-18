@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OptionProductController;
 use App\Http\Controllers\Admin\ProductController;
@@ -114,5 +115,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /** Coupon Routes  */
     Route::resource('/coupons', CouponController::class);
+    /** Deliveries Areas Routes  */
+    Route::resource('/delivery_areas', DeliveryAreaController::class);
 
 });

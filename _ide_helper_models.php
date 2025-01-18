@@ -75,6 +75,34 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $area_name
+ * @property string $min_delivery_time
+ * @property string $max_delivery_time
+ * @property float $delivery_fee
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\DeliveryAreaFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereAreaName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereDeliveryFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereMaxDeliveryTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereMinDeliveryTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DeliveryArea whereUpdatedAt($value)
+ */
+	class DeliveryArea extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $option_name
  * @property float $price
  * @property int $product_id
