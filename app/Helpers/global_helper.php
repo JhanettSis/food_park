@@ -66,6 +66,8 @@ if(!function_exists('currencyIconInput')){
                 $total += $item->qty * ($priceProduct + $priceSize + $optionsPrice);
             }
 
+            $total = round($total, 2);
+
             return currencyPosition($total);
         }
     }

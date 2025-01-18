@@ -66,14 +66,45 @@
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__cart_list_footer_button">
                         <h6>total cart</h6>
-                        <p>subtotal: <span>$124.00</span></p>
+                        <p class="subtotal">sub total <span class="cartSubtotalView" id="cartSubtotalView">{{ cartTotal() }}</span></p>
                         <p>delivery: <span>$00.00</span></p>
-                        <p>discount: <span>$10.00</span></p>
-                        <p class="total"><span>total:</span> <span>$134.00</span></p>
-                        <form>
-                            <input type="text" placeholder="Coupon Code">
-                            <button type="submit">apply</button>
+                        <p>discount:
+                            @if (session()->has('coupon') && session()->get('coupon')['discount'])
+                            <span id="discount">{{ session()->get('coupon')['discount'] }}</span>
+                            @else
+                            <span id="discount">{{ currencyPosition(0) }}</span>
+                            @endif
+                        </p>
+                        <p class="total"><span>total:</span>
+                            @if (session()->has('coupon') && session()->get('coupon')['discount'])
+                            <span id="final_total">{{ session()->get('coupon')['finalTotal'] }}</span>
+                            @else
+                            <span id="final_total">{{ cartTotal() }}</span>
+                            @endif
+
+                        </p>
+                        {{-- This for submit the code coupon for that I used java function called 'Submint-Coupon'
+                        This function It can be found on the file layouts/globalScript.blade.php
+                        --}}
+                        <form id="coupon-form">
+                            <input type="text" id="coupon-code" placeholder="Coupon Code">
+                            <button type="submit">Apply</button>
                         </form>
+
+                        {{-- This function onclick="removeCoupon()" is on the
+                        This function It can be found on the file layouts/globalScript.blade.php  --}}
+                        <div class="coupon_cart">
+                            @if (session()->has('coupon') && session()->get('coupon')['discount'])
+                                <div class="card mt-2">
+                                    <div class="m-3">
+                                        <span><b>{{ session()->get('coupon')['code'] }}</b></span>
+                                        <span>
+                                            <button onclick="removeCoupon()"><i class="far fa-times"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                         <a class="common_btn" href=" #">checkout</a>
                     </div>
                 </div>
@@ -147,8 +178,12 @@
                     },
                     success: function(response) {
                         updateSidebarCart(); // This updates the cart UI in the sidebar
-
+                        // Update the subtotal in the main cart view (cart_view.blade.php)
+                        $('#cartSubtotalView').text(response.newSubtotalDetailView); // Update the subtotal in cart.php
+                        $('#final_total').text(response.newSubtotalDetailView);
+                        $('#discount').text(response.discount);
                         // Check for the 'status' in the response and show appropriate message
+
                         if (response.status === 'success') {
                             toastr.success(response.message); // Show success message
                         } else {

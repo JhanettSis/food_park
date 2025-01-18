@@ -55,6 +55,4 @@ class FrontendController extends Controller
         return view('frontend.layouts.ajax_files.product_poput', compact('product'))->render();
     }
 
-
-
 }

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
+use Carbon\Carbon;
 
 use Cart;
 
@@ -21,6 +23,7 @@ class CartController extends Controller
 
     // Add product in to cart
     function addToCart(Request $request){
+        session()->forget('coupon');
         // Find the product based on the provided product_id from the request.
             // The product includes its associated size and option details.
             $product = Product::with(['sizeProduct', 'optionProduct'])->findOrFail($request->product_id);
@@ -103,6 +106,7 @@ class CartController extends Controller
     }
 
     function cart_product_remove($rowId){
+        session()->forget('coupon');
         try{
             Cart::remove($rowId);
              // Using Cart::content() to get the current cart content
@@ -126,6 +130,7 @@ class CartController extends Controller
                  * THis function is on the App/Hepers/global_helper.php
                 */
                 'newSubtotal' => $newSubtotal, // currencyPosition formats the amount correctly
+                'discount' => currencyPosition(0)
             ]);
         }catch(\Exception $e){
             return response(['status' => 'error', 'message' => 'Sorry something went wrong!']);
@@ -134,6 +139,7 @@ class CartController extends Controller
 
     function cart_qty_update(Request $request): JsonResponse
     {
+        session()->forget('coupon');
         try {
             // Get the cart item and the product
             $cartItem = Cart::get($request->rowId);
@@ -148,13 +154,16 @@ class CartController extends Controller
             Cart::update($request->rowId, $request->qty);
             // Get the updated product total
             $productTotal = productCartViewTotal($request->rowId); // Assuming this calculates the total
-
+            // Calculate new subtotal
+            $newSubtotal = cartTotal();
             // Respond with success if everything goes well
             return response()->json([
                 'status' => 'success',
                 'message' => 'Product quantity update in the cart!',
                 'qty' => $request->qty,
                 'product_total' => $productTotal,
+                'newSubtotalDetailView' => $newSubtotal,
+                'discount' => currencyPosition(0)
             ], 200);
         } catch (ValidationException $e) {
             // Handle validation exception and return the error message in JSON format
@@ -175,7 +184,63 @@ class CartController extends Controller
     }
 
     function cart_destroye(){
+        session()->forget('coupon');
         Cart::destroy();
         return redirect()->back();
+    }
+
+    // handle the request in the controller and send back a response
+    function applyCoupon(Request $request)
+    {
+        session()->forget('coupon');
+        $subTotal = Cart::subtotal();
+        // Remove commas from the number1 if it's a string and Convert string to float
+        $convertSubtotal = (float) str_replace(',', '', $subTotal);
+
+        $code = $request->coupon_code;
+
+        $coupon = Coupon::where('code', $code)->first();
+
+        if(!$coupon){
+            return response(['message' => 'Invalid code!'], 422);
+        }
+        if($coupon->quantity <= 0){
+            return response(['message' => 'Coupon has benn redeemed!'], 422);
+        }
+        if($coupon->expire_date < now()->format('Y-m-d')){
+            return response(['message' => 'Coupon has expired!'], 422);
+        }
+
+        if($coupon->discount_type === 'percentage'){
+            $discount = $convertSubtotal * ($coupon->discount/100);
+
+        }
+
+        elseif($coupon->discount_type === 'amount'){
+            $discount = $coupon->discount;
+        }
+
+
+        $finalTotal = currencyPosition($convertSubtotal-$discount);
+        session()->put('coupon', ['code' => $code,
+                'discount' => currencyPosition($discount),
+                'finalTotal' => $finalTotal]);
+
+        return response(['message' => 'Coupon Applyed successfully!',
+        'code' => $code,
+        'discount' => currencyPosition($discount),
+        'finalTotal' => $finalTotal]);
+    }
+
+    function destroyeCoupon(){
+        session()->forget('coupon');
+        $subTotal = Cart::subtotal();
+        // Calculate new subtotal
+        $newSubtotal = cartTotal();
+
+        return response(['message' => 'Coupon Removed!',
+        'discount' => currencyPosition(0),
+        'newSubtotal' => $newSubtotal,
+        'finalTotal' => $subTotal]);
     }
 }

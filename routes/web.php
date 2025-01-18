@@ -46,6 +46,9 @@ Route::get('/cart-product-remove/{rowId}', [CartController::class, 'cart_product
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/car-update-qty', [CartController::class, 'cart_qty_update'])->name('carUpdate.qty');
 Route::get('/cart-destroy', [CartController::class, 'cart_destroye'])->name('cart.destroye');
+Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('applyCoupon');
+Route::get('/destroye-coupon', [CartController::class, 'destroyeCoupon'])->name('destroye.coupon');
+
 
 /**
  * Admin Login Route
