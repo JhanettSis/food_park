@@ -40,7 +40,7 @@ class DashboardController extends Controller
         $address->save();
 
         toastr()->success('Address created successfully!');
-        return redirect()->route('dashboard');
+        return redirect()->back();
     }
 
     // Edit an existing address

@@ -1,6 +1,8 @@
 @extends('frontend.layouts.master')
 @section('content')
-    ==============================--}}
+    {{-- =============================
+                BREADCRUMB START
+            ============================== --}}
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
@@ -67,7 +69,7 @@
                     <div class="fp__cart_list_footer_button">
                         <h6>total cart</h6>
                         <p class="subtotal">sub total <span class="cartSubtotalView" id="cartSubtotalView">{{ cartTotal() }}</span></p>
-                        <p>delivery: <span>$00.00</span></p>
+                        <p>delivery: <span>{{ currencyPosition(0) }}</span></p>
                         <p>discount:
                             @if (session()->has('coupon') && session()->get('coupon')['discount'])
                             <span id="discount">{{ session()->get('coupon')['discount'] }}</span>
@@ -81,7 +83,6 @@
                             @else
                             <span id="final_total">{{ cartTotal() }}</span>
                             @endif
-
                         </p>
                         {{-- This for submit the code coupon for that I used java function called 'Submint-Coupon'
                         This function It can be found on the file layouts/globalScript.blade.php
@@ -105,7 +106,7 @@
                                 </div>
                             @endif
                         </div>
-                        <a class="common_btn" href=" #">checkout</a>
+                        <a class="common_btn" href="{{ route('checkout.index') }}">checkout</a>
                     </div>
                 </div>
             </div>

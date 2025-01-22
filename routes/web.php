@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -48,7 +48,10 @@ Route::post('/car-update-qty', [CartController::class, 'cart_qty_update'])->name
 Route::get('/cart-destroy', [CartController::class, 'cart_destroye'])->name('cart.destroye');
 Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('applyCoupon');
 Route::get('/destroye-coupon', [CartController::class, 'destroyeCoupon'])->name('destroye.coupon');
-
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/checkout/{id}/delivery-calculation', [CheckoutController::class, 'CalculateDeliveryCharge'])->name('checkout.delivery-calculation');
+});
 
 /**
  * Admin Login Route

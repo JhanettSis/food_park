@@ -224,11 +224,13 @@ class CartController extends Controller
         $finalTotal = currencyPosition($convertSubtotal-$discount);
         session()->put('coupon', ['code' => $code,
                 'discount' => currencyPosition($discount),
+                'discountNumber' => $discount,
                 'finalTotal' => $finalTotal]);
 
         return response(['message' => 'Coupon Applyed successfully!',
         'code' => $code,
         'discount' => currencyPosition($discount),
+        'discountNumber' => $discount,
         'finalTotal' => $finalTotal]);
     }
 

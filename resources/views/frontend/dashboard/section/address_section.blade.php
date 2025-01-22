@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="fp__check_single_form check_area">
+                            <div class="fp__check_single_form">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1"
                                         value="home">
