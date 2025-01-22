@@ -1,4 +1,56 @@
 <script>
+
+    /**
+     * Show sweet alert confirm message
+    */
+    $('body').on('click', '.delete-item', function(e) {
+        e.preventDefault()
+        let urlHref = $(this).attr('href');
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'DELETE',
+                    //this variable urlHref I declare and put the value before at the top of the script
+                    url: urlHref,
+                    data: {_token: "{{ csrf_token() }}"},
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            toastr.success(response.message);
+                            //$('#slider-table').DataTable().draw();
+                            //instead the line above this
+                            // it's remplasing by the next code
+                            window.location.reload();
+                        } else {
+                            toastr.error(response.message);
+                        }
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    },
+                })
+                /**
+                 * Instead of this piece if code from the sweetAlert
+                 * I use toastr inside the condition
+                 * if(response.status === 'success'){
+                 * and I commented the next code -> Swal.fire({
+                 */
+                // Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your file has been deleted.",
+                //     icon: "success"
+                // });
+                    }
+        });
+    })
+
     /** Show loader*/
     function showLoader() {
         $('.overlay-container').removeClass('d-none');

@@ -115,6 +115,7 @@
 
     {{-- Toastr JS for displaying notifications --}}
     <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- Main custom JS for frontend interactions --}}
     <script src="{{ asset('frontend/js/main.js') }}"></script>
