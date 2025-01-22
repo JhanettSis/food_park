@@ -76,6 +76,9 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.coupons.index') }}">Coupon</a></li>
                     <li><a class="nav-link" href="{{ route('admin.delivery_areas.index') }}">Delivery Areas</a></li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">Payment Gateways</a>
+                    </li>
                 </ul>
             </li>
             <li>

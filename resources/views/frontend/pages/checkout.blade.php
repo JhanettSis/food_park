@@ -144,22 +144,22 @@
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div id="sticky_sidebar" class="fp__cart_list_footer_button">
                         <h6>total cart</h6>
-                        <p>subtotal: <span>{{ cartTotal() }}</span></p>
+                        <p>subtotal: <span>{{ currencyPosition(cartTotal()) }}</span></p>
                         <p>delivery: <span id="delivery_fee">{{ currencyPosition(0) }}</span></p>
                         @if (session()->has('coupon'))
-                        <p>discount: <span>{{ session()->get('coupon')['discount']  }}</span></p>
+                        <p>discount: <span>{{ currencyPosition(session()->get('coupon')['discount']) }}</span></p>
                         @else
                         <p>discount: <span>{{ currencyPosition(0)  }}</span></p>
                         @endif
 
                         <p class="total"><span>total:</span>
                             @if (session()->has('coupon') && session()->get('coupon')['discount'])
-                            <span id="final_total">{{ session()->get('coupon')['finalTotal'] }}</span>
+                            <span id="final_total">{{ currencyPosition(session()->get('coupon')['finalTotal']) }}</span>
                             @else
-                            <span id="final_total">{{ cartTotal() }}</span>
+                            <span id="final_total">{{ currencyPosition(cartTotal()) }}</span>
                             @endif
                         </p>
-                        <a class="common_btn" href=" #">checkout</a>
+                        <a class="common_btn" id="procced_pmt_button" href=" #">Proceed to Payment</a>
                     </div>
                 </div>
             </div>
@@ -199,6 +199,37 @@
                 }
             })
         })
+
+        $('#procced_pmt_button').on('click', function(e){
+                e.preventDefault();
+                let address = $('.v_address:checked');
+                let id = address.val();
+                if(address.length === 0){
+                    toastr.error('Please Select a Address!');
+                    return;
+                }
+
+                $.ajax({
+                    method: 'Post',
+                    url: '{{ route("checkout.redirect") }}',
+                    data: {
+                        id: id
+                    },
+                    beforeSend: function() {
+                        showLoader()
+                    },
+                    success: function(response) {
+                        window.location.href = response.redirect_url;
+                    },
+                    error: function(xhr, status, error){
+                        let errorMessage = xhr.responseJSON.message;
+                        toastr.success(errorMessage);
+                    },
+                    complete: function() {
+                        hideLoader()
+                    }
+                })
+            })
     })
 </script>
 @endpush

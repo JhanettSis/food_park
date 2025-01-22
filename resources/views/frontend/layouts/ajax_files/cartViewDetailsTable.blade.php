@@ -31,7 +31,7 @@
             {{-- This function productCartViewTotal(); is on the
                                                 app/Helpers/global_helper.php, I don't use currencyPosition(); function here
                                                 because on the productCartViewTotal() i returned with the currency sybol  --}}
-            <h6 class="h6ProductTotalCart">{{ productCartViewTotal($product->rowId) }}</h6>
+            <h6 class="h6ProductTotalCart">{{ currencyPosition(productCartViewTotal($product->rowId)) }}</h6>
         </td>
 
         <td class="fp__pro_icon">

@@ -68,7 +68,7 @@
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__cart_list_footer_button">
                         <h6>total cart</h6>
-                        <p class="subtotal">sub total <span class="cartSubtotalView" id="cartSubtotalView">{{ cartTotal() }}</span></p>
+                        <p class="subtotal">sub total <span class="cartSubtotalView" id="cartSubtotalView">{{ currencyPosition(cartTotal()) }}</span></p>
                         <p>delivery: <span>{{ currencyPosition(0) }}</span></p>
                         <p>discount:
                             @if (session()->has('coupon') && session()->get('coupon')['discount'])
@@ -81,7 +81,7 @@
                             @if (session()->has('coupon') && session()->get('coupon')['discount'])
                             <span id="final_total">{{ session()->get('coupon')['finalTotal'] }}</span>
                             @else
-                            <span id="final_total">{{ cartTotal() }}</span>
+                            <span id="final_total">{{ currencyposition(cartTotal()) }}</span>
                             @endif
                         </p>
                         {{-- This for submit the code coupon for that I used java function called 'Submint-Coupon'

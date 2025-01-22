@@ -68,7 +68,7 @@ if(!function_exists('currencyIconInput')){
 
             $total = round($total, 2);
 
-            return currencyPosition($total);
+            return $total;
         }
     }
 /**
@@ -85,7 +85,7 @@ if(!function_exists('productCartViewTotal')) {
                 $optionsPrice += $option['price'] ?? 0;
         }
         $total += $product->qty * ($priceProduct + $priceSize + $optionsPrice);
-        return currencyPosition($total);
+        return $total;
     }
 }
 /**
@@ -109,8 +109,21 @@ if(!function_exists('productCartViewTotal')) {
                 $numbers = array_map('floatval', $matches[0]);
 
                 $total = $convertSubtotal - $numbers[0];
-                return currencyPosition($total);
+                return $total;
             }
-            return currencyPosition($convertSubtotal);
+            return $convertSubtotal;
+        }
+    }
+
+    /** Generate Invoice Id */
+    if (!function_exists('generateInvoiceId')) {
+        function generateInvoiceId()
+        {
+            $randomNumber = rand(1, 9999);
+            $currentDateTime = now();
+
+            $invoiceId = $randomNumber . $currentDateTime->format('yd') . $currentDateTime->format('s');
+
+            return $invoiceId;
         }
     }

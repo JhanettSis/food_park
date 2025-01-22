@@ -101,7 +101,7 @@ class CartController extends Controller
             /**
              * THis function is on the App/Hepers/global_helper.php
              */
-            'newSubtotal' => $newSubtotal, // currencyPosition formats the amount correctly
+            'newSubtotal' => currencyPosition($newSubtotal), // currencyPosition formats the amount correctly
         ]);
     }
 
@@ -129,7 +129,7 @@ class CartController extends Controller
                 /**
                  * THis function is on the App/Hepers/global_helper.php
                 */
-                'newSubtotal' => $newSubtotal, // currencyPosition formats the amount correctly
+                'newSubtotal' => currencyPosition($newSubtotal), // currencyPosition formats the amount correctly
                 'discount' => currencyPosition(0)
             ]);
         }catch(\Exception $e){
@@ -161,8 +161,8 @@ class CartController extends Controller
                 'status' => 'success',
                 'message' => 'Product quantity update in the cart!',
                 'qty' => $request->qty,
-                'product_total' => $productTotal,
-                'newSubtotalDetailView' => $newSubtotal,
+                'product_total' => currencyPosition($productTotal),
+                'newSubtotalDetailView' => currencyPosition($newSubtotal),
                 'discount' => currencyPosition(0)
             ], 200);
         } catch (ValidationException $e) {
@@ -220,18 +220,15 @@ class CartController extends Controller
             $discount = $coupon->discount;
         }
 
-
-        $finalTotal = currencyPosition($convertSubtotal-$discount);
+        $finalTotal = $convertSubtotal-$discount;
         session()->put('coupon', ['code' => $code,
-                'discount' => currencyPosition($discount),
-                'discountNumber' => $discount,
+                'discount' => $discount,
                 'finalTotal' => $finalTotal]);
 
         return response(['message' => 'Coupon Applyed successfully!',
         'code' => $code,
         'discount' => currencyPosition($discount),
-        'discountNumber' => $discount,
-        'finalTotal' => $finalTotal]);
+        'finalTotal' => currencyPosition($finalTotal)]);
     }
 
     function destroyeCoupon(){
@@ -242,7 +239,7 @@ class CartController extends Controller
 
         return response(['message' => 'Coupon Removed!',
         'discount' => currencyPosition(0),
-        'newSubtotal' => $newSubtotal,
-        'finalTotal' => $subTotal]);
+        'newSubtotal' => currencyPosition($newSubtotal),
+        'finalTotal' => currencyPosition($subTotal)]);
     }
 }

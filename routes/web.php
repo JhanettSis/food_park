@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,11 @@ Route::get('/destroye-coupon', [CartController::class, 'destroyeCoupon'])->name(
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/checkout/{id}/delivery-calculation', [CheckoutController::class, 'CalculateDeliveryCharge'])->name('checkout.delivery-calculation');
+    Route::post('/checkout', [CheckoutController::class, 'checkoutRedirect'])->name('checkout.redirect');
+    /** Payment Routes */
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+    Route::post('/make-payment', [PaymentController::class, 'makePayment'])->name('make-payment');
+
 });
 
 /**
