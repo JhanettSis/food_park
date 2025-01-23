@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Services;
-
+/**
+ * If you've recently added the class,
+ * you might need to run 'composer dump-autoload' to regenerate the
+ * Composer autoload files.
+ */
 use App\Models\Order;
 use App\Models\OrderItem;
 use Auth;
@@ -50,7 +54,11 @@ class OrderService
                 $orderItem->product_option = json_encode($product->options->optionsProduct);
                 $orderItem->save();
             }
+            /** Putting the Order id in session */
+            session()->put('order_id', $order->id);
 
+            /** Putting the grand total amount in session */
+            session()->put('grand_total', $order->grand_total);
             return true;
         }catch(\Exception $e){
             logger($e);

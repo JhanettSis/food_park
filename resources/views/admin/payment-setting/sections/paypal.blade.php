@@ -25,6 +25,7 @@
                     <label for="">Paypal Country Name</label>
                     <select name="paypal_country" id="" class="select2 form-control">
                         <option value="">Select</option>
+                        {{-- The list (array) is coming from the file config/country_list.php  --}}
                         @foreach (config('country_list') as $key => $country)
                             <option  @selected(@$paymentGateway['paypal_country'] === $key)  value="{{ $key }}">{{ $country }}</option>
                         @endforeach
@@ -35,6 +36,7 @@
                     <label for="">Paypal Currency Name</label>
                     <select name="paypal_currency" id="" class="select2 form-control">
                         <option value="">Select</option>
+                        {{-- The list (array) is coming from the file config/currencies.php  --}}
                         @foreach (config('currencies.currency_list') as $key => $currency)
                         <option @selected(@$paymentGateway['paypal_currency'] === $currency) value="{{ $currency }}">{{ $currency }}</option>
                         @endforeach
@@ -43,6 +45,8 @@
                 </div>
 
                 <div class="form-group">
+                    {{-- This values is config('settings.site_default_currency' from the table settings
+                    and column key--}}
                     <label for="">Currency Rate ( Per {{ config('settings.site_default_currency') }} )</label>
                     <input name="paypal_rate" type="text" class="form-control" value="{{ @$paymentGateway['paypal_rate'] }}">
                 </div>
@@ -64,6 +68,8 @@
 
                 <div class="form-group">
                     <label>Paypal Logo</label>
+                    {{-- Here for displaying the image
+                    I use javascript using the class="paypal-preview"" --}}
                     <div id="image-preview" class="image-preview paypal-preview">
                         <label for="image-upload" id="image-label">Choose File</label>
                         <input type="file" name="paypal_logo" id="image-upload" />

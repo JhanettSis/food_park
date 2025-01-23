@@ -10,6 +10,7 @@
         "anayarojo/shoppingcart": "^4.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "srmklive/paypal": "~3.0",
         "yajra/laravel-datatables": "^11.0",
         "yoeunes/toastr": "^3.1"
     },

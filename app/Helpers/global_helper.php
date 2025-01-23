@@ -97,21 +97,15 @@ if(!function_exists('productCartViewTotal')) {
         function grandCartTotal(){
             $total = 0;
             $discount = 0;
-            $subTotal = Cart::subtotal();
+            $subTotal = cartTotal();
             // Remove commas from the number1 if it's a string and Convert string to float
-            $convertSubtotal = (float) str_replace(',', '', $subTotal);
+            //$convertSubtotal = (float) str_replace(',', '', $subTotal);
             if(session()->has('coupon')){
-                // Use regular expression to find numbers and decimals
-                preg_match_all('/\d+(\.\d+)?/', session()->get('coupon')['discount'],
-                $matches);
-
-                // Flatten the matches array to get all the found numbers and decimals
-                $numbers = array_map('floatval', $matches[0]);
-
-                $total = $convertSubtotal - $numbers[0];
+                $discount = session()->get('coupon')['discount'];
+                $total = $subTotal - $discount;
                 return $total;
             }
-            return $convertSubtotal;
+            return $subTotal;
         }
     }
 

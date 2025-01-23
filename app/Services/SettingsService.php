@@ -1,6 +1,10 @@
 <?php
 namespace App\Services;
-
+/**
+ * If you've recently added the class,
+ * you might need to run 'composer dump-autoload' to regenerate the
+ * Composer autoload files.
+ */
 use App\Models\Setting;
 use Cache;
 class SettingsService {

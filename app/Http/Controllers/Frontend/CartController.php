@@ -193,9 +193,8 @@ class CartController extends Controller
     function applyCoupon(Request $request)
     {
         session()->forget('coupon');
-        $subTotal = Cart::subtotal();
+        $subTotal = cartTotal();
         // Remove commas from the number1 if it's a string and Convert string to float
-        $convertSubtotal = (float) str_replace(',', '', $subTotal);
 
         $code = $request->coupon_code;
 
@@ -210,9 +209,12 @@ class CartController extends Controller
         if($coupon->expire_date < now()->format('Y-m-d')){
             return response(['message' => 'Coupon has expired!'], 422);
         }
+        if($coupon->status === false){
+            return response(['message' => 'Inactive code!'], 422);
+        }
 
         if($coupon->discount_type === 'percentage'){
-            $discount = $convertSubtotal * ($coupon->discount/100);
+            $discount = $subTotal * ($coupon->discount/100);
 
         }
 
@@ -220,7 +222,7 @@ class CartController extends Controller
             $discount = $coupon->discount;
         }
 
-        $finalTotal = $convertSubtotal-$discount;
+        $finalTotal = $subTotal-$discount;
         session()->put('coupon', ['code' => $code,
                 'discount' => $discount,
                 'finalTotal' => $finalTotal]);
@@ -233,7 +235,7 @@ class CartController extends Controller
 
     function destroyeCoupon(){
         session()->forget('coupon');
-        $subTotal = Cart::subtotal();
+        $subTotal = cartTotal();
         // Calculate new subtotal
         $newSubtotal = cartTotal();
 
