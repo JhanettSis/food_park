@@ -34,7 +34,7 @@
 
                             @include('admin.payment-setting.sections.stripe')
 
-                        {{-- @include('admin.payment-setting.sections.razorpay') --}}
+                            @include('admin.payment-setting.sections.razorpay')
                         </div>
                     </div>
                 </div>

@@ -24,13 +24,7 @@ class CheckoutController extends Controller
             $address = Address::findOrFail($id);
             $deliveryFee = $address->deliveryArea?->delivery_fee;
 
-            // Use regular expression to find numbers and decimals
-            preg_match_all('/\d+(\.\d+)?/', grandCartTotal(), $matches);
-
-            // Flatten the matches array to get all the found numbers and decimals
-            $numbers = array_map('floatval', $matches[0]);
-
-            $grandTotal = $numbers[0] + $deliveryFee;
+            $grandTotal =  grandCartTotal() + $deliveryFee;
 
             return response(['delivery_fee' => currencyPosition($deliveryFee),
             'grand_total' => currencyPosition($grandTotal),

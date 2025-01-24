@@ -31,7 +31,7 @@ class OrderService
             $order->discount = session()->get('coupon')['discount'] ?? 0;
             $order->delivery_charge = session()->get('delivery_fee');
             $order->subtotal = cartTotal();
-            $order->grand_total = grandCartTotal(session()->get('delivery_fee'));
+            $order->grand_total = grandCartTotal()+session()->get('delivery_fee');
             $order->product_qty = \Cart::content()->count();
             $order->payment_method = NULL;
             $order->payment_status = 'pending';

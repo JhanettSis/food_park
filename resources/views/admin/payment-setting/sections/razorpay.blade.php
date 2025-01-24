@@ -28,7 +28,7 @@
                     <label for="">Razorpay Currency</label>
                     <select name="razorpay_currency" id="" class="select3 form-control">
                         <option value="">Select</option>
-                        @foreach (config('currencys.currency_list') as $currency)
+                        @foreach (config('currencies.currency_list') as $currency)
                             <option @selected(@$paymentGateway['razorpay_currency'] === $currency) value="{{ $currency }}">{{ $currency }}
                             </option>
                         @endforeach

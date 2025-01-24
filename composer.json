@@ -10,6 +10,7 @@
         "anayarojo/shoppingcart": "^4.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "razorpay/razorpay": "2.*",
         "srmklive/paypal": "~3.0",
         "stripe/stripe-php": "^16.4",
         "yajra/laravel-datatables": "^11.0",
