@@ -7,6 +7,7 @@
 
                 <div class="form-group">
                     <label for="">Stripe Status</label>
+                    {{-- For this class 'select3' we add code in css file called style.css at the end --}}
                     <select name="stripe_status" id="" class="select3 form-control">
                         <option @selected(@$paymentGateway['stripe_status'] == 1) value="1">Active</option>
                         <option @selected(@$paymentGateway['stripe_status'] == 0) value="0">Inactive</option>
@@ -28,7 +29,7 @@
                     <label for="">Stripe Currency</label>
                     <select name="stripe_currency" id="" class="select3 form-control">
                         <option value="">Select</option>
-                        @foreach (config('currencys.currency_list') as $currency)
+                        @foreach (config('currencies.currency_list') as $currency)
                             <option @selected(@$paymentGateway['stripe_currency'] === $currency) value="{{ $currency }}">{{ $currency }}
                             </option>
                         @endforeach
@@ -69,24 +70,27 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            // Here I change for displaying better and
+            // I add css sytle like with:100% at the end of the file admin/css/style.css
+            if (jQuery().select2) {
+                $(".select3").select2();
+            }
+            //If I add new class in to the div image from the input image, here I have to change as well.
             $('.stripe-preview').css({
                 'background-image': 'url({{ @$paymentGateway['stripe_logo'] }})',
                 'background-size': 'cover',
                 'background-position': 'center center'
             })
-
-            if (jQuery().select2) {
-                $(".select3").select2();
-            }
+            // The default code for the field image upload is on the layouts/master.blade.php
 
             $.uploadPreview({
-                input_field: "#image-upload-2", // Default: .image-upload
-                preview_box: "#image-preview-2", // Default: .image-preview
-                label_field: "#image-label-2", // Default: .image-label
-                label_default: "Choose File", // Default: Choose File
-                label_selected: "Change File", // Default: Change File
-                no_label: false, // Default: false
-                success_callback: null // Default: null
+                input_field: "#image-upload-2", // Default: just for this page .image-upload
+                preview_box: "#image-preview-2", // Default:just for this page .image-preview
+                label_field: "#image-label-2", // Default: just for this page .image-label
+                label_default: "Choose File", // Default: just for this page Choose File
+                label_selected: "Change File", // Default: just for this page Change File
+                no_label: false, // Default: just for this page false
+                success_callback: null // Default: just for this page null
             });
         })
     </script>

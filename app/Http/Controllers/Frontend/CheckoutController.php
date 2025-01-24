@@ -52,7 +52,7 @@ class CheckoutController extends Controller
 
         session()->put('address', $selectedAddress);
         session()->put('delivery_fee', $address->deliveryArea->delivery_fee);
-        session()->put('address_id', $address->id);
+        session()->put('delivery_area_id', $address->deliveryArea->id);
 
 
         return response(['redirect_url' => route('payment.index')]);

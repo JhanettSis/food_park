@@ -32,11 +32,9 @@
                         <div class="tab-content no-padding" id="myTab2Content">
                             @include('admin.payment-setting.sections.paypal')
 
-                            {{-- @include('admin.payment-setting.sections.stripe')
+                            @include('admin.payment-setting.sections.stripe')
 
-                        @include('admin.payment-setting.sections.razorpay') --}}
-
-
+                        {{-- @include('admin.payment-setting.sections.razorpay') --}}
                         </div>
                     </div>
                 </div>

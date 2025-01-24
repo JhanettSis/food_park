@@ -3,23 +3,27 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Events\OrderPaymentUpdateEvent;
+use App\Events\OrderPlaceNotificationEvent;
+use App\Events\RTOrderPlaceNotificationEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as StripeSession;
+use Razorpay\Api\Api as RazorpayApi ;
+
 
 class PaymentController extends Controller
 {
-    protected $orderService;
-
     function index(): View
     {
         if (!session()->has('delivery_fee') || !session()->has('address')) {
-            throw ValidationException::withMessages(['Something went wrong!']);
+            throw ValidationException::withMessages(['Something went wrong']);
         }
-
         $subtotal = cartTotal();
         $delivery = session()->get('delivery_fee') ?? 0;
         $discount = session()->get('coupon')['discount'] ?? 0;
@@ -30,6 +34,14 @@ class PaymentController extends Controller
             'discount',
             'grandTotal'
         ));
+    }
+
+    function paymentSuccess() : View {
+        return view('frontend.pages.payment-success');
+    }
+
+    function paymentCancel() : View {
+        return view('frontend.pages.payment-cancel');
     }
 
     function makePayment(Request $request, OrderService $orderService)
@@ -45,19 +57,22 @@ class PaymentController extends Controller
                 case 'paypal':
                     return response(['redirect_url' => route('paypal.payment')]);
                     break;
+
+                case 'stripe':
+                    return response(['redirect_url' => route('stripe.payment')]);
+                    break;
+
+                case 'razorpay':
+                    return response(['redirect_url' => route('razorpay-redirect')]);
+                    break;
+
                 default:
                     break;
             }
         }
     }
 
-    function paymentSuccess() : View {
-        return view('frontend.pages.payment-success');
-    }
 
-    function paymentCancel() : View {
-        return view('frontend.pages.payment-cancel');
-    }
     /** Paypal Payment  */
     function setPaypalConfig(): array
     {
@@ -88,7 +103,7 @@ class PaymentController extends Controller
             'currency'       => config('gatewaySettings.paypal_currency'),
             'notify_url'     => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application.
             'locale'         => 'en_US', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
-            'validate_ssl'   => false, // Validate SSL when creating api client. If you use laragon it can be true
+            'validate_ssl'   => false, // Validate SSL when creating api client.
         ];
 
         return $config;
@@ -130,6 +145,7 @@ class PaymentController extends Controller
                 ]
             ]
         ]);
+
         if(isset($response['id']) && $response['id'] != NULL){
             foreach($response['links'] as $link){
                 if($link['rel'] === 'approve'){
@@ -141,6 +157,7 @@ class PaymentController extends Controller
         }
     }
 
+     /** Main method that handle the success function  */
     function paypalSuccess(Request $request, OrderService $orderService)
     {
         $config = $this->setPaypalConfig();
@@ -173,13 +190,164 @@ class PaymentController extends Controller
                 'status' => 'completed'
             ];
 
+            /** Here we update and register the payment on the table Order*/
             OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'PayPal');
-            dd('success');
+            /**After we send a notification order by email */
+            OrderPlaceNotificationEvent::dispatch($orderId);
 
+            //RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
+
+            /** Clear session data */
+            $orderService->clearSession();
+
+            return redirect()->route('payment.success');
         }else {
-
+            /** this line is for testing
+         * and we need to add Request $request
+         * in the function
+         * dd($request);
+         */
+            //$this->transactionFailUpdateStatus('PayPal');
+            return redirect()->route('payment.cancel')->withErrors(['error' => $response['error']['message']]);
         }
     }
 
+    function paypalCancel()
+    {
+        /** this line is for testing
+         * and we need to add Request $request
+         * in the function
+         * dd($request);
+         */
+        //$this->transactionFailUpdateStatus('PayPal');
+        return redirect()->route('payment.cancel');
+    }
+
+    /** Stripe Payment */
+
+    function payWithStripe() {
+
+        Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
+
+        /** calculate payable amount */
+        $grandTotal = session()->get('grand_total');
+        $payableAmount = round($grandTotal * config('gatewaySettings.stripe_rate')) * 100;
+
+        $response = StripeSession::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => config('gatewaySettings.stripe_currency'),
+                        'product_data' => [
+                            'name' => 'Product'
+                        ],
+                        'unit_amount' => $payableAmount
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'mode' => 'payment',
+            'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('stripe.cancel')
+        ]);
+
+        return redirect()->away($response->url);
+    }
+
+    // function stripeSuccess(Request $request, OrderService $orderService) {
+    //     $sessionId = $request->session_id;
+    //     Stripe::setApiKey(config('gatewaySettings.stripe_secret_key'));
+
+    //     $response = StripeSession::retrieve($sessionId);
+
+    //     if($response->payment_status === 'paid') {
+
+    //         $orderId = session()->get('order_id');
+    //         $paymentInfo = [
+    //             'transaction_id' => $response->payment_intent,
+    //             'currency' => $response->currency,
+    //             'status' => 'completed'
+    //         ];
+
+    //         OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'Stripe');
+    //         OrderPlacedNotificationEvent::dispatch($orderId);
+    //         RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
+
+
+    //         /** Clear session data */
+    //         $orderService->clearSession();
+
+    //         return redirect()->route('payment.success');
+    //     }else {
+    //         $this->transactionFailUpdateStatus('Stripe');
+    //         return redirect()->route('payment.cancel');
+    //     }
+    // }
+
+    // function stripeCancel() {
+    //     $this->transactionFailUpdateStatus('Stripe');
+    //     return redirect()->route('payment.cancel');
+    // }
+
+    // function razorpayRedirect() {
+    //     return view('frontend.pages.razorpay-redirect');
+    // }
+
+    // function payWithRazorpay(Request $request, OrderService $orderService) {
+    //     $api = new RazorpayApi(
+    //         config('gatewaySettings.razorpay_api_key'),
+    //         config('gatewaySettings.razorpay_secret_key'),
+    //     );
+
+    //     if($request->has('razorpay_payment_id') && $request->filled('razorpay_payment_id')){
+    //         $grandTotal = session()->get('grand_total');
+    //         $payableAmount = ($grandTotal * config('gatewaySettings.razorpay_rate')) * 100;
+
+    //         try{
+    //             $response = $api->payment
+    //                 ->fetch($request->razorpay_payment_id)
+    //                 ->capture(['amount' => $payableAmount]);
+    //         }catch(\Exception $e) {
+    //             logger($e);
+    //             $this->transactionFailUpdateStatus('Razorpay');
+    //             return redirect()->route('payment.cancel')->withErrors($e->getMessage());
+    //         }
+
+    //         if($response['status'] === 'captured'){
+
+    //             $orderId = session()->get('order_id');
+    //             $paymentInfo = [
+    //                 'transaction_id' => $response->id,
+    //                 'currency' => config('settings.site_default_currency'),
+    //                 'status' => 'completed'
+    //             ];
+
+    //             OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'Razorpay');
+    //             OrderPlacedNotificationEvent::dispatch($orderId);
+    //             RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
+
+
+    //             /** Clear session data */
+    //             $orderService->clearSession();
+
+    //             return redirect()->route('payment.success');
+    //         }else {
+    //             $this->transactionFailUpdateStatus('Razorpay');
+    //             return redirect()->route('payment.cancel')->withErrors($e->getMessage());
+    //         }
+    //     }
+    // }
+
+
+    // function transactionFailUpdateStatus($gatewayName) : void {
+    //     $orderId = session()->get('order_id');
+    //     $paymentInfo = [
+    //         'transaction_id' => '',
+    //         'currency' => '',
+    //         'status' => 'Failed'
+    //     ];
+
+    //     OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, $gatewayName);
+    // }
 
 }

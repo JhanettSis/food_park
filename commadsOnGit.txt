@@ -141,3 +141,16 @@ php artisan make:model Address -m
  php artisan make:model PaymentGatewaySetting -m
 
 php artisan make:provider PaymentGatewaySettingServiceProvider
+
+
+https://laravel-paypal.readthedocs.io/en/latest/installation.html#laravel-6-above
+Laravel 6 & above
+composer require srmklive/paypal:~3.0
+
+Publishing Assets
+After installation, you can use the following commands to publish the assets:
+
+php artisan vendor:publish --provider "Srmklive\PayPal\Providers\PayPalServiceProvider"
+
+php artisan make:event OrderPaymentUpdateEvent
+php artisan make:listener OrderPAymentUpdateListener --event=OrderPaymentUpdateEvent

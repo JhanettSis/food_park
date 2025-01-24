@@ -11,6 +11,7 @@
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "srmklive/paypal": "~3.0",
+        "stripe/stripe-php": "^16.4",
         "yajra/laravel-datatables": "^11.0",
         "yoeunes/toastr": "^3.1"
     },

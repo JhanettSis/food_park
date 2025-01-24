@@ -183,6 +183,13 @@ namespace App\Models{
  * @property string $order_status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $delivery_area_id
+ * @property-read \App\Models\DeliveryArea|null $deliveryArea
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
+ * @property-read int|null $order_items_count
+ * @property-read \App\Models\User $user
+ * @property-read \App\Models\Address|null $userAddress
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order query()
@@ -190,6 +197,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCouponInfo($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCurrencyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereDeliveryAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereDeliveryCharge($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereGrandTotal($value)
