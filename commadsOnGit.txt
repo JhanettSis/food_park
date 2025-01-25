@@ -154,3 +154,10 @@ php artisan vendor:publish --provider "Srmklive\PayPal\Providers\PayPalServicePr
 
 php artisan make:event OrderPaymentUpdateEvent
 php artisan make:listener OrderPAymentUpdateListener --event=OrderPaymentUpdateEvent
+
+php artisan make:event OrderPlaceNotificationEvent
+php artisan make:listener OrderPlaceNotificationListener --event=OrderPlaceNotificationEvent
+
+ php artisan make:mail OrderPlacedMail
+ 
+ php artisan make:migration ad_delivery_area_id_table --table=orders

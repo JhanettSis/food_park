@@ -210,16 +210,60 @@ https://github.com/anayarojo/laravel-shopping-cart
 		
 ---------------------------------------------------------------------------------------------------------------------	
   
+	Laravel 10: Uses Providers/EventServiceProvider.php to manually register events and listeners.
+
+	Laravel 11: Introduces event discovery, automatically registering events and listeners based on type hints in their handle or __invoke methods.
+	
+---------------------------------------------------------------------------------------------------------------------	
+https://docs.stripe.com/payments?payments=popular
+
+install in the project paypal, here the command code to do it
+ 
+					composer require srmklive/paypal:~3.0
 
 
+API credentials Paypal here:
+https://developer.paypal.com/dashboard/applications/edit/SB:QVo1Ylh3eUNvc1gweThmeWNBUTRQd0tEaHFtamgxUmRIT053bkZkek1EWkUwMkstTVJOVElLdGVmRFBiV2pDakNGY3BMaVhOS3QwSm5JRHc=?appname=Default%20Application
 
 
+For using Stripe in the project, install this is the command code
+
+					composer require stripe/stripe-php
+
+API credentials stripe here:
+https://dashboard.stripe.com/dashboard
 
 
+	Install the Razorpay SDK
+	First, install the Razorpay PHP SDK via Composer. This will allow you to interact with the Razorpay API in your Laravel application.
+
+	Run the following command in your terminal:
+				
+				composer require razorpay/razorpay
 
 
+For Razorpay has different configuration
+and install 
+				
+				composer require razorpay/razorpay:2.* 
+
+Api Keys
+--------
+api_key:rzp_test_K7CipNQYyyMPiS
+api_secret:zSBmNMorJrirOrnDrbOd1ALO
+
+--------
+
+package link: https://github.com/razorpay/razorpay-php
+
+--------
 
 
+Razorpay checkout js
+
+------------
+
+https://checkout.razorpay.com/v1/checkout.js
 
 
 

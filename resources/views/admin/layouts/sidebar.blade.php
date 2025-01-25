@@ -70,6 +70,7 @@
 
                 </ul>
             </li>
+
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Ecommerce</span></a>
@@ -79,6 +80,17 @@
                     <li>
                         <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">Payment Gateways</a>
                     </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Manage Orders</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('admin.orders.index') }}">All Orders</a></li>
+                    {{-- <li><a class="nav-link" href="{{ route('admin.pending-orders') }}">Pending Orders</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.inprocess-orders') }}">In Process Orders</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.delivered-orders') }}">Delivered Orders</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.declined-orders') }}">Decliend Orders</a></li> --}}
                 </ul>
             </li>
             <li>
