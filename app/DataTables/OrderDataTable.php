@@ -56,9 +56,13 @@ class OrderDataTable extends DataTable
                     </button>
                     <div class="dropdown-menu dropleft p-2" x-placement="left-start" style="position: absolute; transform: translate3d(-2px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">';
                 $view = "<a href='" . route('admin.orders.show', $query->id) . "' class=' dropdown-item border border-info'><i class='fas fa-eye'></i> View Order</a>";
+                $status = "<a href='javascript:;' data-id='".$query->id."'
+                    class='dropdown-item border border-warning order_status_btn' data-toggle='modal' data-target='#order_modal'>
+                    <i class='fas fa-truck-loading'></i> Status</a>";
+                $btn_delete = "<a href='" . route('admin.orders.destroy', $query->id) . "' class=' dropdown-item border border-danger delete-item'><i class='fas fa-trash'></i> Delete</a>";
                 $divClose = "</div>
                 </div>";
-                return $divOpen . $view .  $divClose;
+                return $divOpen . $view . $btn_delete . $status . $divClose;
 
             })
             ->rawColumns(['order_status', 'payment_status', 'action'])

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\DeclinedOrderDataTable;
+use App\DataTables\DeliveredOrderDataTable;
+use App\DataTables\InProcessOrderDataTable;
 use App\DataTables\OrderDataTable;
+use App\DataTables\PendingOrderDataTable;
 use App\Events\OrderPlaceNotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -15,7 +19,8 @@ use Illuminate\View\View;
 class OrderController extends Controller
 {
     function index(OrderDataTable $dataTable) : View|JsonResponse {
-        return $dataTable->render('admin.order.index');
+        $order = Order::all();
+        return $dataTable->render('admin.order.index', compact('order'));
     }
 
     /** This function send to the view show invoice about the orders */
@@ -31,7 +36,7 @@ class OrderController extends Controller
 
         return response($order);
     }
-    
+
     function orderStatusUpdate(Request $request, string $id) : RedirectResponse|Response {
         $request->validate([
             'payment_status' => ['required', 'in:pending,completed'],
@@ -52,5 +57,34 @@ class OrderController extends Controller
         }
 
     }
+
+    function destroy(string $id) : Response {
+        try{
+            $order = Order::findOrFail($id);
+            $order->delete();
+            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        }catch(\Exception $e){
+            logger($e);
+            return response(['status' => 'error', 'message' => 'something went wrong!']);
+        }
+    }
+
+
+    function pendingOrderIndex(PendingOrderDataTable $dataTable) : View|JsonResponse {
+        return $dataTable->render('admin.order.pending-order-index');
+    }
+
+    function inProcessOrderIndex(InProcessOrderDataTable $dataTable) : View|JsonResponse {
+        return $dataTable->render('admin.order.inprocess-order-index');
+    }
+
+    function deliveredOrderIndex(DeliveredOrderDataTable $dataTable) : View|JsonResponse {
+        return $dataTable->render('admin.order.delivered-order-index');
+    }
+
+    function declinedOrderIndex(DeclinedOrderDataTable $dataTable) : View|JsonResponse {
+        return $dataTable->render('admin.order.declined-order-index');
+    }
+
 
 }

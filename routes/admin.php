@@ -124,10 +124,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
-
     /** This route is for invoice form in orders */
     Route::get('/orders/status/{id}', [OrderController::class, 'getOrderStatus'])->name('orders.status');
     Route::put('/orders/status-update/{id}', [OrderController::class, 'orderStatusUpdate'])->name('orders.status-update');
+
+    /** Routes for Orders status pages, */
+    Route::get('/pending-orders', [OrderController::class, 'pendingOrderIndex'])->name('pending-orders');
+    Route::get('/inprocess-orders', [OrderController::class, 'inProcessOrderIndex'])->name('inprocess-orders');
+    Route::get('/delivered-orders', [OrderController::class, 'deliveredOrderIndex'])->name('delivered-orders');
+    Route::get('/declined-orders', [OrderController::class, 'declinedOrderIndex'])->name('declined-orders');
+
 
     /** Payment Gateway Setting Routes */
     Route::get('/payment-gateway-setting', [PaymentGatewaySettingController::class, 'index'])->name('payment-setting.index');

@@ -266,6 +266,18 @@ Razorpay checkout js
 https://checkout.razorpay.com/v1/checkout.js
 
 
+---------------------------------------------------------------------------------------------------------------------	
+
+				View laravel.blade.php
+						@foreach ($items as $item)
+							{{ ++$loop->index }}. {{ $item }}
+						@endforeach
+	the 
+	
+	++$loop->index 
+	
+	syntax is used to increment the index within a @foreach loop. The @foreach directive is used to iterate over a collection of items, and the $loop variable is available within the loop to provide useful information about the loop's state.
+
 
 ';
 ?>
