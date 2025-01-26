@@ -532,6 +532,14 @@ button {
 .fp__search_form.show {
     display: block;
 }
+.fp__track_order ul li.declined_status::before {
+    background: #ae0404 !important;
+    color: var(--colorWhite);
+}
+
+.fp__track_order ul li.declined_status::after {
+    background: #ae0404 !important;
+}
 
 /* mini cart start */
 .fp__menu_cart_area {

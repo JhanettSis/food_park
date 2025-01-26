@@ -9,6 +9,7 @@ use App\Models\DeliveryArea;
 use App\Models\Area;
 use App\Models\Address;
 use App\Http\Requests\Frontend\AddressCreateRequest;
+use App\Models\Order;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -20,8 +21,9 @@ class DashboardController extends Controller
         $user = Auth::user();
         $supportedAreas = DeliveryArea::where('status', 1)->get();
         $userAddresses = Address::where('user_id', $user->id)->get();
+        $orders = Order::where('user_id', $user->id)->get();
 
-        return view('frontend.dashboard.index', compact('supportedAreas', 'userAddresses'));
+        return view('frontend.dashboard.index', compact('supportedAreas', 'userAddresses', 'orders'));
     }
 
     // Store a new address
