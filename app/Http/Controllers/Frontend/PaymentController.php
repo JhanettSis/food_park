@@ -271,7 +271,7 @@ class PaymentController extends Controller
 
             OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'Stripe');
             OrderPlaceNotificationEvent::dispatch($orderId);
-            //RTOrderPlaceNotificationEvent::dispatch(Order::find($orderId));
+            RTOrderPlaceNotificationEvent::dispatch(Order::find($orderId));
 
 
             /** Clear session data */

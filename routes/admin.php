@@ -114,6 +114,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** Setting routes */
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::put('/general-setting', [SettingController::class, 'UpdateGeneralSetting'])->name('general_setting.update');
+    Route::put('/pusher-setting', [SettingController::class, 'UpdatePusherSetting'])->name('pusher_setting.update');
 
     /** Coupon Routes  */
     Route::resource('/coupons', CouponController::class);

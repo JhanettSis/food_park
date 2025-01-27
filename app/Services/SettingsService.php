@@ -7,6 +7,8 @@ namespace App\Services;
  */
 use App\Models\Setting;
 use Cache;
+use Illuminate\Support\Facades\Config;
+
 class SettingsService {
     /**Purpose: Fetches the settings from the cache or the database.
      * The Cache::rememberForever method checks if the settings
@@ -35,6 +37,32 @@ class SettingsService {
 
     function clearCachedSettings() : void {
         Cache::forget('settings');
+    }
+
+
+    /**
+     * Dynamically set the Pusher configuration using settings from the database.
+     */
+    public static function setPusherConfig()
+    {
+        // Fetch settings from the SettingsService
+        $settingsService = new SettingsService();
+        $settingsService->setGlobalSettings(); // Ensure settings are loaded into config()
+
+        // Retrieve Pusher credentials from settings (from the global config)
+        $pusherConfig = [
+            'driver' => 'pusher',
+            'key' => config('settings.pusher_key'), // Get from 'settings' table
+            'secret' => config('settings.pusher_secret'),
+            'app_id' => config('settings.pusher_app_id'),
+            'options' => [
+                'cluster' => config('settings.pusher_cluster'),
+                'useTLS' => true,
+            ],
+        ];
+
+        // Set the full Pusher configuration in the broadcasting config
+        Config::set('broadcasting.connections.pusher', $pusherConfig);
     }
 
 }

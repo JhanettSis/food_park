@@ -4,37 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <!-- CSRF token for securing AJAX requests in Laravel -->
+    {{-- CSRF token for securing AJAX requests in Laravel --}}
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>General Dashboard &mdash; Stisla</title>
 
-    <!-- General CSS Files -->
+    {{-- General CSS Files --}}
     <link rel="stylesheet" href="{{ asset("admin/assets/modules/bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
-    <!-- For iconbutton  -->
+    {{-- For iconbutton  --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-iconpicker.css') }}">
 
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
-    <!-- Template CSS -->
+    {{-- Template CSS --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
-    <!-- Start GA -->
+    {{-- Start GA --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+        var pusherKeyValue = "{{ config('settings.pusher_key') }}";
+        var pusherCluster = "{{ config('settings.pusher_cluster') }}";
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
     </script>
-    <!-- /END GA -->
+    {{--  /END GA @vite(['resources/js/app.js', 'resources/js/admin.js'])  --}}
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -49,7 +45,7 @@
 
             @include('admin.layouts.sidebar')
 
-            <!-- Main Content -->
+            {{-- Main Content --}}
             <div class="main-content">
                 @yield('content')
             </div>
@@ -65,7 +61,7 @@
         </div>
     </div>
 
-    <!-- General JS Scripts -->
+    {{-- General JS Scripts --}}
     <script src="{{ asset('admin/assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/popper.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/tooltip.js') }}"></script>
@@ -74,16 +70,16 @@
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
 
-    <!-- A beautiful, responsive, customizable,
+    {{-- A beautiful, responsive, customizable,
         accessible (WAI-ARIA) replacement for JavaScript's popup boxes
-        Zero dependencies-->
+        Zero dependencies--}}
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="{{ asset('admin/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
-    <!-- Template JS File -->
+    {{-- Template JS File --}}
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
     {{-- toastr js --}}

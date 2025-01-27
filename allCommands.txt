@@ -277,6 +277,29 @@ https://checkout.razorpay.com/v1/checkout.js
 	++$loop->index 
 	
 	syntax is used to increment the index within a @foreach loop. The @foreach directive is used to iterate over a collection of items, and the $loop variable is available within the loop to provide useful information about the loop's state.
+	'
+	
+---------------------------------------------------------------------------------------------------------------------	
+
+For notification  I used pusher -> https://dashboard.pusher.com/ 
+
+		account sisjna5@gmail.com
+		password the same
+
+Create a channel and follw the picture 
+
+Pusher Channels
+
+app_id = "1932286"
+key = "8ff170cf6fa0b2a30d21"
+secret = "97cfb1eecb833282779f"
+cluster = "eu"
+
+If you plan to broadcast your events using Pusher Channels, you should install the Pusher Channels PHP SDK using the Composer package manager:
+
+composer require pusher/pusher-php-server
+
+
 
 
 ';

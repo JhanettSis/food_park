@@ -1,6 +1,8 @@
 <?php
 
 // Importing necessary controllers for different parts of the application
+
+use App\Events\RTOrderPlaceNotificationEvent;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Services\SettingsService;
 use Illuminate\Support\Facades\Route;
 
 // ==============================
@@ -139,23 +142,29 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::post('/make-payment', [PaymentController::class, 'makePayment'])->name('make-payment');
 
-    Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
     Route::get('payment-cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
 
     /** PayPal Payment Routes */
-    Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
-    Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
-    Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
+    Route::get('/paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+    Route::get('/paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
+    Route::get('/paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 
     /** Stripe Payment Routes */
-    Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
-    Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
-    Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
+    Route::get('/stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
+    Route::get('/stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
+    Route::get('/stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 
     /** Razorpay Payment Routes */
-    Route::get('razorpay-redirect', [PaymentController::class, 'razorpayRedirect'])->name('razorpay-redirect');
-    Route::post('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
+    Route::get('/razorpay-redirect', [PaymentController::class, 'razorpayRedirect'])->name('razorpay-redirect');
+    Route::post('/razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
 
+    Route::get('/test', function () {
+        //dd(config('broadcasting'));
+        // Dispatch the event with the message
+        RTOrderPlaceNotificationEvent::dispatch('Hello!');
+        //return 'Event Dispatched with Dynamic Pusher Configuration!';
+    });
 });
 
 /**
