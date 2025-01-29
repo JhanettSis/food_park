@@ -11,11 +11,11 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class RTOrderPlaceNotificationEvent
+
+class RTOrderPlacedNotificationEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order;
     public $message;
     public $orderId;
     public $date;
@@ -24,17 +24,23 @@ class RTOrderPlaceNotificationEvent
     /**
      * Create a new event instance.
      */
-    //
-    //public function __construct(Order $order)
-    // {
-    //     $this->message = '#'.$order->invoice_id.' a new order has been placed!';
-    //     $this->orderId = $order->id;
-    //     $this->date = date('h:i A | d-F-Y', strtotime($order->created_at));
-    // }
-
-    public function __construct($order)
+    public function __construct(Order $order)
     {
-        $this->order = $order;
+        $this->message = '#'.$order->invoice_id.' a new order has been placed!222';
+        $this->orderId = $order->id;
+        $this->date = date('h:i A | d-F-Y', strtotime($order->created_at));
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
+    public function broadcastOn(): array
+    {
+        return [
+            new Channel('order-placed'),
+        ];
     }
 
     /**
@@ -70,10 +76,10 @@ class RTOrderPlaceNotificationEvent
  * Use public channels for events that apply to everyone
  * (e.g., sales, promotions, general product availability updates).
  */
-    public function broadcastOn(): array
-    {
-        return [
-            new Channel('order-placed'),
-        ];
-    }
+    // public function broadcastOn(): array
+    // {
+    //     return [
+    //         new Channel('order-placed'),
+    //     ];
+    // }
 }

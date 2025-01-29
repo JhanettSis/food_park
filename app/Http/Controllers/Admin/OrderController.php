@@ -7,7 +7,7 @@ use App\DataTables\DeliveredOrderDataTable;
 use App\DataTables\InProcessOrderDataTable;
 use App\DataTables\OrderDataTable;
 use App\DataTables\PendingOrderDataTable;
-use App\Events\OrderPlaceNotificationEvent;
+use App\Events\OrderPlacedNotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
@@ -26,7 +26,7 @@ class OrderController extends Controller
     /** This function send to the view show invoice about the orders */
     function show($id) : View {
         $order = Order::findOrFail($id);
-        //$notification = OrderPlaceNotificationEvent::where('order_id', $order->id)->update(['seen' => 1]);
+        //$notification = OrderPlacedNotificationEvent::where('order_id', $order->id)->update(['seen' => 1]);
 
         return view('admin.order.show', compact('order'));
     }

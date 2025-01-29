@@ -15,8 +15,6 @@
 
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
-    {{-- For iconbutton  --}}
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-iconpicker.css') }}">
 
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     {{-- Template CSS --}}
@@ -25,7 +23,7 @@
     {{-- Start GA --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
-        var pusherKeyValue = "{{ config('settings.pusher_key') }}";
+        var pusherKey = "{{ config('settings.pusher_key') }}";
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
 
     </script>
@@ -78,7 +76,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="{{ asset('admin/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
     {{-- Template JS File --}}
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>

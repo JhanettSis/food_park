@@ -125,7 +125,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
-    /** This route is for invoice form in orders */
+    /** This route is for invoice form orders */
     Route::get('/orders/status/{id}', [OrderController::class, 'getOrderStatus'])->name('orders.status');
     Route::put('/orders/status-update/{id}', [OrderController::class, 'orderStatusUpdate'])->name('orders.status-update');
 
@@ -142,4 +142,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('/stripe-setting', [PaymentGatewaySettingController::class, 'stripeSettingUpdate'])->name('stripe-setting.update');
     Route::put('/razorpay-setting', [PaymentGatewaySettingController::class, 'razorpaySettingUpdate'])->name('razorpay-setting.update');
 
+    
+    /** Order Notification Routes */
+    Route::get('clear-notification',[AdminDashboardController::class, 'clearNotification'])->name('clear-notification');
 });

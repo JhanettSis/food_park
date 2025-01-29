@@ -281,6 +281,8 @@ https://checkout.razorpay.com/v1/checkout.js
 	
 ---------------------------------------------------------------------------------------------------------------------	
 
+Tutorial https://github.com/savanihd?tab=repositories laravel 11
+
 For notification  I used pusher -> https://dashboard.pusher.com/ 
 
 		account sisjna5@gmail.com
@@ -297,7 +299,68 @@ cluster = "eu"
 
 If you plan to broadcast your events using Pusher Channels, you should install the Pusher Channels PHP SDK using the Composer package manager:
 
-composer require pusher/pusher-php-server
+composer require pusher/pusher-php-server 
+
+				in laravel 10 file .env 
+				BROADCAST_DRIVER=Pusher
+				in laravel 11  .env 
+				BROADCAST_CONNECTION=pusher
+
+
+ Create config/broadcasting.php file manually if it does not already exist.
+ 
+ then
+ 
+ Client Side Installation
+
+Laravel Echo is a JavaScript library that makes it painless to subscribe to channels and listen for events broadcast by your server-side broadcasting driver. You may install Echo via the NPM package manager. In this example, we will also install the pusher-js package since Reverb utilizes the Pusher protocol for WebSocket subscriptions, channels, and messages:
+
+npm install --save-dev laravel-echo pusher-js
+
+in laravel 10 or less go to resources/js/botstrap.js
+descommend , but for laravel 11 I have to create 
+the nets code 
+
+					import Echo from "laravel-echo";
+
+					import Pusher from "pusher-js";
+					window.Pusher = Pusher;
+
+					window.Echo = new Echo({
+						broadcaster: "pusher",
+						key: pusherKey,
+						cluster: pusherCluster ?? "mt1",
+						wsHost: import.meta.env.VITE_PUSHER_HOST
+							? import.meta.env.VITE_PUSHER_HOST
+							: `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+						wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+						wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+						forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? "https") === "https",
+						enabledTransports: ["ws", "wss"],
+					});
+
+ 
+ 
+after 
+The code @vite(['resources/js/app.js', 'resources/js/admin.js']) is a directive used in Laravel 11 to handle Vite-based asset bundling and linking. It replaces the traditional @mix() directive used in older versions of Laravel (when Webpack was used with Laravel Mix). in admin/layouts/master.blade.php add @vite(['resources/js/app.js', 'resources/js/admin.js'])
+
+after run the command 
+				
+				npm run dev
+
+after I checked in the browser the url http://[::1]:5173/resources/js/admin.js
+
+after 
+			php artisan make:event RTOrderPlaceNotificationEvent
+
+
+
+
+
+
+
+
+
 
 
 

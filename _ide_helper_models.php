@@ -183,7 +183,7 @@ namespace App\Models{
  * @property string $order_status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $delivery_area_id
+ * @property int $address_id
  * @property-read \App\Models\DeliveryArea|null $deliveryArea
  * @property-read \App\Models\TFactory|null $use_factory
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
@@ -194,10 +194,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCouponInfo($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereCurrencyName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereDeliveryAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereDeliveryCharge($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereGrandTotal($value)
@@ -245,6 +245,30 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderItem whereUpdatedAt($value)
  */
 	class OrderItem extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $message
+ * @property int $order_id
+ * @property bool $seen
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification whereSeen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|OrderPlacedNotification whereUpdatedAt($value)
+ */
+	class OrderPlacedNotification extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Events\OrderPaymentUpdateEvent;
-use App\Events\OrderPlaceNotificationEvent;
-use App\Events\RTOrderPlaceNotificationEvent;
+use App\Events\OrderPlacedNotificationEvent;
+use App\Events\RTOrderPlacedNotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Services\OrderService;
@@ -193,9 +193,9 @@ class PaymentController extends Controller
             /** Here we update and register the payment on the table Order*/
             OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'PayPal');
             /**After we send a notification order by email */
-            OrderPlaceNotificationEvent::dispatch($orderId);
+            OrderPlacedNotificationEvent::dispatch($orderId);
 
-            //RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
+            RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
 
             /** Clear session data */
             $orderService->clearSession();
@@ -270,8 +270,8 @@ class PaymentController extends Controller
             ];
 
             OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'Stripe');
-            OrderPlaceNotificationEvent::dispatch($orderId);
-            RTOrderPlaceNotificationEvent::dispatch(Order::find($orderId));
+            OrderPlacedNotificationEvent::dispatch($orderId);
+            RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
 
 
             /** Clear session data */
@@ -335,8 +335,8 @@ class PaymentController extends Controller
                 ];
 
                 OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'Razorpay');
-                OrderPlaceNotificationEvent::dispatch($orderId);
-                //RTOrderPlaceNotificationEvent::dispatch(Order::find($orderId));
+                OrderPlacedNotificationEvent::dispatch($orderId);
+                RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
 
 
                 /** Clear session data */

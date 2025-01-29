@@ -4,42 +4,53 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Broadcast Driver
+    | Default Broadcaster
     |--------------------------------------------------------------------------
     |
-    | This option controls the default broadcast driver that will be used by
-    | your application. The supported drivers are "pusher", "redis", and
-    | "log". You may also use "null" if you don't want broadcasting.
+    | This option controls the default broadcaster that will be used by the
+    | framework when an event needs to be broadcast. You may set this to
+    | any of the connections defined in the "connections" array below.
+    |
+    | Supported: "pusher", "ably", "redis", "log", "null"
     |
     */
 
-    'default' => env('BROADCAST_DRIVER', 'pusher'),
+    'default' => env('BROADCAST_DRIVER', 'null'),
 
     /*
     |--------------------------------------------------------------------------
     | Broadcast Connections
     |--------------------------------------------------------------------------
     |
-    | Here you may configure all of the connections that should be used when
-    | broadcasting events. You can configure multiple broadcast drivers
-    | to your application and assign them to different events.
+    | Here you may define all of the broadcast connections that will be used
+    | to broadcast events to other systems or over websockets. Samples of
+    | each available type of connection are provided inside this array.
     |
     */
+
     'connections' => [
 
         'pusher' => [
             'driver' => 'pusher',
-            // 'key' => env('PUSHER_APP_KEY'),
-            // 'secret' => env('PUSHER_APP_SECRET'),
-            // 'app_id' => env('PUSHER_APP_ID'),
-            'key' => config('settings.pusher_key'),  // Dynamically pulled from settings
-            'secret' => config('settings.pusher_secret'),
-            'app_id' => config('settings.pusher_app_id'),
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                // 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'cluster' => config('settings.pusher_cluster'),
-                'useTLS' => true,
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'host' => env('PUSHER_HOST') ?: 'api-'.env('PUSHER_APP_CLUSTER', 'mt1').'.pusher.com',
+                'port' => env('PUSHER_PORT', 443),
+                'scheme' => env('PUSHER_SCHEME', 'https'),
+                'encrypted' => true,
+                'useTLS' => env('PUSHER_SCHEME', 'https') === 'https',
             ],
+            'client_options' => [
+                // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
+            ],
+        ],
+
+        'ably' => [
+            'driver' => 'ably',
+            'key' => env('ABLY_KEY'),
         ],
 
         'redis' => [

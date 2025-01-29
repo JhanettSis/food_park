@@ -7,7 +7,56 @@
         </ul>
     </form>
     <ul class="navbar-nav navbar-right">
+        @php
+            $notifications = \App\Models\OrderPlacedNotification::where('seen', 0)
+                ->latest()
+                ->take(10)
+                ->get();
+            //$unseenMessages = \App\Models\Chat::where(['receiver_id' => auth()->user()->id, 'seen' => 0])->count();
+        @endphp
+        {{-- @if (auth()->user()->id === 1)
+            <li class="dropdown dropdown-list-toggle">
+                <a href="{{ route('admin.chat.index') }}" data-toggle="dropdown"
+                    class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}"><i
+                        class="far fa-envelope"></i></a>
+            </li>
+        @endif --}}
+        <!-- Sidebar HTML structure -->
+<div class="sidebar">
+    <div class="sidebar-notifications">
+        <!-- Notifications will be injected here -->
+        <p>addddd</p>
+    </div>
+</div>
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+                class="nav-link notification-toggle nav-link-lg notification_beep {{ count($notifications) > 0 ? 'beep' : '' }}"><i
+                    class="far fa-bell"></i></a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                <div class="dropdown-header">Notifications
+                    <div class="float-right">
+                        <a href="{{ route('admin.clear-notification') }}">Mark All As Read</a>
+                    </div>
+                </div>
+                <div class="dropdown-list-content dropdown-list-icons rt_notification">
+                    @foreach ($notifications as $notification)
+                        <a href="{{ route('admin.orders.show', $notification->order_id) }}" class="dropdown-item">
+                            <div class="dropdown-item-icon bg-info text-white">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                {{ $notification->message }}
+                                <div class="time">{{ date('h:i A | d-F-Y', strtotime($notification->created_at)) }}
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
 
+                </div>
+                <div class="dropdown-footer text-center">
+                    <a href="{{ route('admin.orders.index') }}">View All <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 {{-- The code {{ auth()->user()->avatar }} is adding, It displays a user photo from the database  --}}
@@ -30,8 +79,10 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        this.closest('form').submit();" class="dropdown-item has-icon text-danger">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        this.closest('form').submit();"
+                        class="dropdown-item has-icon text-danger">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </form>
@@ -52,14 +103,17 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="dropdown active">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
+                        class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Starter</li>
             <li>
-                <a class="nav-link" href="{{ route('admin.slider.index') }}"><i class="far fa-square"></i><span>Silder</span></a>
+                <a class="nav-link" href="{{ route('admin.slider.index') }}"><i
+                        class="far fa-square"></i><span>Silder</span></a>
             </li>
             <li>
-                <a class="nav-link" href="{{ route('admin.why_choose_us.index') }}"><i class="far fa-square"></i><span>Why Choose Us</span></a>
+                <a class="nav-link" href="{{ route('admin.why_choose_us.index') }}"><i
+                        class="far fa-square"></i><span>Why Choose Us</span></a>
             </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>

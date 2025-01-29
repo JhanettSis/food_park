@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\OrderPaymentUpdateEvent;
-use App\Events\OrderPlaceNotificationEvent;
+use App\Events\OrderPlacedNotificationEvent;
+use App\Events\RTOrderPlacedNotificationEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\PaymentGatewaySetting;
 use App\Services\OrderService;
 use App\Services\PaymentGatewaySettingService;
@@ -133,7 +135,7 @@ class PaymentGatewaySettingController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     function stripeCancel() {
-        //$this->transactionFailUpdateStatus('Stripe');
+        $this->transactionFailUpdateStatus('Stripe');
         return redirect()->route('payment.cancel');
     }
 
@@ -224,7 +226,7 @@ class PaymentGatewaySettingController extends Controller
                     ->capture(['amount' => $payableAmount]);
             }catch(\Exception $e) {
                 logger($e);
-                //$this->transactionFailUpdateStatus('Razorpay');
+                $this->transactionFailUpdateStatus('Razorpay');
                 return redirect()->route('payment.cancel')->withErrors($e->getMessage());
             }
 
@@ -238,18 +240,29 @@ class PaymentGatewaySettingController extends Controller
                 ];
 
                 OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'Razorpay');
-                OrderPlaceNotificationEvent::dispatch($orderId);
-                //RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
+                OrderPlacedNotificationEvent::dispatch($orderId);
+                RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
 
                 /** Clear session data */
                 $orderService->clearSession();
 
                 return redirect()->route('payment.success');
             }else {
-                //$this->transactionFailUpdateStatus('Razorpay');
-                //return redirect()->route('payment.cancel')->withErrors($e->getMessage());
+                $this->transactionFailUpdateStatus('Razorpay');
+                return redirect()->route('payment.cancel')->withErrors('Something went wrong!');
             }
         }
+    }
+
+    function transactionFailUpdateStatus($gatewayName) : void {
+        $orderId = session()->get('order_id');
+        $paymentInfo = [
+            'transaction_id' => '',
+            'currency' => '',
+            'status' => 'Failed'
+        ];
+
+        OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, $gatewayName);
     }
 
 }

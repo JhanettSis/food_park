@@ -2,7 +2,8 @@
 
 // Importing necessary controllers for different parts of the application
 
-use App\Events\RTOrderPlaceNotificationEvent;
+use App\Events\OrderPlacedNotificationEvent;
+use App\Events\RTOrderPlacedNotificationEvent;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Models\Order;
 use App\Services\SettingsService;
 use Illuminate\Support\Facades\Route;
 
@@ -162,9 +164,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/test', function () {
         //dd(config('broadcasting'));
         // Dispatch the event with the message
-        RTOrderPlaceNotificationEvent::dispatch('Hello!');
+        $order = Order::first();
+        RTOrderPlacedNotificationEvent::dispatch($order);
         //return 'Event Dispatched with Dynamic Pusher Configuration!';
     });
+
+
 });
 
 /**

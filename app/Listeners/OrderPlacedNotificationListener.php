@@ -2,14 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Events\OrderPlaceNotificationEvent;
+use App\Events\OrderPlacedNotificationEvent;
 use App\Mail\OrderPlacedMail;
 use App\Models\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
-class OrderPlaceNotificationListener
+class OrderPlacedNotificationListener
 {
 
     /**
@@ -23,7 +23,7 @@ class OrderPlaceNotificationListener
     /**
      * Handle the event.
      */
-    public function handle(OrderPlaceNotificationEvent $event): void
+    public function handle(OrderPlacedNotificationEvent $event): void
     {
         $orderId = $event->orderId;
 
