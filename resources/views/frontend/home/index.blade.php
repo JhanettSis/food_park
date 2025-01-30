@@ -22,7 +22,7 @@
     {{--======================   BLOG 2 END   ======================--}}
 
     {{--======================   ADD SLIDER START   ======================--}}
-    {{-- @include('frontend.home.components.add_slider') --}}
+    @include('frontend.home.components.add_slider')
     {{--======================   ADD SLIDER END   ======================--}}
 
     {{--======================   TEAM START   ======================--}}

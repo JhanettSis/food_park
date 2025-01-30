@@ -7,6 +7,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\BannerSliderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
@@ -158,5 +159,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('daily-offer-title-update', [DailyOfferController::class, 'updateTitle'])->name('daily-offer-title-update');
     Route::resource('daily-offer', DailyOfferController::class);
 
+    /** Banner Slider Routes */
+    Route::resource('banner_slider', BannerSliderController::class);
 
 });

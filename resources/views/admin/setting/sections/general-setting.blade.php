@@ -1,5 +1,4 @@
-<div class="tab-pane fade show active" id="general-setting" role="tabpanel"
-    aria-labelledby="home-tab4">
+<div class="tab-pane fade show active" id="generalSettings" role="tabpanel" aria-labelledby="home-tab4">
     <div class="card">
         <div class="card-body border">
             <form action="{{ route('admin.general_setting.update') }}" method="POST">

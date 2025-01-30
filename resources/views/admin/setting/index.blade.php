@@ -18,12 +18,12 @@
                     <div class="col-12 col-sm-12 col-md-2">
                         <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#generalSettings"
-                                    role="tab" aria-controls="home" aria-selected="true">General Settings</a>
+                                <a class="nav-link active" id="generalSettings-tab4" data-toggle="tab" href="#generalSettings"
+                                    role="tab" aria-controls="generalSettings" aria-selected="true">General Settings</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#pusher-setting"
-                                    role="tab" aria-controls="profile" aria-selected="false">Pusher Settings</a>
+                                <a class="nav-link" id="pusher-tab4" data-toggle="tab" href="#pusher-setting"
+                                    role="tab" aria-controls="pusher" aria-selected="false">Pusher Settings</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4" role="tab"
