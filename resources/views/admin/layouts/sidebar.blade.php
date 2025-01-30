@@ -104,6 +104,8 @@
                 <a class="nav-link" href="{{ route('admin.slider.index') }}"><i
                         class="far fa-square"></i><span>Silder</span></a>
             </li>
+            <li><a class="nav-link" href="{{ route('admin.daily-offer.index') }}"><i class="far fa-clock"></i>
+                <span>Daily Offer</span></a></li>
             <li>
                 <a class="nav-link" href="{{ route('admin.why_choose_us.index') }}"><i
                         class="far fa-square"></i><span>Why Choose Us</span></a>

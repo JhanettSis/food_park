@@ -10,7 +10,7 @@
     {{--======================   WHY CHOOSE END   ======================--}}
 
     {{--======================   OFFER ITEM START   ======================--}}
-    {{-- @include('frontend.home.components.offer_item') --}}
+    @include('frontend.home.components.offer_item')
     {{--======================   OFFER ITEM END   ======================--}}
 
     {{--======================   MENU ITEM START   ======================--}}

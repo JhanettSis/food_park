@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\Category;
 use App\Models\OptionProduct;
 use App\Models\Product;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Models\DeliveryArea;
 use App\Models\WhyChooseUs;
 use App\Models\Coupon;
+use App\Models\DailyOffer;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
@@ -30,11 +32,11 @@ class DatabaseSeeder extends Seeder
         // ]);
         // Another way to call the model ->> \App\Models\Slider::factory(4)->create();
 
-        $this->call(UserSeeder::class);
-        Slider::factory(4)->create();
-        $this->call(WhyChooseUsTitleSeeder ::class);
-        WhyChooseUs::factory(3)->create();
-        $this->call(CategorySeeder::class);
+        // $this->call(UserSeeder::class);
+        // Slider::factory(4)->create();
+        // $this->call(WhyChooseUsTitleSeeder ::class);
+        // WhyChooseUs::factory(3)->create();
+        // $this->call(CategorySeeder::class);
 
         Product::factory(30)->create()->each(function ($product) {
             ProductGallery::factory(5)->create(['product_id' => $product->id]);
@@ -44,6 +46,8 @@ class DatabaseSeeder extends Seeder
 
         Coupon::factory(8)->create();
         DeliveryArea::factory(8)->create();
+        DailyOffer::factory(20)->create();
+        Address::factory(14)->create();
 
     }
 }

@@ -48,4 +48,6 @@ class Product extends Model
         return $this->hasMany(OptionProduct::class);
     }
 
+    
+
 }

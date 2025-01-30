@@ -38,10 +38,10 @@
     <script>
         var pusherKey = "{{ config('settings.pusher_key') }}";
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
-        var loggedInUserId = "{{ auth()->user()->id ?? '' }}";
+        //var loggedInUserId = "{{ auth()->user()->id ?? '' }}";
     </script>
 
-    @vite(['resources/js/app.js', 'resources/js/frontend.js'])
+    @vite(['resources/js/app.js'])
     {{-- RTL (Right to Left) stylesheet for languages like Arabic (Optional) --}}
     {{-- <link rel="stylesheet" href="frontend/css/rtl.css"> --}}
 </head>
