@@ -34,8 +34,8 @@
             </h4>
 
             <div class="personal_info_text">
-                <p><span>Name:</span> {{ auth()->user()->name }}</p>
-                <p><span>Email:</span> {{ auth()->user()->email }}</p>
+                <p><span>Name:</span> {{ Auth::user()->name }}</p>
+                <p><span>Email:</span> {{ Auth::user()->email }}</p>
                 {{-- <p><span>Phone:</span> 023 434 54354</p>
                                                 <p><span>Address:</span> 7232 Broadway Suite 308, Jackson Heights,
                                                     11372, NY, United States </p> --}}
@@ -50,14 +50,14 @@
                             <div class="fp__comment_imput_single">
                                 <label>name</label>
                                 <input type="text" placeholder="Name" name="name"
-                                    value="{{ auth()->user()->name }}">
+                                    value="{{ Auth::user()->name }}">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6">
                             <div class="fp__comment_imput_single">
                                 <label>email</label>
                                 <input type="email" placeholder="Email" name="email"
-                                    value="{{ auth()->user()->email }}">
+                                    value="{{ Auth::user()->email }}">
                             </div>
                         </div>
                         {{-- <div class="col-xl-6 col-lg-6">

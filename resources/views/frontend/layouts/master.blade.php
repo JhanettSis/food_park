@@ -35,7 +35,13 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+    <script>
+        var pusherKey = "{{ config('settings.pusher_key') }}";
+        var pusherCluster = "{{ config('settings.pusher_cluster') }}";
+        var loggedInUserId = "{{ auth()->user()->id ?? '' }}";
+    </script>
 
+    @vite(['resources/js/app.js', 'resources/js/frontend.js'])
     {{-- RTL (Right to Left) stylesheet for languages like Arabic (Optional) --}}
     {{-- <link rel="stylesheet" href="frontend/css/rtl.css"> --}}
 </head>

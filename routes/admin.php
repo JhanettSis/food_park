@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OptionProductController;
@@ -142,7 +143,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('/stripe-setting', [PaymentGatewaySettingController::class, 'stripeSettingUpdate'])->name('stripe-setting.update');
     Route::put('/razorpay-setting', [PaymentGatewaySettingController::class, 'razorpaySettingUpdate'])->name('razorpay-setting.update');
 
-    
+
     /** Order Notification Routes */
-    Route::get('clear-notification',[AdminDashboardController::class, 'clearNotification'])->name('clear-notification');
+    Route::get('/clear-notification',[AdminDashboardController::class, 'clearNotification'])->name('clear-notification');
+
+    /** chat Routes */
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/get-conversation/{senderId}',[ChatController::class, 'getConversation'])->name('chat.get-conversation');
+    Route::post('/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
+
+
+
+
 });

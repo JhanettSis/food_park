@@ -77,6 +77,34 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $sender_id
+ * @property int $receiver_id
+ * @property string $message
+ * @property bool $seen
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @property-read \App\Models\User|null $receiver
+ * @property-read \App\Models\User|null $sender
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereReceiverId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereSeen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereSenderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereUpdatedAt($value)
+ */
+	class Chat extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $code
  * @property int $quantity

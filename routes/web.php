@@ -5,6 +5,7 @@
 use App\Events\OrderPlacedNotificationEvent;
 use App\Events\RTOrderPlacedNotificationEvent;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontProfileController;
@@ -226,7 +227,7 @@ Route::group(['middleware' => 'auth'], function() {
      * - This route allows the user to upload a new avatar image.
      * - It maps to the 'updateAvatar' method of FrontProfileController.
      */
-    Route::post('profile/avatar', [FrontProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    Route::post('/profile/avatar', [FrontProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
 
     /**
      * User Address Routes
@@ -236,6 +237,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/address', [DashboardController::class, 'createAddress'])->name('address.store');
     Route::put('/address/{id}/edit', [DashboardController::class, 'updateAddress'])->name('address.update');
     Route::delete('/address/{id}', [DashboardController::class, 'destroyAddress'])->name('address.destroy');
+
+    /** Chat Routes */
+    Route::post('/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
+    Route::get('/chat/get-conversation/{senderId}',[ChatController::class, 'getConversation'])->name('chat.get-conversation');
 });
 
 // ===========================================

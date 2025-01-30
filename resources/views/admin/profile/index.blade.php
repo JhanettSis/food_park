@@ -26,11 +26,11 @@
                         </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}">
+                            <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}">
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-primary mr-1" type="submit">Submit</button>
@@ -74,7 +74,7 @@
     <script>
         $(document).ready(function(){
             $('.image-preview').css({
-                'background-image': 'url({{ asset(auth()->user()->avatar) }})',
+                'background-image': 'url({{ asset(Auth::user()->avatar) }})',
                 'background-size' : 'cover',
                 'background-pisition': 'center center'
             })

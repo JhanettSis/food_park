@@ -12,22 +12,15 @@
                 ->latest()
                 ->take(10)
                 ->get();
-            //$unseenMessages = \App\Models\Chat::where(['receiver_id' => auth()->user()->id, 'seen' => 0])->count();
+            $unseenMessages = \App\Models\Chat::where(['receiver_id' => Auth::user()->id, 'seen' => 0])->count();
         @endphp
-        {{-- @if (auth()->user()->id === 1)
+        @if (Auth::user()->id === 1)
             <li class="dropdown dropdown-list-toggle">
-                <a href="{{ route('admin.chat.index') }}" data-toggle="dropdown"
-                    class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}"><i
-                        class="far fa-envelope"></i></a>
+                <a href="{{ route('admin.chat.index') }}"
+                class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}">
+                    <i class="far fa-envelope"></i> </a>
             </li>
-        @endif --}}
-        <!-- Sidebar HTML structure -->
-<div class="sidebar">
-    <div class="sidebar-notifications">
-        <!-- Notifications will be injected here -->
-        <p>addddd</p>
-    </div>
-</div>
+        @endif
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                 class="nav-link notification-toggle nav-link-lg notification_beep {{ count($notifications) > 0 ? 'beep' : '' }}"><i
                     class="far fa-bell"></i></a>
@@ -59,10 +52,10 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                {{-- The code {{ auth()->user()->avatar }} is adding, It displays a user photo from the database  --}}
-                <img alt="image" src="{{ asset(auth()->user()->avatar) }}" class="rounded-circle mr-1">
-                {{-- The code {{ auth()->user()->name }} is adding, It displays a user name from the database  --}}
-                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
+                {{-- The code {{ Auth::user()->avatar }} is adding, It displays a user photo from the database  --}}
+                <img alt="image" src="{{ asset(Auth::user()->avatar) }}" class="rounded-circle mr-1">
+                {{-- The code {{ Auth::user()->name }} is adding, It displays a user name from the database  --}}
+                <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Logged in 5 min ago</div>
@@ -147,6 +140,12 @@
                     <li><a class="nav-link" href="{{ route('admin.declined-orders') }}">Decliend Orders</a></li>
                 </ul>
             </li>
+            @if (Auth::user()->id === 1)
+                <li>
+                    <a class="nav-link" href="{{ route('admin.chat.index') }}">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Messages</span></a></li>
+            @endif
             <li>
                 <a class="nav-link" href="{{ route('admin.setting.index') }}">
                     <i class="far fa-square"></i><span>Settings</span></a>
