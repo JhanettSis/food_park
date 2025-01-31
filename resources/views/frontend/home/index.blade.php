@@ -38,6 +38,6 @@
     {{--======================   TESTIMONIAL END   ======================--}}
 
     {{--======================   COUNTER START   ======================--}}
-    {{-- @include('frontend.home.components.counter') --}}
+    @include('frontend.home.components.counter')
     {{--======================   COUNTER END   ======================--}}
 @endsection

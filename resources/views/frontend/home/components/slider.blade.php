@@ -1,6 +1,6 @@
-{{--=============================
-        BANNER START
-    ==============================--}}
+    {{-- ==================================================
+        Banner Slider Section START
+    ====================================================== --}}
     <section class="fp__banner" style="background: url(frontend/images/banner_bg.jpg);">
         <div class="fp__banner_overlay">
             <div class="row banner_slider">
@@ -37,6 +37,6 @@
             </div>
         </div>
     </section>
-    {{--=============================
-        BANNER END
-    ==============================--}}
+    {{-- ==================================================
+        Banner Slider Section END
+    ====================================================== --}}

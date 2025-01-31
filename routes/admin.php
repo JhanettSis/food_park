@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\BannerSliderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\ChefController;
+use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
@@ -174,10 +175,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('chefs', ChefController::class);
 
     /** App Download Routes */
-    Route::get('app-download', [AppDownloadSectionController::class, 'index'])->name('app_download.index');
-    Route::post('app-download', [AppDownloadSectionController::class, 'store'])->name('app_download.store');
+    Route::get('/app-download', [AppDownloadSectionController::class, 'index'])->name('app_download.index');
+    Route::post('/app-download', [AppDownloadSectionController::class, 'store'])->name('app_download.store');
 
     /** Testimonial Routes */
-    Route::put('testimonial-title-update', [TestimonialController::class, 'updateTitle'])->name('testimonial_title-update');
-    Route::resource('testimonials', TestimonialController::class);
+    Route::put('/testimonial-title-update', [TestimonialController::class, 'updateTitle'])->name('testimonial_title-update');
+    Route::resource('/testimonials', TestimonialController::class);
+
+    /** Counter Routes */
+    Route::get('counter', [CounterController::class, 'index'])->name('counter.index');
+    Route::put('counter', [CounterController::class, 'update'])->name('counter.update');
+
+
+
 });

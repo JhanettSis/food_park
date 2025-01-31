@@ -7,6 +7,7 @@ use App\Models\AppDownloadSection;
 use App\Models\BannerSlider;
 use App\Models\Category;
 use App\Models\Chef;
+use App\Models\Counter;
 use App\Models\DailyOffer;
 use App\Models\Product;
 use App\Models\ProductGallery;
@@ -35,6 +36,8 @@ class FrontendController extends Controller
         $chefs = Chef::where(['show_at_home' => true, 'status' => true])->get();
         $appSection = AppDownloadSection::first();
         $testimonials = Testimonial::where(['show_at_home' => true ,'status' => true])->get();
+        $counter = Counter::first();
+
         return view('frontend.home.index',
         compact('sliders', 'sectionTitles',
                 'whyChooseUs', 'categories',
@@ -42,16 +45,25 @@ class FrontendController extends Controller
                 'dailyOffers',
                 'chefs',
                 'appSection',
-            'testimonials'));
+                'testimonials',
+                'counter'
+                ));
     }
 
     function getSectionTitle() : Collection{
-        $keys = ['why_choose_us_top_title',
-        'why_choose_us_main_title',
-        'why_choose_us_sub_title',
-        'daily_offer_top_title',
-        'daily_offer_main_title',
-        'daily_offer_sub_title'
+        $keys = [
+            'why_choose_us_top_title',
+            'why_choose_us_main_title',
+            'why_choose_us_sub_title',
+            'daily_offer_top_title',
+            'daily_offer_main_title',
+            'daily_offer_sub_title',
+            'chef_top_title',
+            'chef_main_title',
+            'chef_sub_title',
+            'testimonial_top_title',
+            'testimonial_main_title',
+            'testimonial_sub_title'
         ];
         return SectionTitle::whereIn('key', $keys)->pluck('value', 'key'); //['key' => 'value']
 

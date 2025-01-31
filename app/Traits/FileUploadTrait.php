@@ -58,9 +58,11 @@ trait FileUploadTrait
      *  */
     function removeImage(string $path): void
     {
-        // delete file or old image  from uploads folder if exist
-        if (File::exists(public_path($path))) {
-            File::delete(public_path($path));
+        if($path != '/uploads/imageDefault.jpg'){
+            // delete file or old image  from uploads folder if exist
+            if (File::exists(public_path($path))) {
+                File::delete(public_path($path));
+            }
         }
     }
 }

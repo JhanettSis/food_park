@@ -1,4 +1,4 @@
- {{--=============================
+    {{--=============================
         WHY CHOOSE START
     ==============================--}}
     <section class="fp__why_choose mt_100 xs_mt_70">
@@ -8,9 +8,7 @@
                     <div class="fp__section_heading mb_25">
                         <h4>{!! @$sectionTitles['why_choose_us_top_title'] !!}</h4>
                         <h2>{!! @$sectionTitles['why_choose_us_main_title'] !!}</h2>
-                        <span>
-                            <img src="{{ asset('frontend/images/heading_shapes.png') }}" alt="shapes" class="img-fluid w-100">
-                        </span>
+                        <img src="{{ asset('frontend/images/heading_shapes.png') }}" alt="shapes" class="img-fluid w-100">
                         <p>{!! @$sectionTitles['why_choose_us_sub_title'] !!}</p>
                     </div>
                 </div>

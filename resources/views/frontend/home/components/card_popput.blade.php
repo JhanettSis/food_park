@@ -1,4 +1,4 @@
-{{-- CART POPUP START --}}
+{{-- =================  CART POPUP START  ================================== --}}
 <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -15,4 +15,4 @@
     </div>
 </div>
 
-{{-- CART POPUP END --}}
+{{-- ================= CART POPUP END ================================== --}}

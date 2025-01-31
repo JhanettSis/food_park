@@ -201,6 +201,19 @@ namespace App\Models{
 /**
  * 
  *
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\CounterFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Counter newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Counter newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Counter query()
+ */
+	class Counter extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $name
  * @property string $code
@@ -619,6 +632,39 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Slider whereUpdatedAt($value)
  */
 	class Slider extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $image
+ * @property string $name
+ * @property string $title
+ * @property string $review
+ * @property int $rating
+ * @property bool $show_at_home
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\TestimonialFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereReview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereShowAtHome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Testimonial whereUpdatedAt($value)
+ */
+	class Testimonial extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -20,6 +20,13 @@
     {{-- Template CSS --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
+    {{-- -----------------for IconPicker bootstrap-iconpicker/
+        ├── css/
+        │   ├── bootstrap-iconpicker.css
+        │   ├── bootstrap-iconpicker.min.css
+        --------------------------------------------}}
+    <link rel="stylesheet" href="{{ asset('admin/assets/fonts/css/bootstrap-iconpicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/fonts/css/bootstrap-iconpicker.min.css') }}">
     {{-- Start GA --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
@@ -67,6 +74,20 @@
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
+
+    {{-- Script for IconPicker bootstrap-iconpicker/
+        ├── js/
+        │   ├── bootstrap-iconpicker-iconset-all.js
+        │   ├── bootstrap-iconpicker-iconset-all.min.js
+        │   ├── bootstrap-iconpicker.bundle.min.js
+        │   ├── bootstrap-iconpicker.js
+        │   └── bootstrap-iconpicker.min.js --}}
+
+    <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker-iconset-all.js') }}"></script>
+    <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker-iconset-all.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker.min.js') }}"></script>
 
     {{-- A beautiful, responsive, customizable,
         accessible (WAI-ARIA) replacement for JavaScript's popup boxes

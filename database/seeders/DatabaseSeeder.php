@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\BannerSlider;
 use App\Models\Category;
 use App\Models\Chef;
+use App\Models\Counter;
 use App\Models\OptionProduct;
 use App\Models\Product;
 use App\Models\ProductGallery;
@@ -54,7 +55,8 @@ class DatabaseSeeder extends Seeder
 
         //Chef::factory(15)->create();
         //$this->call(AppDownloadSectionSeeder::class);
-        Testimonial::factory(15)->create();
+        //Testimonial::factory(15)->create();
+        Counter::factory(1)->create();
 
     }
 }
