@@ -28,6 +28,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\DeliveryArea $deliveryArea
  * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\AddressFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Address newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Address newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Address query()
@@ -44,6 +45,65 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Address whereUserId($value)
  */
 	class Address extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $image
+ * @property string $background
+ * @property string $title
+ * @property string $short_description
+ * @property string|null $play_store_link
+ * @property string|null $apple_store_link
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereAppleStoreLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereBackground($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection wherePlayStoreLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereShortDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AppDownloadSection whereUpdatedAt($value)
+ */
+	class AppDownloadSection extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $sub_title
+ * @property string $url
+ * @property string $banner
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\BannerSliderFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereBanner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereSubTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BannerSlider whereUrl($value)
+ */
+	class BannerSlider extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -98,6 +158,43 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Chat whereUpdatedAt($value)
  */
 	class Chat extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $image
+ * @property string $name
+ * @property string $title
+ * @property string|null $fb
+ * @property string|null $in
+ * @property string|null $x
+ * @property string|null $web
+ * @property bool $show_at_home
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\ChefFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereFb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereIn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereShowAtHome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereWeb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Chef whereX($value)
+ */
+	class Chef extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppDownloadSection;
 use App\Models\BannerSlider;
 use App\Models\Category;
 use App\Models\Chef;
@@ -31,12 +32,14 @@ class FrontendController extends Controller
         $dailyOffers = DailyOffer::with('product')->where('status', true)->take(15)->get();
         $bannerSliders = BannerSlider::where('status', true)->latest()->take(10)->get();
         $chefs = Chef::where(['show_at_home' => true, 'status' => true])->get();
+        $appSection = AppDownloadSection::first();
         return view('frontend.home.index',
         compact('sliders', 'sectionTitles',
                 'whyChooseUs', 'categories',
                 'bannerSliders',
+                'dailyOffers',
                 'chefs',
-                'dailyOffers'));
+                'appSection'));
     }
 
     function getSectionTitle() : Collection{

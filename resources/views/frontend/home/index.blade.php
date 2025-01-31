@@ -30,7 +30,7 @@
     {{--======================   TEAM END   ======================--}}
 
     {{--======================   DOWNLOAD APP START   ======================--}}
-    {{-- @include('frontend.home.components.app_download') --}}
+    @include('frontend.home.components.app_download')
     {{--======================   DOWNLOAD APP END   ======================--}}
 
     {{--======================   TESTIMONIAL  START   ======================--}}

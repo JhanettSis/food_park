@@ -51,7 +51,8 @@ class DatabaseSeeder extends Seeder
         // Address::factory(14)->create();
         //BannerSlider::factory(4)->create();
 
-        Chef::factory(15)->create();
+        //Chef::factory(15)->create();
+        $this->call(AppDownloadSectionSeeder::class);
 
     }
 }

@@ -1,26 +1,29 @@
 <nav class="navbar navbar-expand-lg main-navbar">
+    {{-- ==========  Start NAVBAR  =======================================
+                Button navbar  --}}
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
-                        class="fas fa-search"></i></a></li>
         </ul>
     </form>
+
     <ul class="navbar-nav navbar-right">
+        {{-- Variables for adding notifications and notification Chats --}}
         @php
-            $notifications = \App\Models\OrderPlacedNotification::where('seen', 0)
+            $notifications = \App\Models\OrderPlacedNotification::where('seen', true)
                 ->latest()
                 ->take(10)
                 ->get();
-            $unseenMessages = \App\Models\Chat::where(['receiver_id' => Auth::user()->id, 'seen' => 0])->count();
+            $unseenMessages = \App\Models\Chat::where(['receiver_id' => Auth::user()->id, 'seen' => true])->count();
         @endphp
-        @if (Auth::user()->id === 1)
+        @if (Auth::user()->role === 'admin')
             <li class="dropdown dropdown-list-toggle">
                 <a href="{{ route('admin.chat.index') }}"
-                class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}">
-                    <i class="far fa-envelope"></i> </a>
+                    class="nav-link nav-link-lg message-envelope {{ $unseenMessages > 0 ? 'beep' : '' }}"><i
+                        class="far fa-envelope"></i></a>
             </li>
         @endif
+
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                 class="nav-link notification-toggle nav-link-lg notification_beep {{ count($notifications) > 0 ? 'beep' : '' }}"><i
                     class="far fa-bell"></i></a>
@@ -50,6 +53,7 @@
                 </div>
             </div>
         </li>
+
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 {{-- The code {{ Auth::user()->avatar }} is adding, It displays a user photo from the database  --}}
@@ -62,10 +66,7 @@
                 <a href="{{ route('admin.profile') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
+                <a href="{{ route('admin.setting.index') }}" class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="dropdown-divider"></div>
@@ -84,15 +85,20 @@
         </li>
     </ul>
 </nav>
+{{-- ========  End NAVBAR  ======================================= --}}
 
+{{-- =========  Start SIDEBAR  ========================================= --}}
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
+        {{-- Start Section name --}}
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="{{ route('admin.dashboard') }}">{{config('settings.site_name')}}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
         </div>
+        {{-- End Section name --}}
+
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="dropdown active">
@@ -116,6 +122,10 @@
             <li>
                 <a class="nav-link" href="{{ route('admin.chefs.index') }}"><i
                     class="far fa-square"></i><span>Chefs</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.app_download.index') }}"><i
+                    class="far fa-square"></i><span>App Download Section</span></a>
             </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
@@ -159,14 +169,6 @@
                 <a class="nav-link" href="{{ route('admin.setting.index') }}">
                     <i class="far fa-square"></i><span>Settings</span></a>
             </li>
-            {{-- <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li> --}}
         </ul>
     </aside>
 </div>
