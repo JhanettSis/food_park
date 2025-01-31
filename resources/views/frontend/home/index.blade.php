@@ -26,7 +26,7 @@
     {{--======================   ADD SLIDER END   ======================--}}
 
     {{--======================   TEAM START   ======================--}}
-    {{-- @include('frontend.home.components.team') --}}
+    @include('frontend.home.components.team')
     {{--======================   TEAM END   ======================--}}
 
     {{--======================   DOWNLOAD APP START   ======================--}}

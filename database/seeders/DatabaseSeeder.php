@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Address;
 use App\Models\BannerSlider;
 use App\Models\Category;
+use App\Models\Chef;
 use App\Models\OptionProduct;
 use App\Models\Product;
 use App\Models\ProductGallery;
@@ -49,6 +50,8 @@ class DatabaseSeeder extends Seeder
         // DailyOffer::factory(20)->create();
         // Address::factory(14)->create();
         //BannerSlider::factory(4)->create();
+
+        Chef::factory(15)->create();
 
     }
 }

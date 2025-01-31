@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BannerSliderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\ChefController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
@@ -161,5 +162,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /** Banner Slider Routes */
     Route::resource('banner_slider', BannerSliderController::class);
+
+    /** Chefs Routes */
+    Route::put('chefs-title-update', [ChefController::class, 'updateTitle'])->name('chefs-title-update');
+    Route::resource('chefs', ChefController::class);
 
 });

@@ -31,6 +31,9 @@ use Illuminate\Support\Facades\Route;
  */
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
+/** Chef page */
+Route::get('/chef', [FrontendController::class, 'chef'])->name('chef');
+
 /**
  * Product Detail Route
  *

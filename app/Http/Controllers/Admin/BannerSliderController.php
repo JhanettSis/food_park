@@ -65,10 +65,17 @@ class BannerSliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $imagePath = $this->uploadImage($request, 'image', $request->old_image, '/bannerSlider');
-
         $bannerSlider = BannerSlider::findOrFail($id);
-        $bannerSlider->banner = !empty($imagePath) ? $imagePath : $request->old_image;
+
+        if ($request->hasFile('image')) {
+            if ($bannerSlider->banner != '/uploads/imageDefault.jpg') {
+                $imagePath = $this->uploadImage($request, 'image', '/bannerSlider', $bannerSlider->banner);
+            } else {
+                $imagePath = $this->uploadImage($request, 'image', '/bannerSlider');
+            }
+
+            $bannerSlider->banner = $imagePath;
+        }
         $bannerSlider->title = $request->title;
         $bannerSlider->sub_title = $request->sub_title;
         $bannerSlider->url = $request->url;
