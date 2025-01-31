@@ -16,6 +16,7 @@ use App\Models\DeliveryArea;
 use App\Models\WhyChooseUs;
 use App\Models\Coupon;
 use App\Models\DailyOffer;
+use App\Models\Testimonial;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -52,7 +53,8 @@ class DatabaseSeeder extends Seeder
         //BannerSlider::factory(4)->create();
 
         //Chef::factory(15)->create();
-        $this->call(AppDownloadSectionSeeder::class);
+        //$this->call(AppDownloadSectionSeeder::class);
+        Testimonial::factory(15)->create();
 
     }
 }

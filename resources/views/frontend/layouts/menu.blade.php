@@ -56,9 +56,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                     <ul class="droap_menu">
-                        <li><a href="menu_details.html">menu details</a></li>
-                        <li><a href="blog_details.html">blog details</a></li>
-                        <li><a href="terms_condition.html">terms and condition</a></li>
+                        <li><a href="{{ route('testimonial') }}">Testimonials</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

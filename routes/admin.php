@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
 
@@ -116,10 +117,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** Route Product Size */
     Route::resource('/product-option', OptionProductController::class);
 
-    /** Setting routes */
+    /** Setting Routes */
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::put('/general-setting', [SettingController::class, 'UpdateGeneralSetting'])->name('general_setting.update');
     Route::put('/pusher-setting', [SettingController::class, 'UpdatePusherSetting'])->name('pusher_setting.update');
+    Route::put('/mail-setting', [SettingController::class, 'UpdateMailSetting'])->name('mail_setting.update');
+    Route::put('/logo-setting', [SettingController::class, 'UpdateLogoSetting'])->name('logo_setting.update');
+    Route::put('/appearance-setting', [SettingController::class, 'UpdateAppearanceSetting'])->name('appearance_setting.update');
+    Route::put('/seo-setting', [SettingController::class, 'UpdateSeoSetting'])->name('seo_setting.update');
 
     /** Coupon Routes  */
     Route::resource('/coupons', CouponController::class);
@@ -171,4 +176,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** App Download Routes */
     Route::get('app-download', [AppDownloadSectionController::class, 'index'])->name('app_download.index');
     Route::post('app-download', [AppDownloadSectionController::class, 'store'])->name('app_download.store');
+
+    /** Testimonial Routes */
+    Route::put('testimonial-title-update', [TestimonialController::class, 'updateTitle'])->name('testimonial_title-update');
+    Route::resource('testimonials', TestimonialController::class);
 });

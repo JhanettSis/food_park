@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="generalSettings" role="tabpanel" aria-labelledby="home-tab4">
+<div class="tab-pane fade show active" id="generalSettings" role="tabpanel" aria-labelledby="generalSettings-tab4">
     <div class="card">
         <div class="card-body border">
             <form action="{{ route('admin.general_setting.update') }}" method="POST">
@@ -6,22 +6,19 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="">Site Name</label>
-                    <input name="site_name" type="text" class="form-control"
-                    value="{{config('settings.site_name')}}">
+                    <input name="site_name" type="text" class="form-control" value="{{config('settings.site_name')}}">
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Site Email</label>
-                            <input name="site_email" type="text" class="form-control"
-                            value="{{config('settings.site_email')}}">
+                            <input name="site_email" type="text" class="form-control" value="{{config('settings.site_email')}}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Site Phone</label>
-                            <input name="site_phone" type="text" class="form-control"
-                            value="{{config('settings.site_phone')}}">
+                            <input name="site_phone" type="text" class="form-control" value="{{config('settings.site_phone')}}">
                         </div>
                     </div>
                 </div>
@@ -30,8 +27,7 @@
                     <select name="site_default_currency" id="" class="select2 form-control">
                         <option value="">Select</option>
                         @foreach (config('currencies.currency_list') as $currency)
-                        <option @selected(config('settings.site_default_currency') === $currency)
-                        value="{{ $currency }}">{{ $currency }}</option>
+                        <option @selected(config('settings.site_default_currency') === $currency) value="{{ $currency }}">{{ $currency }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -39,8 +35,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Currency Icon</label>
-                            <input name="site_currency_icon" type="text" class="form-control"
-                            value="{{ config('settings.site_currency_icon') }}">
+                            <input name="site_currency_icon" type="text" class="form-control" value="{{ config('settings.site_currency_icon') }}">
                         </div>
                     </div>
                     <div class="col-md-6">

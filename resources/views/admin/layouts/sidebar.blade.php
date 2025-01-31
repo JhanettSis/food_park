@@ -124,6 +124,10 @@
                     class="far fa-square"></i><span>Chefs</span></a>
             </li>
             <li>
+                <a class="nav-link" href="{{ route('admin.testimonials.index') }}"><i
+                    class="far fa-square"></i><span>Testimonials</span></a>
+            </li>
+            <li>
                 <a class="nav-link" href="{{ route('admin.app_download.index') }}"><i
                     class="far fa-square"></i><span>App Download Section</span></a>
             </li>

@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\ProductGallery;
 use App\Models\SectionTitle;
 use App\Models\Slider;
+use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -33,13 +34,15 @@ class FrontendController extends Controller
         $bannerSliders = BannerSlider::where('status', true)->latest()->take(10)->get();
         $chefs = Chef::where(['show_at_home' => true, 'status' => true])->get();
         $appSection = AppDownloadSection::first();
+        $testimonials = Testimonial::where(['show_at_home' => true ,'status' => true])->get();
         return view('frontend.home.index',
         compact('sliders', 'sectionTitles',
                 'whyChooseUs', 'categories',
                 'bannerSliders',
                 'dailyOffers',
                 'chefs',
-                'appSection'));
+                'appSection',
+            'testimonials'));
     }
 
     function getSectionTitle() : Collection{
@@ -57,6 +60,12 @@ class FrontendController extends Controller
     function chef() : View {
         $chefs = Chef::where(['status' => 1])->paginate(12);
         return view('frontend.pages.chefs', compact('chefs'));
+    }
+
+    /** Testimonials page */
+    function testimonial() : View {
+        $testimonials = Testimonial::where(['status' => 1])->paginate(9);
+        return view('frontend.pages.testimonial', compact('testimonials'));
     }
     function showProduct(string $slug) : View {
 

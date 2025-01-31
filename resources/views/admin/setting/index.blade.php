@@ -1,12 +1,9 @@
 @extends('admin.layouts.master')
+
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Settings</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item fs4"> Settings </div>
-            </div>
+            <h1>Settings1212</h1>
         </div>
 
         <div class="card card-primary">
@@ -22,16 +19,24 @@
                                     role="tab" aria-controls="generalSettings" aria-selected="true">General Settings</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="pusher-tab4" data-toggle="tab" href="#pusher-setting"
+                                <a class="nav-link" id="logo-tab4" data-toggle="tab" href="#logoSetting" role="tab"
+                                    aria-controls="logo" aria-selected="true">Logo Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="appearance-tab4" data-toggle="tab" href="#appearance-setting" role="tab"
+                                    aria-controls="appearance" aria-selected="true">Appearance Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pusher-tab4" data-toggle="tab" href="#pusherSetting"
                                     role="tab" aria-controls="pusher" aria-selected="false">Pusher Settings</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#profile4" role="tab"
-                                    aria-controls="profile" aria-selected="false">Profile</a>
+                                <a class="nav-link" id="mail" data-toggle="tab" href="#mailSetting" role="tab"
+                                    aria-controls="mail" aria-selected="false">Mail Settings</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact4" role="tab"
-                                    aria-controls="contact" aria-selected="false">Contact</a>
+                                <a class="nav-link" id="seo" data-toggle="tab" href="#seoSetting" role="tab"
+                                    aria-controls="seo" aria-selected="false">Seo Settings</a>
                             </li>
                         </ul>
                     </div>
@@ -40,22 +45,17 @@
 
                             @include('admin.setting.sections.general-setting')
 
+                            @include('admin.setting.sections.logo-setting')
+
+                            @include('admin.setting.sections.appearance-setting')
+
                             @include('admin.setting.sections.pusher-setting')
 
-                            <div class="tab-pane fade" id="profile4" role="tabpanel" aria-labelledby="profile-tab4">
-                                Sed sed metus vel lacus hendrerit tempus. Sed efficitur velit tortor, ac efficitur est
-                                lobortis quis. Nullam lacinia metus erat, sed fermentum justo rutrum ultrices. Proin quis
-                                iaculis tellus. Etiam ac vehicula eros, pharetra consectetur dui. Aliquam convallis neque
-                                eget tellus efficitur, eget maximus massa imperdiet. Morbi a mattis velit. Donec hendrerit
-                                venenatis justo, eget scelerisque tellus pharetra a.
-                            </div>
-                            <div class="tab-pane fade" id="contact4" role="tabpanel" aria-labelledby="contact-tab4">
-                                Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin ligula massa,
-                                gravida in lacinia efficitur, hendrerit eget mauris. Pellentesque fermentum, sem interdum
-                                molestie finibus, nulla diam varius leo, nec varius lectus elit id dolor. Nam malesuada orci
-                                non ornare vulputate. Ut ut sollicitudin magna. Vestibulum eget ligula ut ipsum venenatis
-                                ultrices. Proin bibendum bibendum augue ut luctus.
-                            </div>
+                            @include('admin.setting.sections.mail-setting')
+
+                            @include('admin.setting.sections.seo-setting')
+
+
                         </div>
                     </div>
                 </div>

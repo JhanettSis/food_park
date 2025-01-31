@@ -34,6 +34,8 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 /** Chef page */
 Route::get('/chef', [FrontendController::class, 'chef'])->name('chef');
 
+/** Testimonial page */
+Route::get('/testimonials', [FrontendController::class, 'testimonial'])->name('testimonial');
 /**
  * Product Detail Route
  *
