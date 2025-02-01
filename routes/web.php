@@ -45,6 +45,9 @@ Route::get('/testimonials', [FrontendController::class, 'testimonial'])->name('t
  */
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 
+/** About Routes */
+Route::get('/about', [FrontendController::class, 'about'])->name('about');
+
 /**
  * Product Modal Route
  *

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\AppDownloadSection;
 use App\Models\BannerSlider;
 use App\Models\Category;
@@ -95,6 +96,29 @@ class FrontendController extends Controller
         $product = Product::with(['sizeProduct', 'optionProduct'])->findOrFail($productId);
 
         return view('frontend.layouts.ajax_files.product_poput', compact('product'))->render();
+    }
+
+    function about() : View {
+        $keys = [
+            'why_choose_us_top_title',
+            'why_choose_us_main_title',
+            'why_choose_us_sub_title',
+            'chef_top_title',
+            'chef_main_title',
+            'chef_sub_title',
+            'testimonial_top_title',
+            'testimonial_main_title',
+            'testimonial_sub_title'
+        ];
+
+        $sectionTitles = SectionTitle::whereIn('key', $keys)->pluck('value','key');;
+        $about = About::first();
+        $whyChooseUs = WhyChooseUs::where('status', 1)->get();
+        $chefs = Chef::where(['show_at_home' => 1, 'status' => 1])->get();
+        $counter = Counter::first();
+        $testimonials = Testimonial::where(['show_at_home' => 1, 'status' => 1])->get();
+
+        return view('frontend.pages.about', compact('about', 'whyChooseUs', 'sectionTitles', 'chefs', 'counter', 'testimonials'));
     }
 
 }

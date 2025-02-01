@@ -135,6 +135,10 @@
                 <a class="nav-link" href="{{ route('admin.app_download.index') }}"><i
                     class="far fa-square"></i><span>App Download Section</span></a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.about.index') }}"><i
+                    class="far fa-square"></i><span>About</span></a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Restaurant</span></a>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\About;
 use App\Models\Address;
 use App\Models\BannerSlider;
 use App\Models\Category;
@@ -56,7 +57,7 @@ class DatabaseSeeder extends Seeder
         //Chef::factory(15)->create();
         //$this->call(AppDownloadSectionSeeder::class);
         //Testimonial::factory(15)->create();
-        Counter::factory(1)->create();
-
+        //Counter::factory(1)->create();
+        About::factory(1)->create();
     }
 }

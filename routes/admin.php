@@ -4,6 +4,8 @@
  * this is for admin route's and separate the routes for normal user and admin
  * I add this file admin.php(routes for admin) on botstrap/app.php file this is new in laravel 11
  */
+
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -186,6 +188,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('counter', [CounterController::class, 'index'])->name('counter.index');
     Route::put('counter', [CounterController::class, 'update'])->name('counter.update');
 
+    /** About Routes */
+    Route::get('about', [AboutController::class, 'index'])->name('about.index');
+    Route::put('about', [AboutController::class, 'update'])->name('about.update');
 
 
 });
