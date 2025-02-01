@@ -1,6 +1,7 @@
 {{-- =============================
         TOPBAR START
     ============================== --}}
+
 <section class="fp__topbar">
     <div class="container">
         <div class="row">
@@ -56,7 +57,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                     <ul class="droap_menu">
-                        <li><a href="{{ route('testimonial') }}">Testimonials</a></li>
+                        <li><a href="{{ route('testimonial') }}">testimonials</a></li>
+                        <li><a href="{{ route('privacy_policy.index') }}">privacy policy</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

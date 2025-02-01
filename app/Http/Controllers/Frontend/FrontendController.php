@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Chef;
 use App\Models\Counter;
 use App\Models\DailyOffer;
+use App\Models\PrivacyPolicy;
 use App\Models\Product;
 use App\Models\ProductGallery;
 use App\Models\SectionTitle;
@@ -119,6 +120,11 @@ class FrontendController extends Controller
         $testimonials = Testimonial::where(['show_at_home' => 1, 'status' => 1])->get();
 
         return view('frontend.pages.about', compact('about', 'whyChooseUs', 'sectionTitles', 'chefs', 'counter', 'testimonials'));
+    }
+
+    function privacyPolicy() : View {
+        $privacyPolicy = PrivacyPolicy::first();
+        return view('frontend.pages.privacy_policy', compact('privacyPolicy'));
     }
 
 }

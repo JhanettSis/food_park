@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\DailyOfferController;
 use App\Http\Controllers\Admin\OptionProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentGatewaySettingController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductSizeController;
@@ -192,5 +193,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('about', [AboutController::class, 'index'])->name('about.index');
     Route::put('about', [AboutController::class, 'update'])->name('about.update');
 
+    /** privacy policy Routes */
+    Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy.index');
+    Route::put('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy_policy.update');
 
 });

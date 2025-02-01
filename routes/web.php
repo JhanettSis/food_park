@@ -48,6 +48,9 @@ Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name(
 /** About Routes */
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 
+/** Privacy Policy Routes */
+Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy_policy.index');
+
 /**
  * Product Modal Route
  *

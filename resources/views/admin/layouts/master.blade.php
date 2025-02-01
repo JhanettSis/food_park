@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     {{-- Template CSS --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -88,6 +91,9 @@
     <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker.js') }}"></script>
     <script src="{{ asset('admin/assets/fonts/js/bootstrap-iconpicker.min.js') }}"></script>
+
+    <!-- include summernote css/js -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     {{-- A beautiful, responsive, customizable,
         accessible (WAI-ARIA) replacement for JavaScript's popup boxes
