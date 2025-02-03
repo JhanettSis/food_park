@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\ReservationTimeController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
@@ -214,6 +215,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** News letter Routes */
     Route::get('news-letter', [NewsLetterController::class, 'index'])->name('news_letter.index');
     Route::post('news-letter', [NewsLetterController::class, 'sendNewsLetter'])->name('news_letter.send');
+
+    /** Social Links Routes */
+    Route::resource('social_link', SocialLinkController::class);
 
 
 });

@@ -20,6 +20,7 @@ use App\Models\WhyChooseUs;
 use App\Models\Coupon;
 use App\Models\DailyOffer;
 use App\Models\ReservationTime;
+use App\Models\SocialLink;
 use App\Models\Testimonial;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -62,7 +63,8 @@ class DatabaseSeeder extends Seeder
         //Counter::factory(1)->create();
         //About::factory(1)->create();
         //Contact::factory(1)->create();
-        ReservationTime::factory(5)->create();
+        //ReservationTime::factory(5)->create();
+        //SocialLink::factory(4)->create();
 
     }
 }
