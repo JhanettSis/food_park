@@ -23,7 +23,7 @@ class PrivacyPolicyController extends Controller
         ]);
 
         PrivacyPolicy::updateOrCreate(
-            ['id' => 1],
+            ['id' => $request->id],
             [
                 'content' => $request->content
             ]

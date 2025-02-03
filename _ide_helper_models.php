@@ -230,6 +230,19 @@ namespace App\Models{
 /**
  * 
  *
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\ContactFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact query()
+ */
+	class Contact extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $background
  * @property string $counter_icon_one
@@ -520,11 +533,19 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\TFactory|null $use_factory
  * @method static \Database\Factories\PrivacyPolicyFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|PrivacyPolicy whereUpdatedAt($value)
  */
 	class PrivacyPolicy extends \Eloquent {}
 }

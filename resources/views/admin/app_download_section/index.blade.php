@@ -18,6 +18,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Image</label>
+                                <input type="hidden" name="id" value="{{ @$appSection->id }}">
                                 <div id="image-preview" class="image-preview image-preview-1">
                                     <label for="image-upload" id="image-label">Choose File</label>
                                     <input type="file" name="image" id="image-upload" />

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\BannerSliderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\ChefController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
@@ -197,4 +198,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy.index');
     Route::put('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy_policy.update');
 
+    /** Contact Routes */
+    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
 });

@@ -51,6 +51,10 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 /** Privacy Policy Routes */
 Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy_policy.index');
 
+/** Contact Routes */
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact.index');
+Route::post('/contact', [FrontendController::class, 'sendContactMessage'])->name('contact.send-message');
+
 /**
  * Product Modal Route
  *

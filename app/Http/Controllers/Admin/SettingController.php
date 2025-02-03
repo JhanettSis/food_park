@@ -16,6 +16,7 @@ class SettingController extends Controller
     use FileUploadTrait;
 
     function index() : View {
+        //dd(config('mail'));
         return view('admin.setting.index');
     }
 

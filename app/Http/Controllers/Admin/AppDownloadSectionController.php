@@ -39,7 +39,7 @@ class AppDownloadSectionController extends Controller
             }
         }
         AppDownloadSection::updateOrCreate(
-            ['id' => 1],
+            ['id' => $request->id],
             [
                 'image' => !empty($imagePath) ?  $imagePath : $request->old_image,
                 'background' => !empty($backgroundPath) ?  $backgroundPath : $request->old_background,
