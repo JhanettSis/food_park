@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
+use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\OptionProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentGatewaySettingController;
@@ -26,6 +27,8 @@ use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductSizeController;
+use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Admin\ReservationTimeController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -201,4 +204,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** Contact Routes */
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
+
+    /** Reservation Routes */
+    Route::resource('reservation-time', ReservationTimeController::class);
+    Route::get('reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::post('reservation', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::delete('reservation/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+
+    /** News letter Routes */
+    Route::get('news-letter', [NewsLetterController::class, 'index'])->name('news_letter.index');
+    Route::post('news-letter', [NewsLetterController::class, 'sendNewsLetter'])->name('news_letter.send');
+
+
 });

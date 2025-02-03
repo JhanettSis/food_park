@@ -15,13 +15,18 @@ use App\Models\DailyOffer;
 use App\Models\PrivacyPolicy;
 use App\Models\Product;
 use App\Models\ProductGallery;
+use App\Models\Reservation;
 use App\Models\SectionTitle;
 use App\Models\Slider;
+use App\Models\Subscriber;
 use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
+use Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View as ViewView;
 use Mail;
 
@@ -146,6 +151,46 @@ class FrontendController extends Controller
 
         Mail::send(new ContactMail($request->name, $request->email, $request->subject, $request->message));
         return response(['status' => 'success', 'message' => 'Message Sent Successfully!']);
+    }
+
+    function reservation(Request $request) {
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'phone' => ['required', 'max:50'],
+            'date' => ['required', 'date'],
+            'time' => ['required'],
+            'persons' => ['required', 'numeric']
+        ]);
+
+        if(!Auth::check()){
+            throw ValidationException::withMessages(['Please Login to Request Reservation']);
+        }
+
+        $reservation = new Reservation();
+        $reservation->reservation_id = rand(0, 500000);
+        $reservation->user_id = Auth::user()->id;
+        $reservation->name = $request->name;
+        $reservation->phone = $request->phone;
+        $reservation->date = $request->date;
+        $reservation->time = $request->time;
+        $reservation->persons = $request->persons;
+        $reservation->status = 'pending';
+        $reservation->save();
+
+        return response(['status' => 'success', 'message' => 'Request send successfully']);
+    }
+
+    function subscribeNewsletter(Request $request) : Response
+    {
+        $request->validate([
+            'email' => ['required', 'email', 'max:255', 'unique:subscribers,email']
+        ], ['email.unique' => 'Email is already subscribed!']);
+
+        $subscriber = new Subscriber();
+        $subscriber->email = $request->email;
+        $subscriber->save();
+
+        return response(['status' => 'success', 'message' => 'Subscribed Successfully!']);
     }
 
 

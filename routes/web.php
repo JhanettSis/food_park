@@ -55,6 +55,7 @@ Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->nam
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact.index');
 Route::post('/contact', [FrontendController::class, 'sendContactMessage'])->name('contact.send-message');
 
+
 /**
  * Product Modal Route
  *
@@ -112,6 +113,12 @@ Route::post('/car-update-qty', [CartController::class, 'cart_qty_update'])->name
  * - It maps to the 'cart_destroye' method of CartController.
  */
 Route::get('/cart-destroy', [CartController::class, 'cart_destroye'])->name('cart.destroye');
+
+/** Reservation Routes */
+Route::post('/reservation', [FrontendController::class, 'reservation'])->name('reservation.store');
+
+/** Newsletter Routes */
+Route::post('/subscribe-newsletter', [FrontendController::class, 'subscribeNewsletter'])->name('subscribe_newsletter');
 
 /**
  * Apply Coupon Route

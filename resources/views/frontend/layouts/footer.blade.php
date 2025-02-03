@@ -48,9 +48,10 @@
                     <div class="col-lg-3 col-sm-8 col-md-6 order-lg-4">
                         <div class="fp__footer_content">
                             <h3>subscribe</h3>
-                            <form>
-                                <input type="text" placeholder="Subscribe">
-                                <button>Subscribe</button>
+                            <form class="subscribe_form">
+                                @csrf
+                                <input type="text" placeholder="Subscribe" name="email">
+                                <button type="submit" class="subscribe_btn">Subscribe</button>
                             </form>
                             <div class="fp__footer_social_link">
                                 <h5>follow us:</h5>
@@ -99,3 +100,45 @@
     {{--=============================
         SCROLL BUTTON END
     ==============================--}}
+
+
+@push('scripts')
+<script>
+    $(document).ready(function(){
+        $('.subscribe_form').on('submit', function(e) {
+            e.preventDefault();
+            let formData = $(this).serialize();
+            $.ajax({
+                method: 'POST',
+                url: '{{ route("subscribe_newsletter") }}',
+                data: formData,
+                beforeSend: function(){
+                    $('.subscribe_btn').attr('disabled', true);
+                    $('.subscribe_btn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                },
+                success: function(response) {
+                    $('.subscribe_form').trigger("reset");
+                    $('.subscribe_btn').attr('disabled', false);
+                    $('.subscribe_btn').html('Subscribe');
+                    toastr.success(response.message);
+                },
+                error: function(xhr, status, error) {
+                    let errors = xhr.responseJSON.errors;
+
+                    $.each(errors, function(index, value){
+                        toastr.error(value);
+                    });
+
+                    $('.subscribe_btn').attr('disabled', true);
+                    $('.subscribe_btn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                },
+                complete: function(){
+                    $('.subscribe_btn').attr('disabled', false);
+                    $('.subscribe_btn').html('Subscribe');
+                }
+            })
+        })
+    })
+</script>
+@endpush
+
