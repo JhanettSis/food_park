@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
+use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\OptionProductController;
 use App\Http\Controllers\Admin\OrderController;
@@ -219,5 +220,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     /** Social Links Routes */
     Route::resource('social_link', SocialLinkController::class);
 
+    /** Footer Routes */
+    Route::get('footer-info', [FooterInfoController::class, 'index'])->name('footer_info.index');
+    Route::put('footer-info', [FooterInfoController::class, 'update'])->name('footer_info.update');
 
 });

@@ -163,6 +163,10 @@
                 <a class="nav-link" href="{{ route('admin.social_link.index') }}"><i
                     class="far fa-square"></i><span>Social Link</span></a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.footer_info.index') }}"><i
+                    class="far fa-square"></i><span>Footer Info</span></a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Restaurant</span></a>

@@ -2,23 +2,31 @@
         FOOTER START
     ==============================--}}
     <footer>
+        @php
+            $footerInfo = \App\Models\FooterInfo::first();
+        @endphp
+
         <div class="footer_overlay pt_100 xs_pt_70 pb_100 xs_pb_70">
             <div class="container wow fadeInUp" data-wow-duration="1s">
                 <div class="row justify-content-between">
                     <div class="col-lg-4 col-sm-8 col-md-6">
                         <div class="fp__footer_content">
-                            <a class="footer_logo" href="index.html">
-                                <img src="frontend/images/footer_logo.png" alt="FoodPark" class="img-fluid w-100">
+                            <a class="footer_logo" href="{{ url('/') }}">
+                                <img src="{{ asset(config('settings.footer_logo')) }}" alt="FoodPark" class="img-fluid w-100">
                             </a>
-                            <span>There are many variations of Lorem Ipsum available, but the majority have
-                                suffered.</span>
-                            <p class="info"><i class="far fa-map-marker-alt"></i> 7232 Broadway Suite 308, Jackson
-                                Heights, 11372, NY, United States</p>
-                            <a class="info" href="callto:1234567890123"><i class="fas fa-phone-alt"></i>
-                                +1347-430-9510</a>
-                            <a class="info" href="mailto:websolutionus1@gmail.com"><i
-                                    class="fas fa-envelope"></i>
-                                websolutionus1@gmail.com</a>
+                            @if (@$footerInfo->short_info)
+                            <span>{{ @$footerInfo->short_info }}</span>
+                            @endif
+                            @if (@$footerInfo->address)
+                            <p class="info"><i class="far fa-map-marker-alt"></i> {{ @$footerInfo->address }}</p>
+                            @endif
+                            @if (@$footerInfo->phone)
+                            <a class="info" href="callto:{{ @$footerInfo->phone }}"><i class="fas fa-phone-alt"></i> {{ @$footerInfo->phone }}</a>
+                            @endif
+                            @if (@$footerInfo->email)
+                            <a class="info" href="mailto:{{ @$footerInfo->email }}"><i class="fas fa-envelope"></i>
+                                {{ $footerInfo->email }}</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-4 col-md-6">
@@ -55,10 +63,10 @@
                             </form>
                             <div class="fp__footer_social_link">
                                 <h5>follow us:</h5>
-                                @php
-                                    $socials = \App\Models\SocialLink::where('status', true)->get();
-                                @endphp
                                 <ul class="d-flex flex-wrap">
+                                    @php
+                                        $socials = \App\Models\SocialLink::where('status', true)->get();
+                                    @endphp
                                     @foreach ($socials as $link)
                                     <li><a href="{{ $link->link }}"><i class="{{ $link->icon }}"></i></a></li>
                                     @endforeach

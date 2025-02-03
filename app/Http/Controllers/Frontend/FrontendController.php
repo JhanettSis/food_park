@@ -12,12 +12,14 @@ use App\Models\Chef;
 use App\Models\Contact;
 use App\Models\Counter;
 use App\Models\DailyOffer;
+use App\Models\FooterInfo;
 use App\Models\PrivacyPolicy;
 use App\Models\Product;
 use App\Models\ProductGallery;
 use App\Models\Reservation;
 use App\Models\SectionTitle;
 use App\Models\Slider;
+use App\Models\SocialLink;
 use App\Models\Subscriber;
 use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
@@ -56,7 +58,7 @@ class FrontendController extends Controller
                 'chefs',
                 'appSection',
                 'testimonials',
-                'counter'
+                'counter',
                 ));
     }
 
