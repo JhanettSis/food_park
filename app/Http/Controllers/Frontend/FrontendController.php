@@ -21,6 +21,7 @@ use App\Models\SectionTitle;
 use App\Models\Slider;
 use App\Models\SocialLink;
 use App\Models\Subscriber;
+use App\Models\TermsConditions;
 use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Auth;
@@ -135,6 +136,11 @@ class FrontendController extends Controller
     function privacyPolicy() : View {
         $privacyPolicy = PrivacyPolicy::first();
         return view('frontend.pages.privacy_policy', compact('privacyPolicy'));
+    }
+
+    function termsConditions() : View {
+        $termsConditions = TermsConditions::first();
+        return view('frontend.pages.terms_and_condition', compact('termsConditions'));
     }
 
     function contact() : View {

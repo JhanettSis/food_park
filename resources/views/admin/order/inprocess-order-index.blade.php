@@ -4,6 +4,10 @@
     <section class="section">
         <div class="section-header">
             <h1>In Process Orders</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item">List In process Orders</div>
+            </div>
         </div>
 
         <div class="card card-primary">

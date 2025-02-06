@@ -4,6 +4,10 @@
     <section class="section">
         <div class="section-header">
             <h1>Subscribers</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item fs4"> Subscribers </div>
+            </div>
         </div>
 
         <div class="card">

@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         // $this->call(UserSeeder::class);
         // Slider::factory(4)->create();
-        // $this->call(WhyChooseUsTitleSeeder ::class);
+        // $this->call(WhyChooseUsTitleSeeder::class);
         // WhyChooseUs::factory(3)->create();
         // $this->call(CategorySeeder::class);
 
@@ -65,6 +65,7 @@ class DatabaseSeeder extends Seeder
         //Contact::factory(1)->create();
         //ReservationTime::factory(5)->create();
         //SocialLink::factory(4)->create();
+        //$this->call(MenuContentSeeder::class);
 
     }
 }

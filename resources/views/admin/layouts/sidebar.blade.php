@@ -144,6 +144,10 @@
                     <i class="far fa-square"></i><span>Privacy Policy</span></a>
             </li>
             <li>
+                <a class="nav-link" href="{{ route('admin.terms_and_conditions.index') }}">
+                    <i class="far fa-square"></i><span>Terms & Conditions</span></a>
+            </li>
+            <li>
                 <a class="nav-link" href="{{ route('admin.reservation-time.index') }}">
                     <i class="far fa-square"></i><span>Reservation Times</span></a>
             </li>
@@ -162,6 +166,10 @@
             <li>
                 <a class="nav-link" href="{{ route('admin.social_link.index') }}"><i
                     class="far fa-square"></i><span>Social Link</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.menu_builder.index') }}"><i
+                    class="far fa-square"></i><span>Menu Builder</span></a>
             </li>
             <li>
                 <a class="nav-link" href="{{ route('admin.footer_info.index') }}"><i

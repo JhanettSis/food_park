@@ -394,10 +394,26 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string|null $short_info
+ * @property string|null $address
+ * @property string|null $phone
+ * @property string|null $email
+ * @property string|null $copyright
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\TFactory|null $use_factory
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereCopyright($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereShortInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FooterInfo whereUpdatedAt($value)
  */
 	class FooterInfo extends \Eloquent {}
 }
@@ -872,6 +888,26 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TermsConditions whereUpdatedAt($value)
+ */
+	class TermsConditions extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $image
  * @property string $name
  * @property string $title
@@ -960,5 +996,22 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|WhyChooseUs whereUpdatedAt($value)
  */
 	class WhyChooseUs extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|post query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|post whereUpdatedAt($value)
+ */
+	class post extends \Eloquent {}
 }
 

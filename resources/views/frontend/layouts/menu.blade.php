@@ -1,7 +1,9 @@
 {{-- =============================
         TOPBAR START
     ============================== --}}
-
+@php
+    $primary_menu = LaravelMenu::getByName('main_menu');
+@endphp
 <section class="fp__topbar">
     <div class="container">
         <div class="row">
@@ -34,15 +36,38 @@
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('frontend/images/logo.png') }}" alt="FoodPark" class="img-fluid">
+            <img src="{{ asset(config('settings.logo')) }}" alt="FoodPark" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="far fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+
             <ul class="navbar-nav m-auto">
-                <li class="nav-item">
+                @if ($primary_menu)
+                    @foreach ($primary_menu as $menu)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ $menu['link'] }}" title="{{ $menu['label'] }}">
+                                {{ $menu['label'] }}
+                                @if ($menu['child'])
+                                <i class="far fa-angle-down"></i>
+                                @endif
+                            </a>
+                            @if ($menu['child'])
+                            <ul class="droap_menu">
+                                @foreach ($menu['child'] as $submenu)
+                                <li>
+                                    <a href="{{ $submenu['link'] }}">{{ $submenu['label'] }}</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </li>
+                    @endforeach
+                @endif
+
+                {{-- <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
@@ -53,20 +78,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('chef') }}">chefs</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
                     <ul class="droap_menu">
                         <li><a href="{{ route('testimonial') }}">testimonials</a></li>
                         <li><a href="{{ route('privacy_policy.index') }}">privacy policy</a></li>
+                        <li><a href="{{ route('terms_conditions.index') }}">Terms & Conditions</a></li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blogs.html">blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index') }}">contact</a>
-                </li>
+                </li> --}}
             </ul>
             <ul class="menu_icon d-flex flex-wrap">
                 <li>

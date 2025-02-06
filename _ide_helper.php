@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 11.41.0.
+ * Generated for Laravel 11.41.3.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -23508,6 +23508,72 @@ namespace Barryvdh\Debugbar\Facades {
             }
     }
 
+namespace Bdacademy\LaravelMenu\Facades {
+    /**
+     * 
+     *
+     */
+    class LaravelMenu {
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function render()
+        {
+            /** @var \Bdacademy\LaravelMenu\WMenu $instance */
+            return $instance->render();
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function scripts()
+        {
+            /** @var \Bdacademy\LaravelMenu\WMenu $instance */
+            return $instance->scripts();
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function select($name = 'menu', $menulist = [])
+        {
+            /** @var \Bdacademy\LaravelMenu\WMenu $instance */
+            return $instance->select($name, $menulist);
+        }
+
+        /**
+         * Returns empty array if menu not found now.
+         * 
+         * Thanks @sovichet
+         *
+         * @param $name
+         * @return array 
+         * @static 
+         */
+        public static function getByName($name)
+        {
+            return \Bdacademy\LaravelMenu\WMenu::getByName($name);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function get($menu_id)
+        {
+            return \Bdacademy\LaravelMenu\WMenu::get($menu_id);
+        }
+
+            }
+    }
+
 namespace Livewire {
     /**
      * 
@@ -29028,6 +29094,7 @@ namespace  {
     class Vite extends \Illuminate\Support\Facades\Vite {}
     class Cart extends \Gloudemans\Shoppingcart\Facades\Cart {}
     class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
+    class LaravelMenu extends \Bdacademy\LaravelMenu\Facades\LaravelMenu {}
     class Livewire extends \Livewire\Livewire {}
     class Flasher extends \Flasher\Laravel\Facade\Flasher {}
     class Toastr extends \Flasher\Toastr\Laravel\Facade\Toastr {}

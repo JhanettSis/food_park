@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DailyOfferController;
 use App\Http\Controllers\Admin\FooterInfoController;
+use App\Http\Controllers\Admin\MenuBuilderController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\OptionProductController;
 use App\Http\Controllers\Admin\OrderController;
@@ -33,8 +34,10 @@ use App\Http\Controllers\Admin\ReservationTimeController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\TermsConditionsController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
+use App\Models\TermsConditions;
 use Illuminate\Support\Facades\Route;
 
 // Route Grouping:
@@ -203,6 +206,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy.index');
     Route::put('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy_policy.update');
 
+    /** privacy terms_conditions Routes */
+    Route::get('terms_conditions', [TermsConditionsController::class, 'index'])->name('terms_and_conditions.index');
+    Route::put('terms_conditions', [TermsConditionsController::class, 'update'])->name('terms_and_conditions.update');
+
+
     /** Contact Routes */
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
@@ -224,4 +232,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('footer-info', [FooterInfoController::class, 'index'])->name('footer_info.index');
     Route::put('footer-info', [FooterInfoController::class, 'update'])->name('footer_info.update');
 
+    /** Menu builder Routes */
+    Route::get('menu-builder', [MenuBuilderController::class, 'index'])->name('menu_builder.index');
 });
