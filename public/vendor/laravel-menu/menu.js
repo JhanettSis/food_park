@@ -107,7 +107,7 @@ function addcategorymenu() {
           slugs.push(slug);
         }
     });
-    
+
 
     $.ajax({
         url: addcategorymenur,
@@ -148,7 +148,7 @@ function addpostmenu() {
         }
     });
 
-    
+
 
     $.ajax({
         url: addpostmenur,

@@ -87,6 +87,11 @@ class FrontendController extends Controller
         return view('frontend.pages.chefs', compact('chefs'));
     }
 
+    /** Chefs page */
+    function menu_food() : View {
+        $categories = Category::where(['status' => true])->get();
+        return view('frontend.pages.menu_food', compact('categories'));
+    }
     /** Testimonials page */
     function testimonial() : View {
         $testimonials = Testimonial::where(['status' => 1])->paginate(9);

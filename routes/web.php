@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CustomPageController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleMiddleware;
@@ -33,6 +34,9 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 /** Chef page */
 Route::get('/chef', [FrontendController::class, 'chef'])->name('chef');
+
+/** Menu Food page */
+Route::get('/menu-food', [FrontendController::class, 'menu_food'])->name('menu_food');
 
 /** Testimonial page */
 Route::get('/testimonials', [FrontendController::class, 'testimonial'])->name('testimonial');
@@ -58,6 +62,8 @@ Route::get('/terms-conditions', [FrontendController::class, 'termsConditions'])-
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact.index');
 Route::post('/contact', [FrontendController::class, 'sendContactMessage'])->name('contact.send-message');
 
+/** Custom Page Routes */
+Route::get('/page/{slug}', CustomPageController::class);
 
 /**
  * Product Modal Route

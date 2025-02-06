@@ -172,6 +172,10 @@
                     class="far fa-square"></i><span>Menu Builder</span></a>
             </li>
             <li>
+                <a class="nav-link" href="{{ route('admin.custom-page-builder.index') }}"><i
+                    class="far fa-square"></i><span>Page Builder</span></a>
+            </li>
+            <li>
                 <a class="nav-link" href="{{ route('admin.footer_info.index') }}"><i
                     class="far fa-square"></i><span>Footer Info</span></a>
             </li>

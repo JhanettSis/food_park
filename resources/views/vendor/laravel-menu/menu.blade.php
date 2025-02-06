@@ -119,14 +119,22 @@ $cat_url = config('menu.category.prefix');
                                                                 <div class="customlinkdiv" id="customlinkdiv">
                                                                     <ul class="menu-item-list">
                                                                         @if ($categories)
-                                                                        
+
                                                                             @foreach ($categories as $cat)
                                                                                 <li class="menu-list">
-                                                                                    <input type="hidden" name="name-{{ $cat->id }}" value="{{ $cat->$cat_name }}">
-                                                                                    <input type="hidden" name="slug-{{ $cat->id }}" value="{{ $cat_url . $cat->slug }}">
-                                                                                    <input type="checkbox" class="checkbox"
-                                                                                        name="category[]" id="cat-{{ $cat->id }}" value="{{ $cat->id }}">
-                                                                                    <label for="cat-{{ $cat->id }}">{{ $cat->name }}</label>
+                                                                                    <input type="hidden"
+                                                                                        name="name-{{ $cat->id }}"
+                                                                                        value="{{ $cat->$cat_name }}">
+                                                                                    <input type="hidden"
+                                                                                        name="slug-{{ $cat->id }}"
+                                                                                        value="{{ $cat_url . $cat->slug }}">
+                                                                                    <input type="checkbox"
+                                                                                        class="checkbox"
+                                                                                        name="category[]"
+                                                                                        id="cat-{{ $cat->id }}"
+                                                                                        value="{{ $cat->id }}">
+                                                                                    <label
+                                                                                        for="cat-{{ $cat->id }}">{{ $cat->name }}</label>
                                                                                 </li>
                                                                             @endforeach
                                                                         @endif
@@ -156,7 +164,9 @@ $cat_url = config('menu.category.prefix');
                                                                     <p class="button-secondary">
                                                                         <input type="checkbox" name="select_all"
                                                                             id="select-all-cat">
-                                                                        <label for="select-all-cat" onclick="selectallcategory()">Select All</label>
+                                                                        <label for="select-all-cat"
+                                                                            onclick="selectallcategory()">Select
+                                                                            All</label>
                                                                     </p>
 
                                                                     <a href="#" onclick="addcategorymenu()"
@@ -172,70 +182,80 @@ $cat_url = config('menu.category.prefix');
                                                     {{-- categories / --}}
 
 
-                                                     {{-- posts --}}
+                                                    {{-- posts --}}
 
-                                                     <li class="control-section accordion-section add-page"
-                                                     id="add-page">
-                                                     <h3 class="accordion-section-title hndle" tabindex="0">
-                                                         Posts <span class="screen-reader-text">Press return or
-                                                             enter
-                                                             to expand</span></h3>
-                                                     <div class="accordion-section-content ">
-                                                         <div class="inside">
-                                                             <div class="customlinkdiv" id="customlinkdiv">
-                                                                 <ul class="menu-item-list">
-                                                                     @if ($posts)
-                                                                     
-                                                                         @foreach ($posts as $post)
-                                                                             <li class="post-list">
-                                                                                 <input type="hidden" name="name-{{ $post->id }}" value="{{ $post->$post_name }}">
-                                                                                 <input type="hidden" name="slug-{{ $post->id }}" value="{{ $post_url . $post->slug }}">
-                                                                                 <input type="checkbox" class="checkbox"
-                                                                                     name="postegory[]" id="post-{{ $post->id }}" value="{{ $post->id }}">
-                                                                                 <label for="post-{{ $post->id }}">{{ $post->$post_name }}</label>
-                                                                             </li>
-                                                                         @endforeach
-                                                                     @endif
-                                                                 </ul>
+                                                    <li class="control-section accordion-section add-page"
+                                                        id="add-page">
+                                                        <h3 class="accordion-section-title hndle" tabindex="0">
+                                                            Posts <span class="screen-reader-text">Press return or
+                                                                enter
+                                                                to expand</span></h3>
+                                                        <div class="accordion-section-content ">
+                                                            <div class="inside">
+                                                                <div class="customlinkdiv" id="customlinkdiv">
+                                                                    <ul class="menu-item-list">
+                                                                        @if ($posts)
 
-                                                                 @if (!empty($roles))
-                                                                     <p id="menu-item-role_id-wrap">
-                                                                         <label class="howto"
-                                                                             for="custom-menu-item-name">
-                                                                             <span>Role</span>&nbsp;
-                                                                             <select id="custom-menu-item-role"
-                                                                                 name="role">
-                                                                                 <option value="0">Select Role
-                                                                                 </option>
-                                                                                 @foreach ($roles as $role)
-                                                                                     <option
-                                                                                         value="{{ $role->$role_pk }}">
-                                                                                         {{ ucfirst($role->$role_title_field) }}
-                                                                                     </option>
-                                                                                 @endforeach
-                                                                             </select>
-                                                                         </label>
-                                                                     </p>
-                                                                 @endif
+                                                                            @foreach ($posts as $post)
+                                                                                <li class="post-list">
+                                                                                    <input type="hidden"
+                                                                                        name="name-{{ $post->id }}"
+                                                                                        value="{{ $post->$post_name }}">
+                                                                                    <input type="hidden"
+                                                                                        name="slug-{{ $post->id }}"
+                                                                                        value="{{ $post_url . $post->slug }}">
+                                                                                    <input type="checkbox"
+                                                                                        class="checkbox"
+                                                                                        name="postegory[]"
+                                                                                        id="post-{{ $post->id }}"
+                                                                                        value="{{ $post->id }}">
+                                                                                    <label
+                                                                                        for="post-{{ $post->id }}">{{ $post->$post_name }}</label>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </ul>
 
-                                                                 <p class="button-controls">
-                                                                 <p class="button-secondary">
-                                                                     <input type="checkbox" name="select_all"
-                                                                         id="select-all-post">
-                                                                     <label for="select-all-post" onclick="selectallpost()">Select All</label>
-                                                                 </p>
+                                                                    @if (!empty($roles))
+                                                                        <p id="menu-item-role_id-wrap">
+                                                                            <label class="howto"
+                                                                                for="custom-menu-item-name">
+                                                                                <span>Role</span>&nbsp;
+                                                                                <select id="custom-menu-item-role"
+                                                                                    name="role">
+                                                                                    <option value="0">Select Role
+                                                                                    </option>
+                                                                                    @foreach ($roles as $role)
+                                                                                        <option
+                                                                                            value="{{ $role->$role_pk }}">
+                                                                                            {{ ucfirst($role->$role_title_field) }}
+                                                                                        </option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </label>
+                                                                        </p>
+                                                                    @endif
 
-                                                                 <a href="#" onclick="addpostmenu()"
-                                                                     class="button-secondary submit-add-to-menu right">Add
-                                                                     menu item</a>
-                                                                 <span class="spinner" id="spincustomu"></span>
-                                                                 </p>
+                                                                    <p class="button-controls">
+                                                                    <p class="button-secondary">
+                                                                        <input type="checkbox" name="select_all"
+                                                                            id="select-all-post">
+                                                                        <label for="select-all-post"
+                                                                            onclick="selectallpost()">Select
+                                                                            All</label>
+                                                                    </p>
 
-                                                             </div>
-                                                         </div>
-                                                     </div>
-                                                 </li>
-                                                 {{-- posts / --}}
+                                                                    <a href="#" onclick="addpostmenu()"
+                                                                        class="button-secondary submit-add-to-menu right">Add
+                                                                        menu item</a>
+                                                                    <span class="spinner" id="spincustomu"></span>
+                                                                    </p>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    {{-- posts / --}}
 
                                                 </ul>
                                             </div>

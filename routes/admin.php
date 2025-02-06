@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\CustomPageBuilderController;
 use App\Http\Controllers\Admin\DailyOfferController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\MenuBuilderController;
@@ -210,7 +211,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('terms_conditions', [TermsConditionsController::class, 'index'])->name('terms_and_conditions.index');
     Route::put('terms_conditions', [TermsConditionsController::class, 'update'])->name('terms_and_conditions.update');
 
-
     /** Contact Routes */
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
@@ -234,4 +234,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /** Menu builder Routes */
     Route::get('menu-builder', [MenuBuilderController::class, 'index'])->name('menu_builder.index');
+
+    /** Custom page builder Routes custom-page-builder */
+    Route::resource('custom-page-builder', CustomPageBuilderController::class);
+
 });
