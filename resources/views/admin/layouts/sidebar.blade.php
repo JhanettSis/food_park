@@ -105,6 +105,15 @@
                 <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
                         class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-rss"></i>
+                    <span> Blog </span></a>
+                <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('admin.blog-category.index') }}">Blog Categories</a></li>
+                        <li><a class="nav-link" href="{{ route('admin.blogs.index') }}">All Blogs</a></li>
+                    </li>
+                </ul>
+            </li>
             <li class="menu-header">Starter</li>
             <li>
                 <a class="nav-link" href="{{ route('admin.slider.index') }}"><i

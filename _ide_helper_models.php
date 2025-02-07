@@ -140,6 +140,72 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $user_id
+ * @property int $category_id
+ * @property string $image
+ * @property string $title
+ * @property string $slug
+ * @property string $description
+ * @property string|null $seo_title
+ * @property string|null $seo_description
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\BlogCategory $category
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\BlogFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereSeoDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereSeoTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Blog whereUserId($value)
+ */
+	class Blog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Blog> $blogs
+ * @property-read int|null $blogs_count
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\BlogCategoryFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereUpdatedAt($value)
+ */
+	class BlogCategory extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $slug
  * @property bool $status
@@ -335,6 +401,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Coupon whereUpdatedAt($value)
  */
 	class Coupon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property string $content
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @method static \Database\Factories\CustomPageBuilderFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CustomPageBuilder whereUpdatedAt($value)
+ */
+	class CustomPageBuilder extends \Eloquent {}
 }
 
 namespace App\Models{

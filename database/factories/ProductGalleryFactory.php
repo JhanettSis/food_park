@@ -19,10 +19,10 @@ class ProductGalleryFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'product_id' => Product::all()->random()->id,
-            'gallery_image' => '/uploads/imageDefault.jpg',
-        ];
+        // return [
+        //     'product_id' => Product::all()->random()->id,
+        //     'gallery_image' => '/uploads/imageDefault.jpg',
+        // ];
 
 
         return [

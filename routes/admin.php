@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AppDownloadSectionController;
 use App\Http\Controllers\Admin\BannerSliderController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\ChefController;
@@ -196,46 +198,52 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('/testimonials', TestimonialController::class);
 
     /** Counter Routes */
-    Route::get('counter', [CounterController::class, 'index'])->name('counter.index');
-    Route::put('counter', [CounterController::class, 'update'])->name('counter.update');
+    Route::get('/counter', [CounterController::class, 'index'])->name('counter.index');
+    Route::put('/counter', [CounterController::class, 'update'])->name('counter.update');
 
     /** About Routes */
-    Route::get('about', [AboutController::class, 'index'])->name('about.index');
-    Route::put('about', [AboutController::class, 'update'])->name('about.update');
+    Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+    Route::put('/about', [AboutController::class, 'update'])->name('about.update');
 
     /** privacy policy Routes */
-    Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy.index');
-    Route::put('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy_policy.update');
+    Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy.index');
+    Route::put('/privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy_policy.update');
 
     /** privacy terms_conditions Routes */
-    Route::get('terms_conditions', [TermsConditionsController::class, 'index'])->name('terms_and_conditions.index');
-    Route::put('terms_conditions', [TermsConditionsController::class, 'update'])->name('terms_and_conditions.update');
+    Route::get('/terms_conditions', [TermsConditionsController::class, 'index'])->name('terms_and_conditions.index');
+    Route::put('/terms_conditions', [TermsConditionsController::class, 'update'])->name('terms_and_conditions.update');
 
     /** Contact Routes */
-    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
-    Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::put('/contact', [ContactController::class, 'update'])->name('contact.update');
 
     /** Reservation Routes */
-    Route::resource('reservation-time', ReservationTimeController::class);
-    Route::get('reservation', [ReservationController::class, 'index'])->name('reservation.index');
-    Route::post('reservation', [ReservationController::class, 'update'])->name('reservation.update');
-    Route::delete('reservation/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+    Route::resource('/reservation-time', ReservationTimeController::class);
+    Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::post('/reservation', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::delete('/reservation/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 
     /** News letter Routes */
-    Route::get('news-letter', [NewsLetterController::class, 'index'])->name('news_letter.index');
-    Route::post('news-letter', [NewsLetterController::class, 'sendNewsLetter'])->name('news_letter.send');
+    Route::get('/news-letter', [NewsLetterController::class, 'index'])->name('news_letter.index');
+    Route::post('/news-letter', [NewsLetterController::class, 'sendNewsLetter'])->name('news_letter.send');
 
     /** Social Links Routes */
-    Route::resource('social_link', SocialLinkController::class);
+    Route::resource('/social_link', SocialLinkController::class);
 
     /** Footer Routes */
-    Route::get('footer-info', [FooterInfoController::class, 'index'])->name('footer_info.index');
-    Route::put('footer-info', [FooterInfoController::class, 'update'])->name('footer_info.update');
+    Route::get('/footer-info', [FooterInfoController::class, 'index'])->name('footer_info.index');
+    Route::put('/footer-info', [FooterInfoController::class, 'update'])->name('footer_info.update');
 
     /** Menu builder Routes */
-    Route::get('menu-builder', [MenuBuilderController::class, 'index'])->name('menu_builder.index');
+    Route::get('/menu-builder', [MenuBuilderController::class, 'index'])->name('menu_builder.index');
 
     /** Custom page builder Routes custom-page-builder */
-    Route::resource('custom-page-builder', CustomPageBuilderController::class);
+    Route::resource('/custom-page-builder', CustomPageBuilderController::class);
 
+    /** Blogs Category Routes */
+    Route::resource('/blog-category', BlogCategoryController::class);
+    Route::resource('blogs', BlogController::class);
+
+
+    
 });

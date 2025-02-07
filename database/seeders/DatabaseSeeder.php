@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\About;
 use App\Models\Address;
 use App\Models\BannerSlider;
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Category;
 use App\Models\Chef;
 use App\Models\Contact;
@@ -66,6 +68,8 @@ class DatabaseSeeder extends Seeder
         //ReservationTime::factory(5)->create();
         //SocialLink::factory(4)->create();
         //$this->call(MenuContentSeeder::class);
+        //BlogCategory::factory(8)->create();
+        Blog::factory(15)->create();
 
     }
 }
