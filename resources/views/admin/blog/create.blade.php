@@ -19,7 +19,6 @@
         <div class="card-body">
             <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 <div class="form-group">
                     <label>Image</label>
                     <div id="image-preview" class="image-preview">
@@ -42,7 +41,6 @@
                         @endforeach
                     </select>
                 </div>
-
 
                 <div class="form-group">
                     <label>Description</label>

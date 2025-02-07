@@ -152,3 +152,16 @@ if(!function_exists('productCartViewTotal')) {
             }
         }
     }
+
+    /** This custom truncate function is essentially a convenience wrapper around
+     * Laravel's built-in Str::limit method, which allows you to truncate strings
+     * easily and append an ellipsis.
+     * It is useful for situations where I need to display a preview of a longer
+     * string (like an excerpt of a blog post or a comment), while ensuring that
+     * it doesn't exceed a set number of characters. */
+    if (!function_exists('truncate')) {
+        function truncate(string $string, int $limit = 100)
+        {
+            return \Str::limit($string, $limit, '...');
+        }
+    }

@@ -65,6 +65,11 @@ Route::post('/contact', [FrontendController::class, 'sendContactMessage'])->name
 /** Custom Page Routes */
 Route::get('/page/{slug}', CustomPageController::class);
 
+/** Blogs Routes */
+Route::get('/blogs', [FrontendController::class, 'blog'])->name('blogs');
+Route::get('/blogs/{slug}', [FrontendController::class, 'blogDetails'])->name('blogs.details');
+Route::post('/blogs/comment/{blog_id}', [FrontendController::class, 'blogCommentStore'])->name('blogs.comment.store');
+
 /**
  * Product Modal Route
  *
@@ -146,7 +151,7 @@ Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('appl
 Route::get('/destroye-coupon', [CartController::class, 'destroyeCoupon'])->name('destroye.coupon');
 
 /** Authentication Routes - Protecting Checkout & Payment Routes */
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
 
     /**
      * Checkout Route
@@ -200,8 +205,6 @@ Route::group(['middleware' => 'auth'], function(){
         RTOrderPlacedNotificationEvent::dispatch($order);
         //return 'Event Dispatched with Dynamic Pusher Configuration!';
     });
-
-
 });
 
 /**
@@ -210,7 +213,7 @@ Route::group(['middleware' => 'auth'], function(){
  * - These routes handle the login functionality for the admin panel.
  * - They are protected by the 'guest' middleware, allowing access only for unauthenticated users.
  */
-Route::group(['middleware' => 'guest'], function(){
+Route::group(['middleware' => 'guest'], function () {
     Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
     Route::get('admin/forget_password', [AdminAuthController::class, 'forgetPassword'])->name('admin.forget_password');
     Route::post('admin/forget_password', [AdminAuthController::class, 'sendResetLink'])->name('admin.send_reset_link');
@@ -226,7 +229,7 @@ Route::group(['middleware' => 'guest'], function(){
  * - These routes are protected by the 'auth' middleware.
  * - Only authenticated users can access their dashboard, profile, and related routes.
  */
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
 
     /**
      * Dashboard Route
@@ -271,7 +274,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     /** Chat Routes */
     Route::post('/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
-    Route::get('/chat/get-conversation/{senderId}',[ChatController::class, 'getConversation'])->name('chat.get-conversation');
+    Route::get('/chat/get-conversation/{senderId}', [ChatController::class, 'getConversation'])->name('chat.get-conversation');
 });
 
 // ===========================================
@@ -286,7 +289,7 @@ Route::group(['middleware' => 'auth'], function() {
 // ===========================================
 
 // Including Laravel's default authentication routes (e.g., login, registration)
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // ===========================================
 // ADMIN ROUTES (COMMENTED OUT)
@@ -300,4 +303,3 @@ require __DIR__.'/auth.php';
 // Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])
 //     ->middleware(['auth', 'role:admin'])  // Protect the route with 'auth' and 'role:admin'
 //     ->name('admin/dashboard');
-
