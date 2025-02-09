@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\ReservationTimeController;
+use App\Http\Controllers\Admin\ReviewsProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialLinkController;
@@ -132,6 +133,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /** Route Product Size */
     Route::resource('/product-option', OptionProductController::class);
+
+    /** Product Reviews Routes */
+    Route::get('product-reviews', [ReviewsProductController::class, 'index'])->name('product-reviews.index');
+    Route::post('product-reviews', [ReviewsProductController::class, 'updateStatus'])->name('product-reviews.update');
+    Route::delete('product-reviews/{id}', [ReviewsProductController::class, 'destroy'])->name('product-reviews.destroy');
 
     /** Setting Routes */
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');

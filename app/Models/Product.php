@@ -48,6 +48,21 @@ class Product extends Model
         return $this->hasMany(OptionProduct::class);
     }
 
-    
+    function reviews() : HasMany {
+        return $this->hasMany(ProductRating::class, 'product_id', 'id')->where('status', true);
+    }
+
+    public function relatedProducts()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'category_id')->where('id', '!=', $this->id);
+    }
+    function getAverageRating() {
+        $total_start_rating = 0;
+        $reviews = $this->reviews;
+        foreach($reviews as $review) {
+            $total_start_rating += $review->rating;
+        }
+        return $reviews->count() > 0 ? ($total_start_rating / $reviews->count()) : 0;
+    }
 
 }

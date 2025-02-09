@@ -22,6 +22,7 @@ use App\Models\DeliveryArea;
 use App\Models\WhyChooseUs;
 use App\Models\Coupon;
 use App\Models\DailyOffer;
+use App\Models\ProductRating;
 use App\Models\ReservationTime;
 use App\Models\SocialLink;
 use App\Models\Testimonial;
@@ -72,6 +73,6 @@ class DatabaseSeeder extends Seeder
         //BlogCategory::factory(8)->create();
         // Blog::factory(30)->create();
         // BlogComment::factory(50)->create();
-
+        ProductRating::factory(200)->create();
     }
 }

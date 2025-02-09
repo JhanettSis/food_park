@@ -49,6 +49,9 @@ Route::get('/testimonials', [FrontendController::class, 'testimonial'])->name('t
  */
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
 
+/** Route product reviews */
+Route::post('product-review', [FrontendController::class, 'productReviewStore'])->name('product-review.store');
+
 /** About Routes */
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 
@@ -150,7 +153,8 @@ Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('appl
  */
 Route::get('/destroye-coupon', [CartController::class, 'destroyeCoupon'])->name('destroye.coupon');
 
-/** Authentication Routes - Protecting Checkout & Payment Routes */
+/** ==============================================================================
+ *              Authentication Routes - Protecting Checkout & Payment Routes */
 Route::group(['middleware' => 'auth'], function () {
 
     /**

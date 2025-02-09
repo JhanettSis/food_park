@@ -19,6 +19,7 @@ use App\Models\FooterInfo;
 use App\Models\PrivacyPolicy;
 use App\Models\Product;
 use App\Models\ProductGallery;
+use App\Models\ProductRating;
 use App\Models\Reservation;
 use App\Models\SectionTitle;
 use App\Models\Slider;
@@ -136,11 +137,66 @@ class FrontendController extends Controller
         // This porcion 'firstOrFail' is in case the user can put somename on the url site
         // that isn't exist on the database
         $product = Product::with('galleryProduct', 'sizeProduct', 'OptionProduct')
-        ->where(['slug'=> $slug, 'status' => '1'])->firstOrFail();
+        ->where(['slug'=> $slug, 'status' => true])->firstOrFail();
         // Fetch related products
         $relatedProducts = Product::where('category_id', $product->category_id)
-        ->where('id', '!=', $product->category_id)->take(8)->latest()->get();
-        return view('frontend.pages.productView', compact('product', 'relatedProducts'));
+        ->where('id', '!=', $product->category_id)
+        ->where('status', true)
+        ->take(8)->latest()->get();
+
+        foreach($relatedProducts as $relatedProduct){
+            $relatedProduct->rating_start = $relatedProduct->getAverageRating();
+            //dd($relatedProduct . $relatedProduct->rating_start);
+        }
+
+        $reviews = ProductRating::where(['product_id' => $product->id, 'status' => true])
+        ->paginate(30);
+
+        $total_start_rating = 0;
+        foreach($reviews as $review ){
+            $total_start_rating += $review->rating;
+        }
+        $rating_start = $total_start_rating / count($reviews);
+        return view('frontend.pages.productView', compact('product', 'relatedProducts', 'reviews', 'rating_start'));
+    }
+
+
+    function productReviewStore(Request $request) {
+
+        $request->validate([
+            'rating' => ['required', 'min:1', 'max:5', 'integer'],
+            'review' => ['required', 'max:500'],
+            'product_id' => ['required', 'integer']
+        ]);
+
+        $user = Auth::user();
+
+        $hasPurchased = $user->orders()->whereHas('orderItems', function($query) use ($request){
+            $query->where('product_id', $request->product_id);
+        })
+        ->where('order_status', 'delivered')
+        ->get();
+
+        if(count($hasPurchased) == 0){
+            throw ValidationException::withMessages(['Please Buy The Product Before Submit a Review!']);
+        }
+
+        $alreadyReviewed = ProductRating::where(['user_id' => $user->id, 'product_id' => $request->product_id])->exists();
+        if($alreadyReviewed){
+            throw ValidationException::withMessages(['You already reviewed this product']);
+        }
+
+        $review = new ProductRating();
+        $review->user_id = $user->id;
+        $review->product_id = $request->product_id;
+        $review->rating = $request->rating;
+        $review->review = $request->review;
+        $review->status = 0;
+        $review->save();
+
+        toastr()->success('Review added successfully and waiting to approve');
+
+        return redirect()->back();
     }
 
     /**
@@ -389,5 +445,7 @@ class FrontendController extends Controller
 
         return redirect()->back(); // Redirect back to the previous page
     }
+
+
 
 }

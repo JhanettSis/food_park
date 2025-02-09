@@ -747,6 +747,10 @@ namespace App\Models{
  * @property-read \App\Models\TFactory|null $use_factory
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OptionProduct> $optionProduct
  * @property-read int|null $option_product_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $relatedProducts
+ * @property-read int|null $related_products_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductRating> $reviews
+ * @property-read int|null $reviews_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductSize> $sizeProduct
  * @property-read int|null $size_product_count
  * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
@@ -795,6 +799,37 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductGallery whereUpdatedAt($value)
  */
 	class ProductGallery extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $product_id
+ * @property int $rating
+ * @property string $review
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\ProductRatingFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereReview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ProductRating whereUserId($value)
+ */
+	class ProductRating extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1074,9 +1109,13 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Chat> $chats
+ * @property-read int|null $chats_count
  * @property-read \App\Models\TFactory|null $use_factory
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
+ * @property-read int|null $orders_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User newQuery()

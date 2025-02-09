@@ -39,6 +39,10 @@
                         ->orderBy('id', 'Desc')
                         ->take(8)
                         ->get();
+
+                        foreach($products as $product){
+                            $product->rating_start = $product->getAverageRating();
+                        }
                 @endphp
                 @foreach ($products as $product)
                     <div class="col-xl-3 col-sm-6 col-lg-4 {{ $category->slug }} wow fadeInUp" data-wow-duration="1s">
@@ -50,12 +54,16 @@
                             </div>
                             <div class="fp__menu_item_text">
                                 <p class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-                                    <span>145</span>
+                                    @for ($i = 1; $i<=5; $i++)
+                                        @if ($product->rating_start >= $i)
+                                            <i class="fas fa-star"></i>
+                                        @elseif ($product->rating_start >= $i - 0.5)
+                                            <i class="fas fa-star-half-alt"></i>
+                                        @else
+                                            <i class="far fa-star"></i>
+                                        @endif
+                                    @endfor
+                                    <span>{{ $product->reviews->count() }}</span>
                                 </p>
                                 <a class="title"
                                     href="{{ route('product.show', $product->slug) }}">{{ $product->product_name }}</a>
