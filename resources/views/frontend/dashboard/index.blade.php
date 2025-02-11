@@ -50,8 +50,7 @@
                                             class="fas fa-bags-shopping"></i></span> Order</button>
 
                                 @php
-                                // $unseenMessages = \App\Models\Chat::where(['sender_id' => 1, 'receiver_id' => Auth::user()->id, 'seen' => 0])->count();
-                                @$unseenMessages= '';
+                                $unseenMessages = \App\Models\Chat::where(['sender_id' => 1, 'receiver_id' => Auth::user()->id, 'seen' => 0])->count();
                                 @endphp
                                 <button class="nav-link fp_chat_message" id="v-pills-message-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-message" type="button" role="tab"
@@ -65,9 +64,9 @@
                                     aria-controls="v-pills-messages2" aria-selected="false"><span><i
                                             class="far fa-heart"></i></span> wishlist</button>
 
-                                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-messages" type="button" role="tab"
-                                    aria-controls="v-pills-messages" aria-selected="false"><span><i
+                                <button class="nav-link" id="v-pills-review-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-review" type="button" role="tab"
+                                    aria-controls="v-pills-review" aria-selected="false"><span><i
                                             class="fas fa-star"></i></span> Reviews</button>
 
                                 <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
@@ -98,6 +97,8 @@
                                 @include('frontend.dashboard.section.order-section')
 
                                 @include('frontend.dashboard.section.message-section')
+
+                                @include('frontend.dashboard.section.review-section')
 
                                 {{-- <div class="tab-pane fade" for change password  --}}
                                 @include('frontend.dashboard.change_password')

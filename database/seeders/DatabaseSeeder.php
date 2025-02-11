@@ -69,10 +69,10 @@ class DatabaseSeeder extends Seeder
         //Contact::factory(1)->create();
         //ReservationTime::factory(5)->create();
         //SocialLink::factory(4)->create();
-        //$this->call(MenuContentSeeder::class);
+        $this->call(MenuContentSeeder::class);
         //BlogCategory::factory(8)->create();
         // Blog::factory(30)->create();
         // BlogComment::factory(50)->create();
-        ProductRating::factory(200)->create();
+        //ProductRating::factory(200)->create();
     }
 }

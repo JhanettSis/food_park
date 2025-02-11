@@ -37,6 +37,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View as ViewView;
 use Mail;
+use Razorpay\Api\Product as ApiProduct;
 
 class FrontendController extends Controller
 {
@@ -125,6 +126,29 @@ class FrontendController extends Controller
     function testimonial() : View {
         $testimonials = Testimonial::where(['status' => 1])->paginate(9); // Fetch testimonials with pagination
         return view('frontend.pages.testimonial', compact('testimonials'));
+    }
+
+    function allProducts(Request $request) : View {
+
+        $products = Product::where(['status' => true])->orderBy('id', 'DESC');
+
+        if($request->has('search') && $request->filled('search')) {
+            $products->where(function($query) use ($request) {
+                $query->where('product_name', 'like', $request->search.'%');
+            });
+        }
+
+        if($request->has('category') && $request->filled('category')) {
+            $products->whereHas('category', function($query) use ($request){
+                $query->where('slug', $request->category);
+            });
+        }
+
+        $products = $products->withAvg('reviews', 'rating')->withCount('reviews')->paginate(12);
+
+        $categories = Category::where('status', true)->get();
+
+        return view('frontend.pages.product', compact('products', 'categories'));
     }
     /**
      * Display a single product's details.

@@ -32,8 +32,8 @@
             @foreach ($categories as $category)
                 @php
                     $products = \App\Models\Product::where([
-                        'show_at_home' => 1,
-                        'status' => 1,
+                        'show_at_home' => true,
+                        'status' => true,
                         'category_id' => $category->id,
                     ])
                         ->orderBy('id', 'Desc')
@@ -63,7 +63,7 @@
                                             <i class="far fa-star"></i>
                                         @endif
                                     @endfor
-                                    <span>{{ $product->reviews->count() }}</span>
+                                    <span>({{ $product->reviews->count() }})</span>
                                 </p>
                                 <a class="title"
                                     href="{{ route('product.show', $product->slug) }}">{{ $product->product_name }}</a>

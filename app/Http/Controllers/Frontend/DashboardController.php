@@ -10,6 +10,7 @@ use App\Models\Area;
 use App\Models\Address;
 use App\Http\Requests\Frontend\AddressCreateRequest;
 use App\Models\Order;
+use App\Models\ProductRating;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -22,8 +23,11 @@ class DashboardController extends Controller
         $supportedAreas = DeliveryArea::where('status', 1)->get();
         $userAddresses = Address::where('user_id', $user->id)->get();
         $orders = Order::where('user_id', $user->id)->get();
+        $reviews = ProductRating::where('user_id', Auth::user()->id)->get();
 
-        return view('frontend.dashboard.index', compact('supportedAreas', 'userAddresses', 'orders'));
+        //dd($reviews);
+        return view('frontend.dashboard.index',
+            compact('supportedAreas', 'userAddresses', 'orders', 'reviews'));
     }
 
     // Store a new address

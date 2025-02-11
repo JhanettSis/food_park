@@ -40,6 +40,9 @@ Route::get('/menu-food', [FrontendController::class, 'menu_food'])->name('menu_f
 
 /** Testimonial page */
 Route::get('/testimonials', [FrontendController::class, 'testimonial'])->name('testimonial');
+/** Route Product Page */
+
+Route::get('/products', [FrontendController::class, 'allProducts'])->name('products.allProducts');
 /**
  * Product Detail Route
  *
