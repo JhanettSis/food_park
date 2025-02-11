@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CustomPageController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Models\Order;
@@ -134,6 +135,8 @@ Route::post('/car-update-qty', [CartController::class, 'cart_qty_update'])->name
  */
 Route::get('/cart-destroy', [CartController::class, 'cart_destroye'])->name('cart.destroye');
 
+/** Route Wishlist  */
+Route::get('wishlist/{productId}', [WishlistController::class, 'store'])->name('wishlist.store');
 /** Reservation Routes */
 Route::post('/reservation', [FrontendController::class, 'reservation'])->name('reservation.store');
 

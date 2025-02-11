@@ -59,9 +59,9 @@
                                 <b class="sunseen-message-count">{{ $unseenMessages > 0 ? 1 : 0 }}</b>
                                 </button>
 
-                                <button class="nav-link" id="v-pills-messages-tab2" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-messages2" type="button" role="tab"
-                                    aria-controls="v-pills-messages2" aria-selected="false"><span><i
+                                <button class="nav-link" id="v-pills-wishlist-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-wishlist" type="button" role="tab"
+                                    aria-controls="v-pills-wishlist" aria-selected="false"><span><i
                                             class="far fa-heart"></i></span> wishlist</button>
 
                                 <button class="nav-link" id="v-pills-review-tab" data-bs-toggle="pill"
@@ -99,6 +99,8 @@
                                 @include('frontend.dashboard.section.message-section')
 
                                 @include('frontend.dashboard.section.review-section')
+
+                                @include('frontend.dashboard.section.wishlist_section')
 
                                 {{-- <div class="tab-pane fade" for change password  --}}
                                 @include('frontend.dashboard.change_password')

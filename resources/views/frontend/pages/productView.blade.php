@@ -292,7 +292,8 @@
                                                     <i class="fas fa-shopping-basket"></i>
                                                 </a>
                                             </li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                            <li><a href="javascript:;" onclick="addToWishlist({{ $relatedProduct->id }})">
+                                                <i class="fal fa-heart"></i></a></li>
                                             <li><a href="#"><i class="far fa-eye"></i></a></li>
                                         </ul>
                                     </div>

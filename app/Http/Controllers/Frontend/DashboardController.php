@@ -11,6 +11,8 @@ use App\Models\Address;
 use App\Http\Requests\Frontend\AddressCreateRequest;
 use App\Models\Order;
 use App\Models\ProductRating;
+use App\Models\Reservation;
+use App\Models\Wishlist;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -20,14 +22,22 @@ class DashboardController extends Controller
     function index(): View
     {
         $user = Auth::user();
-        $supportedAreas = DeliveryArea::where('status', 1)->get();
+        $supportedAreas = DeliveryArea::where('status', true)->get();
         $userAddresses = Address::where('user_id', $user->id)->get();
+        $reservations = Reservation::where('user_id', Auth::user()->id)->get();
         $orders = Order::where('user_id', $user->id)->get();
-        $reviews = ProductRating::where('user_id', Auth::user()->id)->get();
+        $reviews = ProductRating::where('user_id', $user->id)->get();
+        $wishlist = Wishlist::where('user_id', $user->id)->latest()->get();
+        $totalOrders = Order::where('user_id', $user->id)->count();
+        $totalCompleteOrders = Order::where('user_id', $user->id)->where('order_status', 'delivered')->count();
+        $totalCancelOrders = Order::where('user_id', $user->id)->where('order_status', 'declined')->count();
 
-        //dd($reviews);
+
         return view('frontend.dashboard.index',
-            compact('supportedAreas', 'userAddresses', 'orders', 'reviews'));
+            compact('supportedAreas', 'userAddresses',
+                    'orders', 'reviews',
+                    'reservations', 'wishlist',
+                    'totalOrders', 'totalCompleteOrders', 'totalCancelOrders'));
     }
 
     // Store a new address

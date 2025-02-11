@@ -81,13 +81,17 @@
                                 <ul class="d-flex flex-wrap justify-content-center">
                                     <li>
                                         {{-- Here this button open a modal view, this modal is on the
-                                        layouts/ajax_files/product_poput.blade.php--}}
+                                        layouts/ajax_files/product_poput.blade.php
+                                        and the functions loadProductModal(); addToWishlist(); and  could be found in the file
+                                        Frontend/layouts/globalScript.blade.php --}}
                                         <a href="javascript:;" onclick="loadProductModal({{ $product->id }})">
                                             <i class="fas fa-shopping-basket"></i>
                                         </a>
                                     </li>
-                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="javascript:;" onclick="addToWishlist({{ $product->id }})">
+                                        <i class="fal fa-heart"></i></a></li>
                                     <li><a href="#"><i class="far fa-eye"></i></a></li>
+                                    <li>owieruoweiruower</li>
                                 </ul>
                             </div>
                         </div>
