@@ -120,6 +120,10 @@
                 <a class="nav-link" href="{{ route('admin.slider.index') }}"><i
                         class="far fa-square"></i><span>Silder</span></a>
             </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.admin-management.index') }}"><i
+                        class="far fa-square"></i><span>Admin Management </span></a>
+            </li>
             <li><a class="nav-link" href="{{ route('admin.daily-offer.index') }}"><i class="far fa-clock"></i>
                 <span>Daily Offer</span></a></li>
             <li>
@@ -231,6 +235,10 @@
             <li>
                 <a class="nav-link" href="{{ route('admin.setting.index') }}">
                     <i class="far fa-square"></i><span>Settings</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.clear-database.index') }}">
+                    <i class="far fa-square"></i><span>Clear DataBase</span></a>
             </li>
         </ul>
     </aside>

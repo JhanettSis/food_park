@@ -8,6 +8,7 @@
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AppDownloadSectionController;
 use App\Http\Controllers\Admin\BannerSliderController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\ChefController;
+use App\Http\Controllers\Admin\ClearDatabaseController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DeliveryAreaController;
@@ -175,6 +177,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('/razorpay-setting', [PaymentGatewaySettingController::class, 'razorpaySettingUpdate'])->name('razorpay-setting.update');
 
 
+    /**  Route Admin Management */
+    Route::resource('/admin-management', AdminManagementController::class);
     /** Order Notification Routes */
     Route::get('/clear-notification',[AdminDashboardController::class, 'clearNotification'])->name('clear-notification');
 
@@ -255,4 +259,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::delete('blogs/comments/{id}', [BlogController::class, 'commentDestroy'])->name('blogs.comments.destroy');
 
     Route::resource('blogs', BlogController::class);
+    /** Clear Database Routes */
+    Route::get('/clear-database', [ClearDatabaseController::class, 'index'])->name('clear-database.index');
+    Route::post('/clear-database', [ClearDatabaseController::class, 'clearDB'])->name('clear-database.destroy');
+
 });

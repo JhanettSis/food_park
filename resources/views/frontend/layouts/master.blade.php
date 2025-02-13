@@ -11,12 +11,15 @@
 
     {{-- CSRF token for securing AJAX requests in Laravel --}}
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="description" content="{{ config('settings.seo_description') }}">
+    <meta name="keywords" content="{{ config('settings.seo_keywords') }}">
+
 
     {{-- Page title displayed in the browser tab --}}
-    <title>FoodPark || Restaurant</title>
+    <title>{{ config('settings.seo_title') }}</title>
 
     {{-- Favicon icon for the browser tab --}}
-    <link rel="icon" type="image/png" href="frontend/images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset(config('settings.favicon')) }}">
 
     {{-- Linking external CSS files for styling --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
@@ -40,7 +43,11 @@
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
         //var loggedInUserId = "{{ auth()->user()->id ?? '' }}";
     </script>
-
+    <style>
+        :root {
+            --colorPrimary: {{ config('settings.site_color') }};
+        }
+    </style>
     @vite(['resources/js/app.js'])
     {{-- RTL (Right to Left) stylesheet for languages like Arabic (Optional) --}}
     {{-- <link rel="stylesheet" href="frontend/css/rtl.css"> --}}

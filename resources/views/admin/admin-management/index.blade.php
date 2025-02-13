@@ -3,18 +3,18 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Blogs</h1>
+            <h1>Admin Management</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Blogs</div>
+                <div class="breadcrumb-item">Admin info</div>
             </div>
         </div>
 
         <div class="card card-primary">
             <div class="card-header">
-                <h4>All Blogs</h4>
+                <h4>All Admins</h4>
                 <div class="card-header-action">
-                    <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.admin-management.create') }}" class="btn btn-primary">
                         Create new
                     </a>
                 </div>
