@@ -52,13 +52,13 @@
 <!--=============================
         BREADCRUMB START
     ==============================-->
-    <section class="fp__breadcrumb" style="background: url(frontend/images/counter_bg.jpg);">
+    <section class="fp__breadcrumb" style="background: url({{ asset(config('settings.breadcrumb')) }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
                     <h1>sign in</h1>
                     <ul>
-                        <li><a href="{{ route('home') }}">home</a></li>
+                        <li><a href="{{ url('/') }}">home</a></li>
                         <li><a href="#">sign in</a></li>
                     </ul>
                 </div>

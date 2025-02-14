@@ -18,9 +18,10 @@
 
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
-    <!-- include summernote css/js -->
+    {{-- include summernote css/js --}}
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
+    {{-- In case I have to work with other version of datatables https://cdn.datatables.net/ --}}
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     {{-- Template CSS --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -37,9 +38,9 @@
     <script>
         var pusherKey = "{{ config('settings.pusher_key') }}";
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
-        //var loggedInUserId = "{{ Auth::user()->id }}";
+        // var loggedInUserId = "{{ Auth::user()->id }}";
     </script>
-    <!-- /END GA -->
+    {{-- /END GA --}}
     @vite(['resources/js/app.js'])
 </head>
 
@@ -61,8 +62,8 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad
-                        Nauval Azhar</a>
+                    Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Design By <a href="https://nauval.in/">
+                        JNA</a>
                 </div>
                 <div class="footer-right">
 

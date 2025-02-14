@@ -50,7 +50,7 @@ class AdminManagementDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('role', 'admin')->newQuery();
     }
 
     /**
